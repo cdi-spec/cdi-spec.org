@@ -1,0 +1,8 @@
+profiles:
+  development:
+  staging:
+    base_url: http://www.cdi-spec.org/staging
+    path: ~/public_html/topdomain-cdi-spec-org/staging
+  production:
+    base_url: http://www.cdi-spec.org/
+    path: ~/public_html/topdomain-cdi-spec-org
