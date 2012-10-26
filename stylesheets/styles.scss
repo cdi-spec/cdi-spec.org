@@ -61,3 +61,11 @@
 .centered {
   text-align: center;
 }
+
+.content-box {
+  background: url(../images/noise_lines.png);
+  @include border-radius(2px);
+  @include box-shadow(0 0 6px lighten(gray, 20%));
+  border: inset gray 2px;
+  padding: .5em;
+}
