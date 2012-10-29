@@ -6,3 +6,4 @@ profiles:
   production:
     base_url: http://www.cdi-spec.org/
     path: ~/public_html/topdomain-cdi-spec-org
+    disqus: cdispec
