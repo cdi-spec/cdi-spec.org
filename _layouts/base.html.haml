@@ -29,11 +29,12 @@
                 %i.icon-edit
                 Contribute
             %li
-              %a{ :href=>"#{site.base_url}/contribute" } 
+              -# Maybe this should just redirect?
+              %a{ :href=>"#{site.base_url}/forum" } 
                 %i.icon-group
                 Forum
             %li
-              %a{ :href=>"#{site.base_url}/contribute" } 
+              %a{ :href=>"https://issues.jboss.org/browse/CDI" } 
                 %i.icon-tasks
                 Bug tracker
     .container
