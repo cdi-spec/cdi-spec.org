@@ -29,7 +29,6 @@ module Awestruct::Extensions::Jira
       url = @base_url + (PROJECT_PATH_TEMPLATE % @project_key)
       project_data = RestClient.get url, :accept => 'application/json',
           :cache_key => "jira/project-#{@project_key}.json", :cache_expiry_age => DURATION_1_DAY
-      puts project_data['versions']
       project_data['versions'].each do |v|
         next if !v['released']
         release_key = v['name']
@@ -69,12 +68,11 @@ module Awestruct::Extensions::Jira
 
     # TODO datacache me
     def execute(site)
-      site.release_notes ||= {}
+      site.roadmap ||= {}
       # just in case we need other data, we'll just grab the versions from the project resource
       url = @base_url + (PROJECT_PATH_TEMPLATE % @project_key)
       project_data = RestClient.get url, :accept => 'application/json',
           :cache_key => "jira/project-#{@project_key}.json", :cache_expiry_age => DURATION_1_DAY
-      puts project_data['versions']
       project_data['versions'].each do |v|
         next if v['released']
 
@@ -94,6 +92,7 @@ module Awestruct::Extensions::Jira
 
         site.roadmap[v['id']] = roadmap
       end
+      puts site.roadmap
     end 
   end
 
