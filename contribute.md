@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 Guidelines for contributing to CDI 1.1 via the Expert Group (EG)
 ================================================================
 
