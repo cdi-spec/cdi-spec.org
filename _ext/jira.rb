@@ -55,8 +55,10 @@ module Awestruct::Extensions::Jira
     end 
   end
 
-  class RoadMap 
-    PROJECT_PATH_TEMPLATE = '/rest/api/latest/project/%s'
+  class RoadMap
+    REST_PATH = '/rest/api/latest/'
+    PROJECT_PATH_TEMPLATE = REST_PATH + 'project/%s'
+    VERSION_RELATED_ISSUES_COUNT_PATH_TEMPLATE = REST_PATH + 'version/%s/relatedIssueCounts'
     DURATION_1_DAY = 60 * 60 * 24
 
     # Expecting project_key as key:id (e.g., ARQ:12310885) because the JIRA REST API won't give up the project id
@@ -76,23 +78,12 @@ module Awestruct::Extensions::Jira
       project_data['versions'].each do |v|
         next if v['released']
 
-        html = RestClient.get url, :cache_key => "jira/roadmap-#{@project_key}-#{v['id']}.html"
-        doc = Nokogiri::HTML(html)
-        roadmap = OpenStruct.new({
-          :id => v['id'],
-          :comment => v['description'],
-          :html_url => url,
-          :tagged_issues => {}
-        })
-        doc.search('#editcopy > ul li').each do |e|
-          type = e.parent.previous_element.inner_text.strip
-          roadmap.tagged_issues[type] = [] if !roadmap.tagged_issues.has_key? type
-          roadmap.tagged_issues[type] << e.inner_html
-        end
-
-        site.roadmap[v['id']] = roadmap
+        url = @base_url + (VERSION_RELATED_ISSUES_COUNT_PATH_TEMPLATE % v['id'])
+        relatedIssueCounts = RestClient.get url, :accept => 'application/json', :cache_key => "jira/version-#{@project_key}-#{v['id']}-relatedIssueCounts.json", :cache_expiry_age => DURATION_1_DAY
+          
+        relatedIssues = RestClient.post @base_url + REST_PATH + 'search', {'jql' => "fixVersion = #{v['id']}", 'fields' => ["id","key","summary","status","priority"], 'maxResults' => relatedIssueCounts['issuesFixedCount']}.to_json, :content_type => :json, :accept => :json, :cache_key => "jira/version-#{@project_key}-#{v['id']}-relatedIssues.json", :cache_expiry_age => DURATION_1_DAY
+        site.roadmap[v['id']] = relatedIssues
       end
-      puts site.roadmap
     end 
   end
 
