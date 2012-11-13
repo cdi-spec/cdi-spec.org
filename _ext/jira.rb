@@ -1,3 +1,5 @@
+require 'uri'
+
 module Awestruct::Extensions::Jira
   DEFAULT_BASE_URL = 'https://issues.jboss.org'
 
@@ -81,8 +83,8 @@ module Awestruct::Extensions::Jira
         url = @base_url + (VERSION_RELATED_ISSUES_COUNT_PATH_TEMPLATE % v['id'])
         relatedIssueCounts = RestClient.get url, :accept => 'application/json', :cache_key => "jira/version-#{@project_key}-#{v['id']}-relatedIssueCounts.json", :cache_expiry_age => DURATION_1_DAY
           
-        relatedIssues = RestClient.post @base_url + REST_PATH + 'search', {'jql' => "fixVersion = #{v['id']}", 'fields' => ["id","key","summary","status","priority"], 'maxResults' => relatedIssueCounts['issuesFixedCount']}.to_json, :content_type => :json, :accept => :json, :cache_key => "jira/version-#{@project_key}-#{v['id']}-relatedIssues.json", :cache_expiry_age => DURATION_1_DAY
-        site.roadmap[v['id']] = relatedIssues
+        relatedIssues = RestClient.get @base_url + REST_PATH + 'search?'+ URI.encode_www_form('jql' => "fixVersion=#{v['id']}", 'fields' => "id,key,summary,status,priority,description", 'maxResults' => relatedIssueCounts['issuesFixedCount']), :accept => 'application/json', :cache_key => "jira/version-#{@project_key}-#{v['id']}-relatedIssues.json", :cache_expiry_age => DURATION_1_DAY
+        site.roadmap[v['id']] = {"name" => v['name'], "issues" => relatedIssues['issues']}
       end
     end 
   end
