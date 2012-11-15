@@ -8,14 +8,14 @@ Guidelines for contributing to CDI 1.1 via the Expert Group (EG)
 EG Membership
 -------------
 
-We intend to develop CDI 1.1 on an open mailing list, of which all members are consider part of the EG although some discussions may require you to have signed the JSPA in which case you will need to apply via the JCP page. You may just want to have your name listed on the JCP pages also!
+We develop CDI on an open mailing list. All members of the mailing list are considered part of the EG.
 
 * Primary mailing list: <https://lists.jboss.org/mailman/listinfo/cdi-dev>
 * JCP page: <http://jcp.org/en/jsr/summary?id=346>
 * IRC: <irc://freenode.net/#jsr346>
 * Twitter: <https://twitter.com/#!/jsr346>
 
-We will have occasional phone calls as needed, primarily so that we know how we all sound!
+We also have a regular Google Hangout, at 5pm UK time on Mondays. If you want an invite, email the list.
 
 Resources
 ---------
@@ -40,7 +40,7 @@ Secondly, try to make every post or comment say something meaningful. Endless "I
 
 Thirdly, please try keep the EG a pleasant place - there is no need for rants, swearing or personal comments - these cannot help the specification in anyway. If you want to make an argument, back it up with concrete statements and examples.
 
-Finally, the EG should be a place where consensus is reached, so in general we won't vote on issues.
+We try to reach a consensus decision on all issues. If we can't reach a consensus, we use polls to see what the wider community things. For issues on which a consensus still cannot be reached, and require a vote, we take the EG list from the JCP as the voting group. So far, whilst developing CDI 1.1, we haven't had to vote on anything.
 
 
 Issue Resolution Rules
@@ -61,3 +61,4 @@ There are a number of issues which have merit (i.e. are addressing a valid probl
 * is responsible for the spec changes (with help/review from spec lead)
 * is responsible for TCK tests (help from TCK lead, review from spec lead)
 * is not responsible for implementing the feature in the RI
+
