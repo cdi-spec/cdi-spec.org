@@ -58,6 +58,43 @@ module Awestruct::Extensions::Jira
   end
 
   class RoadMap
+    # TODO: Pull all this info from JIRA and put into the site struct
+    # Get all the issues from the cached https://issues.jboss.org/rest/api/latest/project/CDI
+    # Total issue count per version can be found by https://issues.jboss.org/rest/api/latest/version/%d/relatedIssueCount
+    # Getting the issues (and labels) search?'+ URI.encode_www_form('jql' => "fixVersion=#{v['id']}", 'fields' => "id,key,summary,status,priority,labels", 'maxResults' => relatedIssueCounts['issuesFixedCount'])
+    # Because there's no way of getting an aggregate of labels, each result from the search will need to have its labels added 
+    #
+    # Example yaml
+    # ---
+    #  - '1.0':
+    #      id: '12315196'
+    #      releaseDate: '2009-12-10'
+    #      labels:
+    #        - label 1 
+    #        - label 2 
+    #        - label 3 
+    #  - 1.1 (Proposed):
+    #      id: '12315197'
+    #      releaseDate: 
+    #      labels:
+    #  - 1.1.EDR:
+    #      id: '12315956'
+    #      releaseDate: '2011-10-06'
+    #      labels:
+    #  - 1.1.PRD:
+    #      id: '12318464'
+    #      releaseDate: '2012-10-26'
+    #      labels:
+    #  - 1.1.PFD:
+    #      id: '12319989'
+    #      releaseDate: 
+    #      labels:
+    #  - TBD:
+    #      id: '12315955'
+    #      releaseDate: 
+    #      labels:
+
+    
     REST_PATH = '/rest/api/latest/'
     PROJECT_PATH_TEMPLATE = REST_PATH + 'project/%s'
     VERSION_RELATED_ISSUES_COUNT_PATH_TEMPLATE = REST_PATH + 'version/%s/relatedIssueCounts'

@@ -1,20 +1,4 @@
 ---
 layout: base
 ---
-- site.roadmap.each do |ver, val|
-  -# TODO: Each of these should probably be in their own accordion panel
-  %p= val['name']
-  .accordian#version{:id => ver}
-    - val['issues'].each do |issue|
-      .accordion-group
-        .accordion-heading
-          %a.accordian-toggle{:href => "#collapse_#{issue['id']}", :data => {:toggle => "collapse", :parent => "version_#{ver}"}}
-            -# TODO: Fill in the rest of the information (icons, status, etc)
-            = issue['key']
-        .accordion-body.collapse#collapse{:id => issue['id']}
-          .accordion-inner
-            -# 
-              TODO: we need to listen to the show event and make a rest call to fetch the rendered description: 
-              https://issues.jboss.org/rest/api/latest/issue/CDI-291?fields=description&expand=renderedFields 
-              then pull out the renderedFields['description'] and put it here. We could easily have every body show
-              the spinning circle or something then just replace it with the actual body
+-# TODO: make it look like jdf
