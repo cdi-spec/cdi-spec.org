@@ -57,6 +57,7 @@ module Awestruct::Extensions::Jira
     end 
   end
 
+  #  This is specific to CDI (probably) but should still be pulled out and put into something else so the main JIRA stuff can be extracted
   class RoadMap
     # TODO: Pull all this info from JIRA and put into the site struct
     # Get all the issues from the cached https://issues.jboss.org/rest/api/latest/project/CDI
@@ -67,32 +68,11 @@ module Awestruct::Extensions::Jira
     # Example yaml
     # ---
     #  - '1.0':
-    #      id: '12315196'
-    #      releaseDate: '2009-12-10'
-    #      labels:
-    #        - label 1 
-    #        - label 2 
-    #        - label 3 
-    #  - 1.1 (Proposed):
-    #      id: '12315197'
-    #      releaseDate: 
-    #      labels:
-    #  - 1.1.EDR:
-    #      id: '12315956'
-    #      releaseDate: '2011-10-06'
-    #      labels:
-    #  - 1.1.PRD:
-    #      id: '12318464'
-    #      releaseDate: '2012-10-26'
-    #      labels:
-    #  - 1.1.PFD:
-    #      id: '12319989'
-    #      releaseDate: 
-    #      labels:
-    #  - TBD:
-    #      id: '12315955'
-    #      releaseDate: 
-    #      labels:
+    #      jira_id: '12315196'
+    #      - 
+    #        label 1: description 
+    #        label 2: description 
+    #        label 3: description 
 
     
     REST_PATH = '/rest/api/latest/'
@@ -110,7 +90,9 @@ module Awestruct::Extensions::Jira
     # TODO datacache me
     def execute(site)
       site.roadmap ||= {}
-      # just in case we need other data, we'll just grab the versions from the project resource
+      # We can load in the versions from the yaml file, that way we'll have the labels we want and the fixVersion:
+      # labels in ('patch') AND fixVersion in unreleasedVersions(CDI)
+      # we'll want to expand labels and fixVersions only, to keep the responses small
       url = @base_url + (PROJECT_PATH_TEMPLATE % @project_key)
       project_data = RestClient.get url, :accept => 'application/json',
           :cache_key => "jira/project-#{@project_key}.json", :cache_expiry_age => DURATION_1_DAY
