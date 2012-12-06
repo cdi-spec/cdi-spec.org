@@ -6,6 +6,7 @@ require_relative 'jira'
 Awestruct::Extensions::Pipeline.new do
   extension Awestruct::Extensions::RestClientExtensions::EnableGetCache.new
   extension Awestruct::Extensions::RestClientExtensions::EnableJsonConverter.new
+  extension Awestruct::Extensions::DataDir.new
   extension Awestruct::Extensions::Posts.new( '/news', :posts ) 
   extension Awestruct::Extensions::Atomizer.new( :posts, '/news/news.atom' )
 
