@@ -1,4 +1,14 @@
 ---
 layout: base
 ---
--# TODO: make it look like jdf
+- site.labels.each_key do |label|
+  %article
+    %header
+      %h1
+        = label
+        %span.badge.badge-info
+          -# Thinking of making this a popover on hover to display the list of issues: type image, priority image, status image, key
+          Issues :
+          = site.labels[label].issue_count
+    %p= site.labels[label].content
+        

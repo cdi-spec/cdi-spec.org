@@ -60,20 +60,6 @@ module Awestruct::Extensions::Jira
   #  This is specific to CDI (probably) but should still be pulled out and put into something else so the main JIRA stuff can be extracted
   class RoadMap
     # TODO: Pull all this info from JIRA and put into the site struct
-    # Get all the issues from the cached https://issues.jboss.org/rest/api/latest/project/CDI
-    # Total issue count per version can be found by https://issues.jboss.org/rest/api/latest/version/%d/relatedIssueCount
-    # Getting the issues (and labels) search?'+ URI.encode_www_form('jql' => "fixVersion=#{v['id']}", 'fields' => "id,key,summary,status,priority,labels", 'maxResults' => relatedIssueCounts['issuesFixedCount'])
-    # Because there's no way of getting an aggregate of labels, each result from the search will need to have its labels added 
-    #
-    # Example yaml
-    # ---
-    #  - '1.0':
-    #      jira_id: '12315196'
-    #      - 
-    #        label 1: description 
-    #        label 2: description 
-    #        label 3: description 
-
     
     REST_PATH = '/rest/api/latest/'
     PROJECT_PATH_TEMPLATE = REST_PATH + 'project/%s'
@@ -89,22 +75,18 @@ module Awestruct::Extensions::Jira
 
     # TODO datacache me
     def execute(site)
-      site.roadmap ||= {}
       # We can load in the versions from the yaml file, that way we'll have the labels we want and the fixVersion:
       # labels in ('patch') AND fixVersion in unreleasedVersions(CDI)
       # we'll want to expand labels and fixVersions only, to keep the responses small
-      url = @base_url + (PROJECT_PATH_TEMPLATE % @project_key)
-      project_data = RestClient.get url, :accept => 'application/json',
-          :cache_key => "jira/project-#{@project_key}.json", :cache_expiry_age => DURATION_1_DAY
-      project_data['versions'].each do |v|
-        next if v['released']
+      site.labels.each_key do |label| 
+        search_url = @base_url + REST_PATH + 'search?' + URI.encode_www_form('jql' => "labels IN ('#{label}') AND project = #{@project_key}",
+                                                                             'fields' => 'labels,fixVersions')
 
-        url = @base_url + (VERSION_RELATED_ISSUES_COUNT_PATH_TEMPLATE % v['id'])
-        relatedIssueCounts = RestClient.get url, :accept => 'application/json', :cache_key => "jira/version-#{@project_key}-#{v['id']}-relatedIssueCounts.json", :cache_expiry_age => DURATION_1_DAY
-          
-        relatedIssues = RestClient.get @base_url + REST_PATH + 'search?'+ URI.encode_www_form('jql' => "fixVersion=#{v['id']}", 'fields' => "id,key,summary,status,priority,description", 'maxResults' => relatedIssueCounts['issuesFixedCount']), :accept => 'application/json', :cache_key => "jira/version-#{@project_key}-#{v['id']}-relatedIssues.json", :cache_expiry_age => DURATION_1_DAY
-        site.roadmap[v['id']] = {"name" => v['name'], "issues" => relatedIssues['issues']}
-      end
+        issues_for_label = RestClient.get search_url, :accept => 'application/json',
+            :cache_key => "jira/project-#{@project_key}-label-#{label}.json", :cache_expiry_age => DURATION_1_DAY
+ 
+        site.labels[label].issue_count = issues_for_label['total']
+      end 
     end 
   end
 
