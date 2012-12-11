@@ -27,14 +27,69 @@ layout: base
         * An SPI allowing portable extensions to integrate cleanly with the container
   .span6
     .content-box
-      %a{:href=>"http://jcp.org/en/jsr/detail?id=299", :target=>"_new"} CDI 1.0 - JSR 299
-      %br/
-      %a{:href=>"http://jcp.org/en/jsr/detail?id=346", :target=>"_new"} CDI 1.1 - JSR 299 
+      %h1
+        %a{:href=>"http://jcp.org/en/jsr/detail?id=299", :target=>"_new"} CDI 1.0 - JSR 299
+        %br/
+        %a{:href=>"http://jcp.org/en/jsr/detail?id=346", :target=>"_new"} CDI 1.1 - JSR 299 
       %br/
       %h2 Important Dates
-      %h2 Implementations 
-      -# TODO: scrape http://www.oracle.com/technetwork/java/javaee/overview/compatibility-jsp-136984.html and include those in a carousel
+      %h2 Servers with CDI support
+      #server-carousel.carousel.slide
+        .carousel-inner.offset1{:style=>"min-height:170px"}
+          .item
+            %img{:src=>"#{site.base_url}/images/servers/glassfish.gif"}
+            %h4 Oracle GlassFish 3.x
+            %h5 using Weld
+          .item
+            %img{:src=>"#{site.base_url}/images/servers/tmax_soft.jpg"}
+            %h4 TMAX JEUS 7
+            %h5 using Weld
+          .item
+            %img{:src=>"#{site.base_url}/images/servers/IBM.gif"}
+            %h4 IBM WebSphere 8.x / Community Edition 3.0
+            %h5 using OpenWebBeans
+          .item
+            %img{:src=>"#{site.base_url}/images/servers/fujitsu.png"}
+            %h4 Fujitsu Interstage v10.1 / Windows Azure
+            %h5 using Weld
+          .item
+            %img{:src=>"#{site.base_url}/images/servers/oracle.gif"}
+            %h4 Oracle WebLogic 12
+            %h5 using Weld
+          .item
+            %img{:src=>"#{site.base_url}/images/servers/geronimo.jpg"}
+            %h4 Apache Geronimo 3.0-beta-1
+            %h5 using OpenWebBeans
+          .item
+            %img{:src=>"#{site.base_url}/images/servers/jbossas7.jpg"}
+            %h4 JBoss AS7
+            %h5 using Weld
+          .item
+            %img{:src=>"#{site.base_url}/images/servers/cosminexus.png"}
+            %h4 Hitachi uCosminexus v 9.0
+            %h5 using Weld
+          .item
+            %img{:src=>"#{site.base_url}/images/servers/jbosseap6.png"}
+            %h4 JBoss EAP 6
+            %h5 using Weld
+          .item
+            %img{:src=>"#{site.base_url}/images/servers/caucho.jpg"}
+            %h4 Caucho Resin 4.0.17
+            %h5 using CanDI
+          .item
+            %img{:src=>"#{site.base_url}/images/servers/tomee.gif"}
+            %h4 Apache TomEE 1.0
+            %h5 using OpenWebBeans
+          .item
+            %img{:src=>"#{site.base_url}/images/servers/sap-logo.jpg"}
+            %h4 SAP NetWeaver Cloud
+            %h5 using OpenWebBeans
+      :javascript
+        $(function() {
+          $("#server-carousel").carousel();
+        });
 .row
+  %br/
   .span12
     .content-box
       :markdown
