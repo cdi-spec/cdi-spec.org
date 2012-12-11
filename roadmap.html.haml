@@ -6,9 +6,9 @@ layout: base
     %header
       %h1
         = label
-        %span.badge.badge-info
-          -# Thinking of making this a popover on hover to display the list of issues: type image, priority image, status image, key
-          Issues :
-          = site.labels[label].issue_count
+        %a{:href=>"https://issues.jboss.org/issues/?jql=project%3DCDI+AND+labels%3D#{label}", :target=>"new"}
+          %span.badge.badge-info
+            Issues :
+            = site.labels[label].issue_count
     %p= site.labels[label].content
         
