@@ -1,0 +1,32 @@
+---
+title: Can I share information between observers in an Extension?
+author: Dan Allen
+---
+In other words, ''is the instance of my Extension contextual and what is its scope?''
+
+[quote, CDI Expert Group, Section 11.5 CDI Specification]
+____
+The container instantiates a single instance of each extension at the beginning of the application initialization process and maintains a reference to it until the application shuts down. The container delivers event notifications to this instance by calling its observer methods.
+____
+
+Speaking in code, the following assertion will be true (because there is always at least one bean):
+
+[source,java]
+----
+public class TestExtension implements Extension
+{
+   private List<Bean> beans = new ArrayList<Bean>();
+
+   public void onProcessBean(@Observes ProcessBean e)
+   {
+      beans.add(e.getBean());
+   }
+
+   public void afterBeanDiscovery(@Observes AfterBeanDiscovery e)
+   {
+      assert beans.size() > 0;
+   }
+}
+----
+
+The possibilities of what you can do with extensions are limitless.

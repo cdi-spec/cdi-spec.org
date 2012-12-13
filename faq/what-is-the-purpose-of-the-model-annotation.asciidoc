@@ -1,0 +1,46 @@
+---
+title: What is the purpose of the @Model annotation?
+author: Dan Allen
+---
+The `@Model` annotation does to things:
+
+* it makes the bean request-scoped (instead of dependent, the default)
+* it gives the bean an EL name
+
+Creating a request-scoped and named bean is typically accomplished by apply the annotations `@RequestScoped` and `@Named` to the class, respectively. Since the combination of these annotations is so common in web applications, the built-in stereotype annotation `@Model` is provided by CDI as a shorthand.
+
+Here's an example:
+
+[source,java]
+----
+@Model
+public class SampleBean
+{
+   private String value;
+   public String getValue() { return value; }
+   public String setValue(String value) { this.value = value; }
+}
+----
+
+This bean can now be bound to an input field in a JSF view:
+
+[source,xml]
+----
+<h:inputText value="#{sampleBean.value}"/>
+----
+
+If you need to access a bean directly by EL name in a JSF page, you probably need to give it a scope other than `@Dependent`. Otherwise, any value that gets set to the bean by a JSF input will be lost immediately. That's why CDI features the `@Model` stereotype; it lets you give a bean a name, and set its scope to `@RequestScoped` in one stroke. If you need to access a bean that really has to have the scope `@Dependent` from a JSF page, inject it into a different bean, and expose it to EL via a getter method.
+
+A stereotype is an annotation that aggregates other annotations. `@Model` is one of the built-in stereotype in CDI and is defined as follows:
+
+[source,java]
+----
+@Named 
+@RequestScoped 
+@Stereotype 
+@Target({TYPE, METHOD}) 
+@Retention(RUNTIME) 
+public @interface Model {}
+----
+
+The `@Model` stereotype annotation is expected to be used frequently in web applications.

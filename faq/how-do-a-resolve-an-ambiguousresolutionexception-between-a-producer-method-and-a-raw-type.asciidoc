@@ -1,0 +1,138 @@
+---
+title: How do a resolve an AmbiguousResolutionException between a producer method and a raw type?
+author: Dan Allen
+---
+From reading the spec, you should know that JSR-299: Contexts and Dependency Injection (CDI) creates a bean for every class in a classpath with a beans.xml file. In the absence of any producer methods, you can inject an instance of class B into class A using the following annotated field:
+
+[source,java]
+----
+public class A
+{
+    @Inject B b;
+}
+----
+
+In this case, both A and B are dependent-scoped beans, but that's not important for this discussion.
+
+When the injection is processed, an instance of B is instantiated by the container using the default constructor, or the constructor annotated with `@Inject`, and assigned to the field named b in an instance of class A.
+
+But what if you instead wanted to use a producer method to create the instance of B. You might add the following producer class:
+
+[source,java]
+----
+public class BProducer
+{
+    public @Produces B createB()
+    {
+        B b = new B();
+        // ...or get an instance some other way
+        return b;
+    }
+}
+----
+
+The producer method could also be on the B class itself:
+
+[source,java]
+----
+public class B
+{
+   public @Produces B createB()
+   {
+      B b = new B();
+      // ...or get an instance some other way
+      return b;
+   }
+}
+
+----
+
+If you attempt to run the code with this producer method in place, you will get an `AmbiguousResolutionException` when the container boots. Why?
+
+The problem is that you now have two ways to create an instance of B that is not otherwise qualified with any qualifiers. Should the container use B's constructor or the producer method? The point is, the container is not going to guess. You have to be explicit.
+
+== Solution 1: Qualifiers
+
+The quickest, easiest, and preferred way to be explicit is to assign a qualifier to the producer. By doing so, you are being more specific about which one you want the container to use.
+
+Of course, you first need to create a binding type. Let's call it `@Preferred`.
+
+[source,java]
+----
+@Target({ TYPE, METHOD, PARAMETER, FIELD })
+@Retention(RUNTIME)
+@Documented
+@Qualifier
+@interface Preferred {}
+----
+
+Now use this qualifier type to qualify the instance of B produced by the `@Produces` method:
+
+[source,java]
+----
+public class BProducer
+{
+    public @Produces @Preferred B createB()
+    {
+        B b = new B();
+        // ...
+        return b;
+    }
+}
+----
+
+Now instead of using `@Inject` to inject the instance of B, you use `@Inject @Preferred` at the injection point. (`@Inject` would now inject the instance created using B's constructor).
+
+[source,java]
+----
+public class A
+{
+    @Inject @Preferred B b;
+}
+----
+
+The drawback of this approach is that you have to be explicit and sometimes, you don't want to be explicit. You just want one approach to win over the other without having to further qualify it. That's the function of alternatives.
+
+== Solution 2: Alternatives
+
+An alternative is used to settle a bean resolution ambiguity. Putting the binding types aside for a moment, there is an ambiguity between B's constructor and the producer method. It's possible to flag the producer as an alternative and then activate that alternative in a beans.xml file.
+
+Begin by adding the `@Alternative` annotation (formally `@Policy`) to the class containing the producer method.
+
+[source,java]
+----
+public @Alternative class BProducer
+{
+    public @Produces B createB()
+    {
+        B b = new B();
+        // ...
+        return b;
+    }
+}
+----
+
+Activate this alternative in a beans.xml file. The body of the `<alternative>` element is the fully-qualified class name of a class with the `@Alternative` annotation.
+
+[source,xml]
+----
+<beans>
+  <alternatives>
+     <alternative>BProducer</alternative>
+  </alternatives>
+</beans>
+----
+
+With that configuration in place, you can once again use the `@Inject` annotation alone to inject the instance of B.
+
+[source,java]
+----
+public class A
+{
+    @Inject B b;
+}
+----
+
+== Wrap-up
+
+A key benefit of CDI is that nothing is left to chance. The `AmbiguousResolutionException` is an indicator that you have not given good instructions by way of metadata to the execution engine. You can use either binding types or alternatives to exact about which bean should be selected at an injection point.

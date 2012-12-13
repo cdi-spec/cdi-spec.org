@@ -1,0 +1,7 @@
+---
+title: Where is the XSD for beans.xml located?
+author: Dan Allen
+---
+You can find the XSD for beans.xml at the following location:
+
+http://docs.jboss.org/cdi/beans_1_0.xsd

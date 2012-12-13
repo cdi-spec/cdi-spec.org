@@ -1,0 +1,20 @@
+---
+title: Why is the constructor invoked twice when a normal scoped bean is created?
+author: Dan Allen
+---
+For every normal-scoped bean there is a proxy, What you see is the instantiation of two objects: one is the actual bean instance, the other one is the proxy. Both likely invoke the default constructor.
+
+That's why it's generally considered a bad idea to do initialization in class construction code. Instead, when using managed beans (objects managed by the EE container) to perform initialisation in a `@PostConstruct` or `@Inject` annotated method.
+
+[source,java]
+----
+@SessionScoped
+public class SampleBean {
+   private Map x;
+
+   @PostConstruct
+   protected void init() {
+      x = new ConcurrentHashMap();
+   }
+}
+----

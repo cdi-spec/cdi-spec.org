@@ -1,0 +1,29 @@
+---
+title: Why is @Veto a best practice for persistent (JPA) entities?
+author: Ove Ranheim
+---
+Adding the @Veto annotation to all persistent entities is considered a best practice in most cases. The purpose of this annotation is to prevent the BeanManager from managing an entity as a Bean. This feature is currently made available to Seam Solder 3.0 and is proposed for the coming CDI 1.1 specifiction.
+
+When an entity is annotated @Veto no injections will take place. The reasoning behind this is to prevent the BeanManager to perform operations that may cause the JPA provider to break.
+
+In Seam Persistence a post-load lifecycle is added to enable post injection.  
+
+[source,java]
+----
+@Entity
+@Veto
+public class Foo
+{
+   /* This will not be respected by the BeanManager */
+   @Inject
+   private Logger log;
+
+   /* This annotation is managed by the EnityManager and not the BeanManager */
+   @Column
+   private String bar; 
+}
+----
+
+All JPA persistent entities should be marked with @Veto as this will prohibit BeanManager to interfere with the EntityManager, This includes MappedSuperclass, Embedded, ModelListeners, etc.
+
+You can also annotate a package-info.java to let a whole package be marked veto.

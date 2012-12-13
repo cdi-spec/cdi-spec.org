@@ -1,0 +1,22 @@
+---
+title: Why is there no active transaction in my SFSB transactional observer?
+author: Nicklas Karlsson
+---
+Sometimes it's useful to have an AFTER_SUCCESS transactional observer that e.g. updates a list when an entity is persisted. However, if you do something like
+
+[source,java]
+----
+public void userAdded(@Observes(during=TransactionPhase.AFTER_SUCCESS) @Added User user)
+{
+  // access a persistence context and refresh the user list
+}
+----
+
+in your SFSB, you will be hit by a ''transaction is not active'' exception even if you would expect the default REQUIRED transaction attribute to start a new one for you. This is not actually a CDI issue, more of how JTA transaction synchronizations work. You need to add a 
+
+[source,java]
+----
+@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+----
+
+to the bean or method to ensure you have an active transaction.

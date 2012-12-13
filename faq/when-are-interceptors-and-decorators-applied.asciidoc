@@ -1,0 +1,46 @@
+---
+title: When are interceptors and decorators applied?
+author: Pete Muir
+---
+Interceptors and decorators are applied for _business method invocations_. For a detailed overview of what a business method invocation is, it's best to consult the JSR-299 specification, more specifically section http://docs.jboss.com/cdi/spec/1.0/html/lifecycle.html#bizmethod[7.2].
+
+* Initializer methods are not intercepted, so an `@Inject` method will not be intercepted or decorated while the bean is initialized
+* Lifecycle invocations are interceptor calls themselves - so a `@PostConstruct`/`@PreDestroy`-annotated method will not be intercepted or decorated by an `@AroundInvoke` method when invoked by the container. 
+* initializers and lifecycle interceptor methods defined on a bean may be intercepted if they are invoked directly by other beans in the application. 
+* Other CDI methods such as producers, disposers and observers are intercepted all the time.
+
+Remember that only references provided by the container are intercepted or decorated. This is important when considering self-invocations (calls to `this`) - these calls are not business method invocations and will not be intercepted and decorated.
+
+To illustrate this concept, assuming that `@InterceptMe` is an interceptor binding:
+
+[source,java]
+----
+class SelfInvokingClass {
+   
+   @InterceptMe
+   public void methodA() {}
+	
+   @InterceptMe
+   public void methodB() { 
+      this.methodA() 
+   }
+	
+}
+
+class InvokerClass {
+
+   @Inject SelfInvokingClass dependency;
+
+   public void callMethodA() { 
+     dependency.methodA();
+   }
+	
+   public void callMethodB() { 
+     dependency.methodB();
+   }
+}
+----
+
+When calling `InvokerClass.callMethodA()`, `methodA()` will be intercepted.
+
+When calling `InvokerClass.callMethodB()`, `methodB()` will be intercepted, but `methodA()` (invoked from within `methodB()`) won't be.
