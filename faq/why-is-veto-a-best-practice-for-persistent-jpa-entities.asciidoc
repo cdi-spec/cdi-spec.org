@@ -1,6 +1,7 @@
 ---
 title: Why is @Veto a best practice for persistent (JPA) entities?
 author: Ove Ranheim
+layout: faq
 ---
 Adding the @Veto annotation to all persistent entities is considered a best practice in most cases. The purpose of this annotation is to prevent the BeanManager from managing an entity as a Bean. This feature is currently made available to Seam Solder 3.0 and is proposed for the coming CDI 1.1 specifiction.
 

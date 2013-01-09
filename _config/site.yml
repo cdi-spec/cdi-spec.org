@@ -1,9 +1,23 @@
+title: Contexts and Dependency Injection
+encoding: UTF-8
+asciidoc:
+  engine: asciidoctor
+haml:
+  attr_wrapper: '"'
+  escape_attrs: :once
 profiles:
   development:
+    base_url: http://localhost:4242/
+    base_uri: http://localhost:4242/
+    minify: false
   staging:
     base_url: http://www.cdi-spec.org/staging
+    base_uri: http://www.cdi-spec.org/staging 
     path: ~/public_html/topdomain-cdi-spec-org/staging
+    minify: true
   production:
     base_url: http://www.cdi-spec.org/
+    base_uri: http://www.cdi-spec.org/
     path: ~/public_html/topdomain-cdi-spec-org
+    minify: true
     disqus: cdispec

@@ -1,6 +1,7 @@
 ---
 title: What is the purpose of the @Model annotation?
 author: Dan Allen
+layout: faq
 ---
 The `@Model` annotation does to things:
 
@@ -26,7 +27,7 @@ This bean can now be bound to an input field in a JSF view:
 
 [source,xml]
 ----
-<h:inputText value="#{sampleBean.value}"/>
+<h:inputText value="\#{sampleBean.value}"/>
 ----
 
 If you need to access a bean directly by EL name in a JSF page, you probably need to give it a scope other than `@Dependent`. Otherwise, any value that gets set to the bean by a JSF input will be lost immediately. That's why CDI features the `@Model` stereotype; it lets you give a bean a name, and set its scope to `@RequestScoped` in one stroke. If you need to access a bean that really has to have the scope `@Dependent` from a JSF page, inject it into a different bean, and expose it to EL via a getter method.

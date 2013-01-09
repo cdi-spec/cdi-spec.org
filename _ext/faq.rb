@@ -14,7 +14,7 @@ module Awestruct
         faq   = []
 
         site.pages.each do |page|
-          if ( page.relative_source_path =~ /^#{@path_prefix}\// )
+          if page.relative_source_path =~ /^#{@path_prefix}\//
             page.relative_source_path =~ /^#{@path_prefix}\/(.*)\..*$/
             page.slug ||= $1
             context = page.create_context
@@ -26,7 +26,7 @@ module Awestruct
         last = nil
         singular = @assign_to.to_s.singularize
         faq.each do |e|
-          if ( last != nil )
+          if last != nil
             e.send( "next_#{singular}=", last )
             last.send( "previous_#{singular}=", e )
           end

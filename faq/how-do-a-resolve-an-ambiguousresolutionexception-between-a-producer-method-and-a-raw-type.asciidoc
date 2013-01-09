@@ -1,6 +1,7 @@
 ---
 title: How do a resolve an AmbiguousResolutionException between a producer method and a raw type?
 author: Dan Allen
+layout: faq
 ---
 From reading the spec, you should know that JSR-299: Contexts and Dependency Injection (CDI) creates a bean for every class in a classpath with a beans.xml file. In the absence of any producer methods, you can inject an instance of class B into class A using the following annotated field:
 

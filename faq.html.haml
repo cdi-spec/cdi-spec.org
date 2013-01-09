@@ -1,0 +1,16 @@
+---
+layout: base
+title: Frequently Asked Questions
+---
+.accordion#faq_accordion
+  - site.faq.each_with_index do |faq, i|
+    .accordion-group
+      .accordion-heading
+        %a.accordion-toggle{:href=>"#accordion#{i}", :data=>{:toggle=>"collapse", :parent=>"#faq_accordion"}}= faq.title
+      .accordion-body.collapse{:id=>"accordion#{i}"}
+        .accordion-inner
+          = faq.content
+:javascript
+  $(document).ready(function(){
+    $('.collapse').collapse('.collapse');
+  });

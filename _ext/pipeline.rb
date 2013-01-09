@@ -27,5 +27,6 @@ Awestruct::Extensions::Pipeline.new do
   helper Awestruct::Extensions::GoogleAnalytics
 
   extension Awestruct::Extensions::Indexifier.new
+  transformer Awestruct::Extensions::Minify.new
 end
 

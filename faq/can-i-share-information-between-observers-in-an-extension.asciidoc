@@ -1,8 +1,10 @@
 ---
 title: Can I share information between observers in an Extension?
 author: Dan Allen
+layout: faq
 ---
-In other words, ''is the instance of my Extension contextual and what is its scope?''
+
+In other words, 'is the instance of my Extension contextual and what is its scope?'
 
 [quote, CDI Expert Group, Section 11.5 CDI Specification]
 ____

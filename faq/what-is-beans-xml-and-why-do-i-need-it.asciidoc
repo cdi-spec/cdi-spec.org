@@ -1,6 +1,7 @@
 ---
 title: What is beans.xml and why do I need it?
 author: Dan Allen
+layout: faq
 ---
 The beans.xml file is know as the bean archive descriptor. This answer addresses the purpose of this file and why it is needed.
 

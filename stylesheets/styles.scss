@@ -46,14 +46,14 @@
 // Components: Misc
 @import "bootstrap/thumbnails";
 @import "bootstrap/labels-badges";
-@import "bootstrap/progress-bars";
+//@import "bootstrap/progress-bars";
 @import "bootstrap/accordion";
-@import "bootstrap/carousel";
-@import "bootstrap/hero-unit";
+//@import "bootstrap/carousel";
+//@import "bootstrap/hero-unit";
 
 // Utility classes
-@import "bootstrap/utilities"; // Has to be last to override when necessary
 @import "bootstrap-responsive";
+@import "bootstrap/utilities"; // Has to be last to override when necessary
 
 @import "partials/font-awesome";
 @import "partials/bootswatch";
@@ -68,4 +68,108 @@
   @include box-shadow(0 0 6px lighten(gray, 20%));
   border: inset gray 2px;
   padding: .5em;
+}
+
+#servers .thumbnail {
+  height: 200px;
+}
+
+// centered nav tabs and pills
+.nav-tabs-center > li, .nav-pills-center > li {
+  float:none;
+  display:inline-block;
+  margin-bottom: -1px;
+  *display:inline; /* ie7 fix */
+  zoom:1; /* hasLayout ie7 trigger */
+}
+
+.nav-tabs-center, .nav-pills-center {
+  text-align:center;
+  border-bottom: 1px solid #ddd;
+}
+
+.nav-tabs-center > li > a,
+.nav-pills-center > li > a {
+  padding-right: 12px;
+  padding-left: 12px;
+  margin-right: 2px;
+  line-height: 14px;
+}
+
+.nav-tabs-center > li > a {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  line-height: 21px;
+  border: 1px solid transparent;
+  -webkit-border-radius: 4px 4px 0 0;
+  -moz-border-radius: 4px 4px 0 0;
+  border-radius: 4px 4px 0 0;
+}
+.nav-tabs-center:before, .nav-tabs-center:after,
+.nav-pills-center:before,
+.nav-pills-center:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.nav-tabs-center:after,
+.nav-pills-center:after {
+  clear: both;
+}
+
+.nav-tabs-center > li > a:hover {
+  border-color: #eeeeee #eeeeee #dddddd;
+}
+
+.nav-tabs-center > .active > a,
+.nav-tabs-center > .active > a:hover {
+  color: #777777;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-bottom-color: transparent;
+  cursor: default;
+}
+.nav-pills-center > .active > a,
+.nav-pills-center > .active > a:hover {
+  color: white;
+  background-color: #558bc4;
+}
+.nav-tabs-center .dropdown-menu {
+  -webkit-border-radius: 0 0 6px 6px;
+  -moz-border-radius: 0 0 6px 6px;
+  border-radius: 0 0 6px 6px;
+}
+.nav-tabs-center .dropdown-toggle .caret {
+  margin-top: 8px;
+}
+.nav-tabs-center .active .dropdown-toggle .caret {
+  border-top-color: #777777;
+  border-bottom-color: #777777;
+}
+.nav-tabs-center .open .dropdown-toggle,
+.nav-pills-center .open .dropdown-toggle,
+.nav > li.dropdown.open.active > a:hover {
+  color: white;
+  background-color: #bbbbbb;
+  border-color: #bbbbbb;
+}
+
+.scrollTop {
+  font-size: 40px;
+  opacity:0.3;
+  position:fixed;
+  bottom:50px;
+  right:100px;
+  display:none;
+  width:40px;
+  height:40px;
+}
+
+#main_nav {
+  position:fixed;
+  top:40px;
+  margin-left:-20px;  
+}
+code {
+  background-color: inherit;
 }

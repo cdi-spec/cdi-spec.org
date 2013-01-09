@@ -23,7 +23,7 @@
     */
 
 @import "compass/css3/font-face";
-$fontAwesomePath: "/stylesheets/font-awesome/font/fontawesome-webfont" !default;
+$fontAwesomePath: "https://netdna.bootstrapcdn.com/font-awesome/3.0/font/fontawesome-webfont" !default;
 
 @include font-face(
     'FontAwesome',
