@@ -25,3 +25,4 @@ profiles:
     path: ~/public_html/topdomain-cdi-spec-org
     minify: true
     disqus: cdispec
+    google_analytics: UA-37580744-1
