@@ -50,6 +50,9 @@
 @import "bootstrap/accordion";
 //@import "bootstrap/carousel";
 //@import "bootstrap/hero-unit";
+@import "compass/css3";
+//@import "compass/css3/text-shadow";
+//@import "compass/css3/box-shadow";
 
 // Utility classes
 @import "bootstrap-responsive";
@@ -168,8 +171,53 @@
 #main_nav {
   position:fixed;
   top:40px;
-  margin-left:-20px;  
 }
 code {
   background-color: inherit;
 }
+.first-in-row { margin-left: 0 !important; }
+
+// Calendar event display
+.calendar {
+  display: block;
+  @include square(50px);
+  font-size: 22px;
+  line-height: 20px;
+  font-weight: bold;
+  @include single-text-shadow();
+  text-align: center;
+  @include border-radius(5px);
+  @include single-box-shadow(rgba(0,0,0,0.09), 0, 1px, 3px);
+  border: 1px solid $light_border;
+  background-color: $palette_white;
+  vertical-align: top;
+  float: left;
+  margin-right: 1em;
+  .month {
+    display: block;
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-bottom: 1px;
+    width: 50px;
+    height: 13px;
+    color: $palette_white;
+    font-size: 12px;
+    text-transform: uppercase;
+    @include single-text-shadow();
+    line-height: 13px;
+    padding-top: 1px;
+    border-bottom: 1px solid $light_border;
+    @include border-radius(4px 4px 0 0);
+    background-color: $white;
+    @include background-image(linear-gradient(lighten($red, 25%), $red))
+  }
+  .year {
+    display: block;
+    color: black;
+    font-size: 11px;
+    text-transform: uppercase;
+    position: relative;
+    top: -2px;
+  }
+}
+

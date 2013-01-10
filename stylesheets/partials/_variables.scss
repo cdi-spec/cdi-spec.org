@@ -276,3 +276,7 @@ $fluidGridGutterWidth1200:     percentage($gridGutterWidth1200/$gridRowWidth1200
 // 768px-979px
 $fluidGridColumnWidth768:      percentage($gridColumnWidth768/$gridRowWidth768);
 $fluidGridGutterWidth768:      percentage($gridGutterWidth768/$gridRowWidth768);
+
+// mis
+$light_border: $grayLight;
+$palette_white: $white;

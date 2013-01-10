@@ -10,11 +10,15 @@ profiles:
     base_url: http://localhost:4242/
     base_uri: http://localhost:4242/
     minify: false
+    disqus_developer: true
+    disqus: cdispec
   staging:
     base_url: http://www.cdi-spec.org/staging
     base_uri: http://www.cdi-spec.org/staging 
     path: ~/public_html/topdomain-cdi-spec-org/staging
     minify: true
+    disqus_developer: true
+    disqus: cdispec
   production:
     base_url: http://www.cdi-spec.org/
     base_uri: http://www.cdi-spec.org/

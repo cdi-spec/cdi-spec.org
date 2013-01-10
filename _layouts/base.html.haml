@@ -12,8 +12,8 @@
     /[if lt IE 9]
       %script{ :type=>'text/javascript', :src=>'//html5shim.googlecode.com/svn/trunk/html5.js' }
   %body
-    .container
-      .row
+    .container-fluid
+      .row-fluid
         .span2{:style=>"min-height:1px;"}
           %ul.nav.nav-tabs.nav-stacked.span2.visible-desktop#main_nav
             %li
@@ -21,7 +21,7 @@
                 %i.icon-home
                 Home
             %li
-              %a{ :href=>"#{site.base_url}/news" } 
+              %a{ :href=>"#{site.base_url}/news/" } 
                 %i.icon-bullhorn
                 News
             %li
@@ -77,14 +77,16 @@
                 Bug tracker
         .span10
           %img{:src=>"#{site.base_url}/images/cdi_word_cloud_white.gif", :width=>"834", :height=>"334"}
-          .row
+          .row-fluid
             ~ content
           %hr
           %footer
   %script{ :type=>'text/javascript', :src=>"//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js" }
+  - if site.google_analytics
+    = google_analytics_async
   :javascript
     $(document).ready(function() {
       $('#toggle_menu').click(function(){
         $("#mobile_menu").toggle();
-      });
+      }); 
     });
