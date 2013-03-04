@@ -24,5 +24,6 @@ profiles:
     minify: true
     disqus: cdispec
     google_analytics: UA-37580744-1
-    host: github_pages
-    branch: gh-pages
+    deploy:
+      host: github_pages
+      branch: gh-pages
