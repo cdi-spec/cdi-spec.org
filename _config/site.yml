@@ -1,7 +1,5 @@
 title: Contexts and Dependency Injection
 encoding: UTF-8
-asciidoc:
-  engine: asciidoctor
 haml:
   attr_wrapper: '"'
   escape_attrs: :once
@@ -26,3 +24,5 @@ profiles:
     minify: true
     disqus: cdispec
     google_analytics: UA-37580744-1
+    host: github_pages
+    branch: gh-pages
