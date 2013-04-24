@@ -24,6 +24,3 @@ profiles:
     minify: true
     disqus: cdispec
     google_analytics: UA-37580744-1
-    deploy:
-      host: github_pages
-      branch: master
