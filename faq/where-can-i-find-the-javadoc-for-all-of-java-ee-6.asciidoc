@@ -8,3 +8,4 @@ You can find the aggregated JavaDoc for the whole Java EE 6 platform http://java
 After encountering CDI for the first time, developers often ask why `@Inject` is in a different Java package and a different JAR file that CDI annotations like `@Produces`. The reason is somewhat political, but more a reflection of the fact that the Java EE 6 platform is an aggregation of multiple specifications. `@Inject` is defined in the JSR-330 specification, whereas `@Produces` is defined in the JSR-299 specification.
 
 If you get the platform API JAR, then everything is in the same JAR file ;) But they are in different Java packages as a logical separation between specs. That's just the way it is.
+

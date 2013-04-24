@@ -1,21 +1,21 @@
 ---
-title: What is beans.xml and why do I need it?
+title: What is +beans.xml+ and why do I need it?
 author: Dan Allen
 layout: faq
 ---
-The beans.xml file is know as the bean archive descriptor. This answer addresses the purpose of this file and why it is needed.
+The +beans.xml+ file is know as the bean archive descriptor. This answer addresses the purpose of this file and why it is needed.
 
 == The minimal bean descriptor
 
-First, it's important to understand that the XML bean descriptor in CDI (META-INF/beans.xml or WEB-INF/beans.xml) is not there to define beans in XML, like in other popular bean containers. Rather, you use this file to enable CDI services for the current bean archive that are difficult to define consistently in Java or which you don't want to define in Java (e.g., to accomodate testing).
+First, it's important to understand that the XML bean descriptor in CDI (+META-INF/beans.xml+ or +WEB-INF/beans.xml+) is not there to define beans in XML, like in other popular bean containers. Rather, you use this file to enable CDI services for the current bean archive that are difficult to define consistently in Java or which you don't want to define in Java (e.g., to accomodate testing).
 
 For example, in CDI, XML is used to enable interceptors (which are disabled by default) and define interceptor ordering. So the bean descriptor _complements_ the metadata that is provided in the Java language syntax. (You may still want to define beans in XML for other reasons, but that is the concern of an extension).
 
-Let's first ask why the beans.xml is required, then look at what services it is used used to enable.
+Let's first ask why the +beans.xml+ is required, then look at what services it is used used to enable.
 
-== Why is beans.xml required?
+== Why is +beans.xml+ required?
 
-You may be wondering, if beans are not described using XML, why do we need beans.xml at all? In particular, why do you need it if you don't have anything that you would need the bean descriptor to enable (alternatives, interceptors or decorators)?
+You may be wondering, if beans are not described using XML, why do we need +beans.xml+ at all? In particular, why do you need it if you don't have anything that you would need the bean descriptor to enable (alternatives, interceptors or decorators)?
 
 There are two things about CDI that we need to keep in mind:
 
@@ -33,7 +33,7 @@ So we have two choices. We could have the developer:
 * explicitly exclude modules which do not contain beans, or
 * explicitly declare modules which do contain beans.
 
-Hopefully you agree that the second option is a much better way to go. In following this approach, CDI has the notion of a bean archive. A bean archive is just a module that has a file named beans.xml in the META-INF directory. The container looks for beans in bean archives. It ignores other modules.
+Hopefully you agree that the second option is a much better way to go. In following this approach, CDI has the notion of a bean archive. A bean archive is just a module that has a file named +beans.xml+ in the META-INF directory. The container looks for beans in bean archives. It ignores other modules.
 
 Now, you might be wondering if we've got the granularity wrong here. Why should module be the right criteria to use for including/excluding a class? Why not consider:
 
@@ -50,9 +50,9 @@ Enough theory, what elements are available in beans.xml?
 
 == Bean descriptor schema?
 
-If you don't need to activate any interceptors, decorators or alternatives (you just have plain beans that you need to use in an archive), the beans.xml file can be _empty_. If you do have one of these requirements, then you need to start popularing the descriptor.
+If you don't need to activate any interceptors, decorators or alternatives (you just have plain beans that you need to use in an archive), the +beans.xml+ file can be _empty_. If you do have one of these requirements, then you need to start popularing the descriptor.
 
-The root element of a beans.xml file is `beans`, with the following http://anonsvn.jboss.org/repos/weld/api/trunk/cdi/src/main/resources/beans.xsd[schema]:
+The root element of a +beans.xml+ file is `beans`, with the following http://anonsvn.jboss.org/repos/weld/api/trunk/cdi/src/main/resources/beans.xsd[schema]:
 
 [source,xml]
 ----
@@ -103,7 +103,7 @@ There may be zero or more decorator class elements. The order of the class decla
 
 === <alternatives>
 
-An alternative is a bean that must be explicitly declared in the beans.xml file if it should be available for lookup, injection or EL resolution. By default, a bean archive has no active alternatives. An alternative must be explicitly declared using the fully qualified bean class name or stereotype class name in either a child `<class>` or `<stereotype>` element of `<alternatives>`, respectively.
+An alternative is a bean that must be explicitly declared in the +beans.xml+ file if it should be available for lookup, injection or EL resolution. By default, a bean archive has no active alternatives. An alternative must be explicitly declared using the fully qualified bean class name or stereotype class name in either a child `<class>` or `<stereotype>` element of `<alternatives>`, respectively.
 
 An alternative is selected for the bean archive if either: the alternative is a managed bean or session bean and the bean class of the bean is listed, or the alternative is a producer method, field or resource, and the bean class that declares the method or field is listed, or any `@Alternative` stereotype of the alternative is listed.
 

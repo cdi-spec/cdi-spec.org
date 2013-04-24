@@ -15,20 +15,18 @@ Speaking in code, the following assertion will be true (because there is always 
 
 [source,java]
 ----
-public class TestExtension implements Extension
-{
-   private List<Bean> beans = new ArrayList<Bean>();
+public class TestExtension implements Extension {
+    private List<Bean> beans = new ArrayList<Bean>();
 
-   public void onProcessBean(@Observes ProcessBean e)
-   {
-      beans.add(e.getBean());
-   }
+    public void onProcessBean(@Observes ProcessBean e) {
+        beans.add(e.getBean());
+    }
 
-   public void afterBeanDiscovery(@Observes AfterBeanDiscovery e)
-   {
-      assert beans.size() > 0;
-   }
+    public void afterBeanDiscovery(@Observes AfterBeanDiscovery e) {
+        assert beans.size() > 0;
+    }
 }
 ----
 
 The possibilities of what you can do with extensions are limitless.
+

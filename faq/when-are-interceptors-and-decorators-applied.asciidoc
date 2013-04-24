@@ -45,3 +45,4 @@ class InvokerClass {
 When calling `InvokerClass.callMethodA()`, `methodA()` will be intercepted.
 
 When calling `InvokerClass.callMethodB()`, `methodB()` will be intercepted, but `methodA()` (invoked from within `methodB()`) won't be.
+
