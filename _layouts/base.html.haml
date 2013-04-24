@@ -21,6 +21,14 @@
                 %i.icon-home
                 Home
             %li
+              %a{ :href=>"#{site.base_url}/download" } 
+                %i.icon-download
+                Download
+            %li
+              %a{ :href=>"#{site.base_url}/faq" } 
+                %i.icon-question-sign
+                FAQ
+            %li
               %a{ :href=>"#{site.base_url}/news/" } 
                 %i.icon-bullhorn
                 News
@@ -29,14 +37,6 @@
                 %i.icon-road
                 Road map
             %li
-              %a{ :href=>"#{site.base_url}/faq" } 
-                %i.icon-question-sign
-                FAQ
-            %li
-              %a{ :href=>"#{site.base_url}/contribute" } 
-                %i.icon-edit
-                Contribute
-            %li
               %a{ :href=>"https://lists.jboss.org/mailman/listinfo/cdi-dev" } 
                 %i.icon-envelope
                 Mailing List
@@ -44,6 +44,10 @@
               %a{ :href=>"https://issues.jboss.org/browse/CDI" } 
                 %i.icon-tasks
                 Bug tracker
+            %li
+              %a{ :href=>"#{site.base_url}/contribute" } 
+                %i.icon-edit
+                Contribute
           %a.hidden-desktop#toggle_menu{:href=>"#"}
             %i.icon-exchange
           %ul.nav.nav-tabs.nav-stacked.span2.hide.hidden-desktop#mobile_menu

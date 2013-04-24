@@ -1,0 +1,149 @@
+---
+layout: base
+---
+
+%table.table.table-bordered
+  %tr
+    %th
+    %th
+      Specification
+    %th
+      API
+    %th
+      Reference Implementation
+    %th
+      TCK
+    %th
+      License
+  %tr
+    %td
+      CDI 1.1
+    %td
+      %a{:href=>'http://docs.jboss.org/cdi/spec/1.1-FD/cdi-spec.pdf'}
+        PDF
+        %i.icon-file
+      |
+      %a{:href=>'http://docs.jboss.org/cdi/spec/1.1-FD/cdi-spec.html'}
+        HTML
+        %i.icon-link
+      |
+      %a{:href=>'http://docs.jboss.org/cdi/spec/1.1-FD/cdi-spec.epub'}
+        EPUB
+        %i.icon-book
+    %td
+      %a{:href=>'http://search.maven.org/remotecontent?filepath=javax/enterprise/cdi-api/1.1/cdi-api-1.1.jar'}
+        API
+        %i.icon-download
+      |
+      %a{:href=>'http://docs.jboss.org/cdi/1.1-FD'}
+        JavaDoc
+        %i.icon-link
+      |
+      %a.modal-link{"data-toggle"=>"modal", :href=>"#maven-cdi_1_1"}
+        Maven
+        %i.icon-download-alt
+    %td
+      %a{:href=>'http://seamframework.org/Weld/Downloads'}
+        Weld 2.0
+        %i.icon-download
+
+    %td
+      %a{:href=>'http://seamframework.org/Weld/Downloads'}
+        CDI TCK 1.1
+        %i.icon-download
+    %td
+      %a{:href=>"http://www.apache.org/licenses/LICENSE-2.0.html"} Apache License 2.0
+  %tr
+    %td
+      CDI 1.0
+    %td
+      %a{:href=>'http://docs.jboss.org/cdi/spec/1.0/pdf/JSR-299-FD.pdf'}
+        PDF
+        %i.icon-file
+      |
+      %a{:href=>'http://docs.jboss.org/cdi/spec/1.0/html/'}
+        HTML
+        %i.icon-link
+    %td
+      %a{:href=>'http://search.maven.org/remotecontent?filepath=javax/enterprise/cdi-api/1.0-SP4/cdi-api-1.0-SP4.jar'}
+        API
+        %i.icon-download
+      |
+      %a{:href=>'http://docs.jboss.org/cdi/api/1.0-SP4'}
+        JavaDoc
+        %i.icon-link
+      |
+      %a.modal-link{"data-toggle"=>"modal", :href=>"#maven-cdi_1_0"}
+        Maven
+        %i.icon-download-alt
+    %td
+      %a{:href=>'http://seamframework.org/Weld/Downloads'}
+        Weld 1.1
+        %i.icon-download
+
+    %td
+      %a{:href=>'http://seamframework.org/Weld/Downloads'}
+        CDI TCK 1.0
+        %i.icon-download
+    %td
+      %a{:href=>"http://www.apache.org/licenses/LICENSE-2.0.html"} Apache License 2.0
+%h2 Licenses
+%p
+  All CDI artifacts available from this page are available under the
+  %a{:href=>"http://www.apache.org/licenses/LICENSE-2.0.html"} Apache License 2.0
+  \.
+.alert.alert-block
+  Note that copies of the CDI specification contain an out-of-date license. This will be resolved in a maintenance release of CDI.
+%p 
+  The specification and JavaDoc are additionally available under the *JCP click through license*. To obtain artifacts under this license visit the JCP page for
+  %a{:href=>"http://jcp.org/en/jsr/detail?id=346"} JSR-346 (CDI 1.1)
+  or
+  %a{:href=>"http://jcp.org/en/jsr/detail?id=299"} JSR-299 (CDI 1.0)
+  \.
+  The license can viewed on the *Download page* for the specification and JavaDoc.
+.alert.alert-success
+  This process is commonly known as
+  %a{:href=>"http://en.wikipedia.org/wiki/Multi-licensing"} dual-licensing
+  \. The CDI specification is dual-licensed as it allows Red Hat to follow JCP rules and provide a liberally licensed version of the specification.
+
+
+- #Create Maven Modals
+%div.modal.hide{:id=>"maven-cdi_1_1"}
+  .modal-header
+    %a.close{:data=>{:dismiss=>'modal'}}
+      %i.icon-remove
+    %h3 Using CDI 1.1 from Maven
+  .modal-body.clearfix
+    %p To use CDI 1.1, add this dependency:
+    %pre
+      %code#example
+        = preserve do
+          :escaped
+              <dependencies>
+                  <dependency>
+                      <groupId>javax.enterprise</groupId>
+                      <artifactId>cdi-api</artifactId>
+                      <version>1.1</version>
+                      <scope>provided</scope>
+                  </dependency>
+              </dependencies>
+%div.modal.hide{:id=>"maven-cdi_1_0"}
+  .modal-header
+    %a.close{:data=>{:dismiss=>'modal'}}
+      %i.icon-remove
+    %h3 Using CDI 1.0 from Maven
+  .modal-body.clearfix
+    %p To use CDI 1.0, add this dependency:
+    %pre
+      %code#example
+        = preserve do
+          :escaped
+              <dependencies>
+                  <dependency>
+                      <groupId>javax.enterprise</groupId>
+                      <artifactId>cdi-api</artifactId>
+                      <version>1.0-SP4</version>
+                      <scope>provided</scope>
+                  </dependency>
+              </dependencies>
+
