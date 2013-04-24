@@ -78,7 +78,7 @@ module Awestruct::Extensions::Jira
       # We can load in the versions from the yaml file, that way we'll have the labels we want and the fixVersion:
       # labels in ('patch') AND fixVersion in unreleasedVersions(CDI)
       # we'll want to expand labels and fixVersions only, to keep the responses small
-      if site.labels.length > 0
+      if site.labels
         site.labels.each_key do |label| 
           search_url = @base_url + REST_PATH + 'search?' + URI.encode_www_form('jql' => "labels IN ('#{label}') AND project = #{@project_key}",
                                                                                'fields' => 'labels,fixVersions')
