@@ -5,4 +5,4 @@ Guardfile
 _tmp
 .bundle
 vendor
-
+*.swp
