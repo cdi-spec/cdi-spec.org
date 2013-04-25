@@ -5,4 +5,6 @@ layout: faq
 ---
 You can find the XSD for beans.xml at the following location:
 
-http://docs.jboss.org/cdi/beans_1_0.xsd
+CDI 1.0: http://java.sun.com/xml/ns/javaee/beans_1_0.xsd
+
+CDI 1.1: http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd
