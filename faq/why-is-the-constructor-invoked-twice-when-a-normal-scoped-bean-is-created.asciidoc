@@ -5,7 +5,7 @@ layout: faq
 ---
 For every normal-scoped bean there is a proxy, and you are seeing the instantiation of two objects: one is the actual bean instance, the other one is the proxy. Both likely invoke the default constructor.
 
-It's generally considered a bad idea to do initialization in class construction code. Instead, when using managed beans (objects managed by the EE container) you should perform initialisation in a `@PostConstruct` or `@Inject` annotated method.
+It's generally considered a bad idea to do initialization in class construction code. Instead, when using managed beans (objects managed by the Java EE container) you should perform initialization in a `@PostConstruct` or `@Inject` annotated method.
 
 [source,java]
 ----
