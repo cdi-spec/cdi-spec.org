@@ -15,13 +15,16 @@ module Awestruct
 
         site.pages.each do |page|
           if page.relative_source_path =~ /^#{@path_prefix}\//
-            page.relative_source_path =~ /^#{@path_prefix}\/(.*)\..*$/
-            page.slug ||= $1
+            page.relative_source_path =~ /^#{@path_prefix}\/([0-9]*)(-?)(.*)\..*$/
+            page.order ||= $1
+            page.slug ||= $3
             context = page.create_context
             page.output_path = "#{@path_prefix}/#{page.slug}.html"
             faq << page
           end
         end
+
+        faq.sort! { |a,b| b.order <=> a.order }
 
         last = nil
         singular = @assign_to.to_s.singularize
