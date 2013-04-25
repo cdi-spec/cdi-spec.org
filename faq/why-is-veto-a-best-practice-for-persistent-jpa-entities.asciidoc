@@ -3,7 +3,7 @@ title: Why is @Veto a best practice for persistent (JPA) entities?
 author: Ove Ranheim
 layout: faq
 ---
-Adding the +@Vetoed+ annotation to all persistent entities is considered a best practice in most cases. The purpose of this annotation is to prevent the BeanManager from managing an entity as a Bean. This feature from CDI 1.1.
+Adding the +@Veto+ annotation to all persistent entities is considered a best practice in most cases. The purpose of this annotation is to prevent the BeanManager from managing an entity as a CDI Bean. This feature is from CDI 1.1.
 
 When an entity is annotated +@Veto+ no injections will take place. The reasoning behind this is to prevent the BeanManager to perform operations that may cause the JPA provider to break.
 
@@ -22,7 +22,7 @@ public class Foo {
 }
 ----
 
-All JPA persistent entities should be marked with +@Vetoed+ as this will prevent the CDI attempting to manage the lifecycle of the object, and makes it very clear that the object is not managed by CDI. You should do the same for +MappedSuperclass+, +Embedded+, +ModelListeners+ etc.
+All JPA persistent entities should be marked with +@Veto+ as this will prevent the CDI attempting to manage the lifecycle of the object, and makes it very clear that the object is not managed by CDI. You should do the same for +MappedSuperclass+, +Embedded+ etc.
 
 You can also annotate a +package-info.java+ to veto all beans in the package.
 
