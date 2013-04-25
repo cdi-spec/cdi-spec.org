@@ -9,6 +9,9 @@ title: Frequently Asked Questions
         %a.accordion-toggle{:href=>"#accordion#{i}", :data=>{:toggle=>"collapse", :parent=>"#faq_accordion"}}= faq.title
       .accordion-body.collapse{:id=>"accordion#{i}"}
         .accordion-inner
+          - if faq.since
+            .alert.alert-success.pull-right
+              Since CDI #{faq.since}
           = faq.content
 :javascript
   $(document).ready(function(){
