@@ -12,7 +12,7 @@ title: Frequently Asked Questions
           - if faq[:since]
             .alert.alert-success.pull-right
               Since CDI #{faq[:since]}
-          = faq[:rendered_content]
+          ~ faq[:rendered_content]
 :javascript
   $(document).ready(function(){
     $('.collapse').collapse('.collapse');
