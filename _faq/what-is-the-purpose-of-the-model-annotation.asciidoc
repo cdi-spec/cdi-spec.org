@@ -1,8 +1,6 @@
----
-title: What is the purpose of the @Model annotation?
-author: Dan Allen
-layout: faq
----
+= What is the purpose of the @Model annotation?
+Dan Allen
+
 The `@Model` annotation does to things:
 
 * it makes the bean request-scoped (instead of dependent, the default)

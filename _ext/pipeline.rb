@@ -9,7 +9,7 @@ Awestruct::Extensions::Pipeline.new do
   extension Awestruct::Extensions::RestClientExtensions::EnableJsonConverter.new
   extension Awestruct::Extensions::DataDir.new
   extension Awestruct::Extensions::Posts.new( '/news', :news ) 
-  extension Awestruct::Extensions::FAQ.new( '/faq', :faq ) 
+  extension Awestruct::Extensions::FAQ.new( '_faq', :faq ) 
   extension Awestruct::Extensions::Atomizer.new( :news, '/news/feed.atom' )
 
   # It would be really cool to combine these, will need to look into it.

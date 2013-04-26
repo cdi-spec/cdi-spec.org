@@ -1,9 +1,7 @@
----
-title: Why is @Vetoed a best practice for persistent (JPA) entities?
-author: Ove Ranheim
-layout: faq
-since: 1.1
----
+= Why is @Vetoed a best practice for persistent (JPA) entities?
+Ove Ranheim
+:since: 1.1
+
 Adding the +@Vetoed+ annotation to all persistent entities is considered a best practice in most cases. The purpose of this annotation is to prevent the BeanManager from managing an entity as a CDI Bean.
 
 When an entity is annotated +@Vetoed+ no injections will take place. The reasoning behind this is to prevent the BeanManager to perform operations that may cause the JPA provider to break.

@@ -1,8 +1,6 @@
----
-title: When are interceptors and decorators applied?
-author: Pete Muir
-layout: faq
----
+= When are interceptors and decorators applied?
+Pete Muir
+
 Interceptors and decorators are applied for _business method invocations_. For a detailed overview of what a business method invocation is, it's best to consult the JSR-299 specification, more specifically section http://docs.jboss.com/cdi/spec/1.0/html/lifecycle.html#bizmethod[7.2].
 
 * Initializer methods are not intercepted, so an `@Inject` method will not be intercepted or decorated while the bean is initialized

@@ -6,13 +6,13 @@ title: Frequently Asked Questions
   - site.faq.each_with_index do |faq, i|
     .accordion-group
       .accordion-heading
-        a.accordion-toggle{href="#accordion#{i}" data-toggle="collapse" data-parent="#faq_accordion"} = faq.title
+        a.accordion-toggle{href="#accordion#{i}" data-toggle="collapse" data-parent="#faq_accordion"} = faq[:title]
       .accordion-body.collapse{id="accordion#{i}"}
         .accordion-inner
-          - if faq.since
+          - if faq[:since]
             .alert.alert-success.pull-right
-              Since CDI #{faq.since}
-          = faq.content
+              Since CDI #{faq[:since]}
+          = faq[:rendered_content]
 javascript:
   $(document).ready(function(){
     $('.collapse').collapse('.collapse');
