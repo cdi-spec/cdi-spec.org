@@ -1,0 +1,15 @@
+---
+layout: base
+---
+
+- if site.labels
+  - site.labels.each_key do |label|
+    article
+      header
+        h1 = label
+          a{href="https://issues.jboss.org/issues/?jql=project%3DCDI+AND+labels%3D#{label}" target="new"} 
+            span.badge.badge-info Issues:
+            = site.labels[label].issue_count
+      p = site.labels[label].content
+- else
+  p No major issues currently highlighted
