@@ -32,7 +32,7 @@ module Awestruct
 
         faq_files.each do |file|
           doc = Asciidoctor.load(File.new(file, 'r'))
-          file_name_number = File.basename(file, '.asciidoc').to_i > 0 ? File.basename(file, '.asciidoc').to_i : doc.attributes['order']
+          file_name_number = File.basename(file, '.asciidoc').to_i > 0 ? File.basename(file, '.asciidoc') : doc.attributes['order']
           faq << {:title => doc.doctitle, 
                   :order => (file_name_number || '999999').to_i,
                   :since => doc.attributes['since'] || '1.0', 
