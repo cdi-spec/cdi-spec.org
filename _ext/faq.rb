@@ -41,7 +41,6 @@ module Awestruct
         end
 
         faq.sort! { |a,b| a[:order] <=> b[:order] }
-        # faq.each_with_index {|val, index| puts "#{val[:title]} => #{val[:order]}" }
 
         site.send( "#{@assign_to}=", faq )
       end
