@@ -1,6 +1,5 @@
 = Should I use javax.faces.bean.Request/Session/ApplicationScoped or javax.enterprise.context.Request/Session/ApplicationScoped?
 Pete Muir
-:order: 100
 
 Both annotation groups originate from different APIs, and have been specified (more or less) independently. While the JSF scope annotations have a clear focus on the JSF view technology, CDI requires scope annotations that are present, no matter if JSF is deployed or not (CDI can be used without JSF). So CDI had no choice but defining it's own scopes. Unfortunately, Java EE 6 did not align this very well.
 

@@ -1,6 +1,5 @@
 = What is the purpose of the @Model annotation?
 Dan Allen
-:order: 101
 
 The `@Model` annotation does to things:
 

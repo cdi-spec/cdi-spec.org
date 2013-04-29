@@ -1,6 +1,5 @@
 = Where can I find the JavaDoc for all of Java EE?
 Dan Allen
-:order: 5
 
 You can find the aggregated JavaDoc for the whole Java EE 6 platform http://java.sun.com/javaee/6/docs/api/[here]. Java EE 7 is not available yet.
 

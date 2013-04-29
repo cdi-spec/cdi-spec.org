@@ -1,6 +1,5 @@
 = How do I use the conversation scope with JSF 2?
 Pete Muir
-:order: 200
 
 Seam established the concept of conversations, which then CDI adopted. In parallel, JSF 2.0 was specified as JSR 314, with a long discussion whether conversation scope was worthwhile or not. Finally it was agreed on a compromise (Flash- and View-Scope), but a Conversation scope was not specified.
 

@@ -1,6 +1,5 @@
 = When are interceptors and decorators applied?
 Pete Muir
-:order: 104
 
 Interceptors and decorators are applied for _business method invocations_. For a detailed overview of what a business method invocation is, it's best to consult the JSR-299 specification, more specifically section http://docs.jboss.com/cdi/spec/1.0/html/lifecycle.html#bizmethod[7.2].
 
