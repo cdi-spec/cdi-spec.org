@@ -2,3 +2,4 @@
 Jens Schumann
 :order: 1
 
+The best way to start is the http://docs.oracle.com/javaee/6/tutorial/doc/gjbnr.html[Java EE 6 CDI tutorial], and shortly after the CDI spec itself. See link:/download[CDI download page] for current CDI spec releases.
