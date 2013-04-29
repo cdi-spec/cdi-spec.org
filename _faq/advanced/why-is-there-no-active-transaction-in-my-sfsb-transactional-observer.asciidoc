@@ -1,5 +1,6 @@
 = Why is there no active transaction in my SFSB transactional observer?
 Nicklas Karlsson
+:order: 501
 
 Sometimes it's useful to have an +AFTER_SUCCESS+ transactional observer. For example you could update a list when an entity is persisted. However, if you use:
 

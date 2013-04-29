@@ -1,4 +1,5 @@
 = Why does my normal scoped bean not get instantiated immediately?
 Pete Muir
+:order: 103
 
 A CDI implementation may choose to lazily instantiate a normal scoped bean. If you inject a shorter-lived bean into a longer-lived bean (e.g. session scoped into application scoped) then there is no obvious bean to instantiate at this point - depending on the active session for the thread a different bean instance will be injected.

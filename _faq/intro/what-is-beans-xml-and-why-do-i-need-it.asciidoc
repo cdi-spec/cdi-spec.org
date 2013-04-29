@@ -1,6 +1,6 @@
 = What is beans.xml and why do I need it?
 Dan Allen
-:order: 1
+:order: 4
 
 The +beans.xml+ file is known as the bean archive descriptor. This answer addresses the purpose of this file and why it is needed.
 

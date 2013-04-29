@@ -23,18 +23,24 @@ module Awestruct
       # Returns nothing.
       def execute(site)
         faq = []
-        # Find all the asciidoc files (TODO: could use a better regexp), pull out the relevant information and add it to the faq list
-        Dir.glob(File.join(site.dir, @faq_dir, '*.asciidoc')).each do |file| 
+
+        # Find all the asciidoc files
+        faq_files = []
+        Find.find(File.join(site.dir, @faq_dir)) do |path|
+          faq_files << path if path =~ /.*\.asciidoc$/
+        end
+
+        faq_files.each do |file|
           doc = Asciidoctor.load(File.new(file, 'r'))
-          file_name_number = File.basename(file, '.asciidoc').to_i > 0 ? File.basename(file, '.asciidoc').to_i : doc.attributes['order']
           faq << {:title => doc.doctitle, 
-                  :order => file_name_number.to_s || '', 
+                  :order => (doc.attributes['order'] || '999999').to_i,
                   :since => doc.attributes['since'] || '1.0', 
                   :rendered_content => doc.render({:header_footer => false})
                  }
         end
 
-        faq.sort! { |a,b| b[:order] <=> a[:order] } 
+        faq.sort! { |a,b| a[:order] <=> b[:order] }
+        faq.each_with_index {|val, index| puts "#{val[:title]} => #{val[:order]}" }
 
         site.send( "#{@assign_to}=", faq )
       end

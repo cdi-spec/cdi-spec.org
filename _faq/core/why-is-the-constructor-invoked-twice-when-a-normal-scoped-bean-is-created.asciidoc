@@ -1,5 +1,6 @@
 = Why is the constructor invoked twice when a normal scoped bean is created?
 Dan Allen
+:order: 102
 
 For every normal-scoped bean there is a proxy, and you are seeing the instantiation of two objects: one is the actual bean instance, the other one is the proxy. Both likely invoke the default constructor.
 

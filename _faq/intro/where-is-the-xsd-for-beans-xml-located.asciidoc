@@ -1,5 +1,6 @@
 = Where is the XSD for beans.xml located?
 Dan Allen
+:order: 3
 
 You can find the XSD for beans.xml at the following location:
 
