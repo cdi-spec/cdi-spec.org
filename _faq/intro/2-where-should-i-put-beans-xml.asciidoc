@@ -1,0 +1,4 @@
+= Where should I put my beans.xml file?
+Jens Schumann
+
+The bean archive descriptor +beans.xml+ should be located at +META-INF/beans.xml+ or +WEB-INF/beans.xml+.
