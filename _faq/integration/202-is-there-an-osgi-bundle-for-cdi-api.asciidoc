@@ -1,0 +1,6 @@
+= Is there an OSGi bundle for CDI API?
+Jozef Hartinger
+
+Yes, an OSGi version of the CDI 1.0 API is available from the Apache specs project http://search.maven.org/#artifactdetails%7Corg.apache.geronimo.specs%7Cgeronimo-jcdi_1.0_spec%7C1.0%7Cbundle[org.apache.geronimo.specs:geronimo-jcdi_1.0_spec:1.0]
+
+For CDI 1.1 use the http://search.maven.org/#artifactdetails%7Cjavax.enterprise%7Ccdi-api%7C1.1-20130918%7Cjar[javax.enterprise:cdi-api:1.1-20130918 artifact]
