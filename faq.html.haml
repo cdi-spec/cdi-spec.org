@@ -2,24 +2,15 @@
 layout: base
 title: Frequently Asked Questions
 ---
-.accordion#faq_accordion
+.panel-group#faq_accordion
   - site.faq.each_with_index do |faq, i|
-    .accordion-group
-      .accordion-heading
-        %a.accordion-toggle{:href=>"#accordion#{i}", :data=>{:toggle=>"collapse", :parent=>"#faq_accordion"}}= faq.title
-      .accordion-body.collapse{:id=>"accordion#{i}"}
-        .accordion-inner
+    .panel.panel-default
+      .panel-heading
+        %h4.panel-title
+          %a{:href=>"#accordion#{i}", :data=>{:toggle=>"collapse", :parent=>"#faq_accordion"}}= faq.title
+      .panel-collapse.collapse{:id=>"accordion#{i}"}
+        .panel-body
           - if faq[:since]
             .alert.alert-success.pull-right
               Since CDI #{faq[:since]}
           ~ faq[:rendered_content]
-:javascript
-  $(document).ready(function(){
-    $('.collapse').each(function() { $(this).collapse('hide'); });
-    if (window.location.hash !== '') {
-      $(window.location.hash).collapse('show');
-    }
-  });
-  if (window.location.hash !== '') {
-    $('html,body').animate({scrollTop: $(window.location.hash).parent().offset().top}, 200);
-  }

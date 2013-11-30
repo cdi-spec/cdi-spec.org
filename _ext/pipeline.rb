@@ -1,3 +1,4 @@
+require 'bootstrap-sass'
 require File.join File.dirname(__FILE__), 'tweakruby'
 require_relative 'restclient_extensions_enabler'
 require_relative 'common' 
