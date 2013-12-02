@@ -1,0 +1,59 @@
+---
+title: 11/25/2013 EG Meeting
+summary: Back on Websocket and CDI Scope issue (CDI-370), then followed issues discussion
+layout: default
+---
+
+== CDI EG meeting 11/25/2013 notes on CDI 1.1.1 MR
+
+In this meeting we came back on CDI-370 : Expand @RequestScoped and @SessionScoped to account for WebSocket and added some other issues.
+The following people assisted this meeting :
+
+
+* Pete Muir (pm)
+* Mark Struberg (ms)
+* Jozef Hartinger (jh)
+* Joseph Bergmark (jb)
+* Arne Limburg (al)
+* Stuart Douglas (sd) (Websocket expert)
+* Phil Zampino (pz) (Java EE EG member)
+* Martin Kouba (mk)
+* JJ Snyder (jj)
+* Antoine Sabot-Durand (asd)
+
+==== Proposed Agenda 
+
+The following agenda was proposed by *asd*
+
+1. Back on Websocket + RequestScoped issue : CDI-370 : Expand @RequestScoped and @SessionScoped to account for WebSocket
+Stuart Douglas will be our Guest Star to help us sort out if we can fix this issue on CDI side and if yes, if it’s doable in the MR timeframe
+
+2. If there’s time left let’s discuss the following point :
+
+* CDI-406 Make stereotypes bean defining annotations.
+* CDI-404 adding bean-defining annotations for Interceptor while setting bean-discovery-mode=« annotated » 
+* CDI-389 Revert CDI-85
+* CDI-397 Clarify Section 6.6.3 regarding singletons
+* CDI-395 Public fields in extensions should not be allowed (also easy to decide)
+
+== Websocket case (https://issues.jboss.org/browse/CDI-370[CDI-370 : Expand @RequestScoped and @SessionScoped to account for WebSocket])
+*sd* and *pz* gave their insight on the meaning of Requestscope and Sessionscope in Websocket perspective. It was roughly a synthesis of our http://lists.jboss.org/pipermail/cdi-dev/2013-November/004434.html:[discussion] on the ML about the subject
+*ms* stressed the fact that implementing one of these solution on CDI impl side could bring performance issue.
+*pm* concluded by saying that we should check with Java EE EG if a websocket MR was planned. According to this answer we would statute on this issue
+
+=== Other issues
+
+==== https://issues.jboss.org/browse/CDI-406:[CDI-406 Make stereotypes bean defining annotations]
+*pm* told there was no technical issue to fix this (no double scan). No one objected so the issue *is added to the MR*
+
+==== https://issues.jboss.org/browse/CDI-404:[CDI-404 adding bean-defining annotations for Interceptor while setting bean-discovery-mode=« annotated »]
+Same as previous. The issue is also *added to the MR*
+
+==== https://issues.jboss.org/browse/CDI-389[CDI-389 Revert CDI-85]
+All agreed we can do the revert to CDI 1.0 regarding generic type. But *pm* stressed that we should have a big rework on this for CDI 2.0
+
+==== https://issues.jboss.org/browse/CDI-397[CDI-397 Clarify Section 6.6.3 regarding singletons]
+*asd* told that we should go a little beyond and check all occurrences of "singleton" in the spec to clarify if it's an singleton session bean or a singleton scope. As nobody objected the issue was *added to the MR*
+
+==== https://issues.jboss.org/browse/CDI-397[CDI-395 Public fields in extensions should not be allowed]
+There was a long discussion on the subject mainly between *pm*, *ms*, *al* and *jh*. Conclusion is that it can bring more problem to correct this issue. *pm* suggested that we defer it. *al* pointed the fact that test on implementation can show that it's not supported already. If it's the case it could be safely added to the MR. So further investigation are needed
