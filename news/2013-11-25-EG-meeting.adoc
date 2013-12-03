@@ -21,7 +21,7 @@ The following people assisted this meeting :
 * JJ Snyder (jj)
 * Antoine Sabot-Durand (asd)
 
-==== Proposed Agenda 
+=== Proposed Agenda 
 
 The following agenda was proposed by *asd*
 
@@ -36,7 +36,7 @@ Stuart Douglas will be our Guest Star to help us sort out if we can fix this iss
 * CDI-397 Clarify Section 6.6.3 regarding singletons
 * CDI-395 Public fields in extensions should not be allowed (also easy to decide)
 
-== Websocket case (https://issues.jboss.org/browse/CDI-370[CDI-370 : Expand @RequestScoped and @SessionScoped to account for WebSocket])
+=== Websocket case (https://issues.jboss.org/browse/CDI-370[CDI-370 : Expand @RequestScoped and @SessionScoped to account for WebSocket])
 *sd* and *pz* gave their insight on the meaning of Requestscope and Sessionscope in Websocket perspective. It was roughly a synthesis of our http://lists.jboss.org/pipermail/cdi-dev/2013-November/004434.html:[discussion] on the ML about the subject
 *ms* stressed the fact that implementing one of these solution on CDI impl side could bring performance issue.
 *pm* concluded by saying that we should check with Java EE EG if a websocket MR was planned. According to this answer we would statute on this issue
