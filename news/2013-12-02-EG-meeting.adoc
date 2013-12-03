@@ -1,0 +1,64 @@
+---
+title: 12/02/2013 EG Meeting
+summary: Feedback on Java EE Expert Group Conf call. Adoption of 1.2 as MR name and discussion on 9 ticket for MR inclusion.
+layout: default
+---
+
+== CDI EG meeting 12/02/2013 notes on CDI 1.2 MR
+
+The following people assisted this meeting :
+
+* Pete Muir (pm)
+* Mark Struberg (ms)
+* Jozef Hartinger (jh)
+* Joseph Bergmark (jb)
+* Phil Zampino (pz) (Java EE EG member)
+* JJ Snyder (jj)
+* Antoine Sabot-Durand (asd)
+
+=== Proposed Agenda 
+
+The following agenda was proposed
+
+1. Feed back on Java EE EG conf call we had on tuesday
+
+2. Issues discussion : 9 issues where proposed
+
+=== Feedback on Java EE EG meeting
+
+To sum up :
+
+* Java EE EG is ok with our MR roadmap :
+  - 16th Dec - list of issues complete
+  - 6th Jan - Maintenance review starts
+  - 7th March - Maintenance review ends
+  - 21st March - Maintenance ballot ends
+ 
+* According to JCP rules on update, we are going for CDI 1.2 (not 1.1.1)
+
+* Regarding ticket https://issues.jboss.org/browse/CDI-370[CDI-370^] (Expand @RequestScoped and @SessionScoped to account for WebSocket) we agree that job should be done in Websocket Spec. So *asd* will work with *Stuart Douglas* to bring this point to the Websocket EG. The direct consequence for our MR is that CDI-370 is not in and should be closed after we check that Websocket EG got the point on their side.
+
+* We also talk about classloader issue that were raised during https://issues.jboss.org/browse/CDI-377[CDI-377^] (automatic JSR-330 annotation processing problematic). EG members agreed that it's a good point but very difficult to resolve. It could only be solve in a major EE release. 
+
+
+===  Issues discussion
+
+The discussion around the proposed ticket was quite straight forward. The result is in the table below
+
+[cols="1,6,1,4",options="header"]
+|===
+|Jira|Description|Decision|Note
+|https://issues.jboss.org/browse/CDI-405[CDI-405^]|Reword the description of @RequestScoped and @ApplicationScoped in section 2.4.1|in MR|
+|https://issues.jboss.org/browse/CDI-401[CDI-401^]|Clarify the meaning of "bean class local view"|in MR|
+|https://issues.jboss.org/browse/CDI-398[CDI-398^]|Clarify that an array with a variable component type or parameterized component type containing wildcards is not a valid bean type|in MR|
+|https://issues.jboss.org/browse/CDI-392[CDI-392^]|Clarify when the operations of BeanManager can be called|in MR|
+|https://issues.jboss.org/browse/CDI-386[CDI-386^]|Two examples in section 5.2.4 contradict the rules of the same section|in MR|
+|https://issues.jboss.org/browse/CDI-382[CDI-382^]|Clarify interceptors are not associated with the result of a producer method/field|in MR|
+|https://issues.jboss.org/browse/CDI-381[CDI-381^]|Additional implementations of Request Context|in MR|we should add general statement telling that extension can change the behavior of built-in scope
+|https://issues.jboss.org/browse/CDI-379[CDI-379^]|Clarify life cycle of RequestScoped|out MR|each spec should detail how they stick to built-in scope
+|https://issues.jboss.org/browse/CDI-377[CDI-77^]|Clarify what happens when the user creates a unbound recursive injection with Dependent scoped beans|out MR|Container doesn't have to support this : the ticket should be closed
+|===
+
+=== Conclusion
+
+EG has still 8 issues to discuss (inluding https://issues.jboss.org/browse/CDI-377[CDI-377^]). We should close the list as planned on mid-december.
