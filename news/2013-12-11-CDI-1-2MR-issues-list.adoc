@@ -1,0 +1,36 @@
+---
+title: Conclusion of EG preparation on CDI 1.2 MR. 
+summary: Conclusion of EG preparation work on CDI 1.2 MR. 18 issues includes, 3 out and one still pending.
+layout: default
+---
+
+== Issue List
+
+We finished to deal with the list of 22 Jira we planned to introduce or not in MR. So 18 of them will be in MR, 3 won't and 1 is not determined yet.
+
+[cols="1,6,1,4",options="header"]
+|===
+|Jira|Description|Decision|Note
+|https://issues.jboss.org/browse/CDI-377[CDI-377^]|automatic JSR-330 annotation processing problematic|in MR|Mention needed and perhaps a new feature
+|https://issues.jboss.org/browse/CDI-380[CDI-380^]|Clarify SessionScoped|in MR|We should be less descriptive and like for CDI-381 add a general statement telling that other spec/extensions can change the behavior of built-in scope
+|https://issues.jboss.org/browse/CDI-372[CDI-372^]|clarify behavior of implicit bean archive|in MR|The notion of Bean Archive is introduce in Chapter 12, we should do an introduction before
+|https://issues.jboss.org/browse/CDI-320[CDI-320^]|Clarify whether ProcessAnnotatedType should be fired for annotations|in MR|According to pm it shouldn't and we should clarify this
+|https://issues.jboss.org/browse/CDI-318[CDI-318^]|@WithAnnotations types can appear on any supertype|in MR|Mainly Javadoc correction on @WithAnnotation
+|https://issues.jboss.org/browse/CDI-280[CDI-280^]|behavior of CDI bean @Specializes session bean is undefined|in MR|could benefit some clarification
+|https://issues.jboss.org/browse/CDI-220[CDI-220^]|Clarify interceptors are not associated with the result of a producer method/field|in MR|
+|https://issues.jboss.org/browse/CDI-405[CDI-405^]|Reword the description of @RequestScoped and @ApplicationScoped in section 2.4.1|in MR|
+|https://issues.jboss.org/browse/CDI-401[CDI-401^]|Clarify the meaning of "bean class local view"|in MR|
+|https://issues.jboss.org/browse/CDI-398[CDI-398^]|Clarify that an array with a variable component type or parameterized component type containing wildcards is not a valid bean type|in MR|
+|https://issues.jboss.org/browse/CDI-392[CDI-392^]|Clarify when the operations of BeanManager can be called|in MR|
+|https://issues.jboss.org/browse/CDI-386[CDI-386^]|Two examples in section 5.2.4 contradict the rules of the same section|in MR|
+|https://issues.jboss.org/browse/CDI-382[CDI-382^]|Clarify interceptors are not associated with the result of a producer method/field|in MR|
+|https://issues.jboss.org/browse/CDI-381[CDI-381^]|Additional implementations of Request Context|in MR|we should add general statement telling that extension can change the behavior of built-in scope
+|https://issues.jboss.org/browse/CDI-406[CDI-406^]|Make stereotypes bean defining annotations|in MR|
+|https://issues.jboss.org/browse/CDI-404[CDI-404^]|adding bean-defining annotations for Interceptor while setting bean-discovery-mode="annotated"|in MR|
+|https://issues.jboss.org/browse/CDI-389[CDI-389^]|Revert https://issues.jboss.org/browse/CDI-85[CDI-85^]|in MR|we revert to CDI 1.0 behavior but we will have to propose something better in CDI 2.0
+|https://issues.jboss.org/browse/CDI-397[CDI-397^]|Clarify Section 6.6.3 regarding singletons|in MR|we should go a little beyond and check all occurrences of "singleton" in the spec to clarify if it's an singleton session bean or a singleton scope
+|https://issues.jboss.org/browse/CDI-379[CDI-379^]|Clarify life cycle of RequestScoped|out MR|each spec should detail how they stick to built-in scope
+|https://issues.jboss.org/browse/CDI-370[CDI-370^]|Expand @RequestScoped and @SessionScoped to account for WebSocket|out MR|It's the responsibility of Websocket spec. We should ensure they take the point before closing the ticket 
+|https://issues.jboss.org/browse/CDI-377[CDI-77^]|Clarify what happens when the user creates a unbound recursive injection with Dependent scoped beans|out MR|Container doesn't have to support this : the ticket should be closed
+|https://issues.jboss.org/browse/CDI-395[CDI-395^]|Public fields in extensions should not be allowed|?|it can bring backwards compatibility problem to correct this issue. We should see if impls allows it today. If it's not the case it could be safely added to the MR 
+|===   
