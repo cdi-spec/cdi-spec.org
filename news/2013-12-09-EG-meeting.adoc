@@ -1,0 +1,47 @@
+---
+title: 12/09/2013 EG Meeting
+summary: Discussion on 6 ticket for MR inclusion. And coming back on CDI-377 (automatic JSR-330 annotation processing problematic)
+layout: default
+---
+
+== CDI EG meeting 12/09/2013 notes on CDI 1.2 MR
+
+The following people assisted this meeting :
+
+* Pete Muir (pm)
+* Jozef Hartinger (jh)
+* Martin Kouba (mk)
+* JJ Snyder (jj)
+* Antoine Sabot-Durand (asd)
+
+=== Proposed Agenda 
+
+The following agenda was proposed
+
+1. Issues discussion : 6 issues where proposed
+
+2. Back on CDI-377 (automatic JSR-330 annotation processing problematic)
+
+===  Issues discussion
+
+The discussion around the proposed ticket was quite straight forward. The result is in the table below
+
+[cols="1,6,1,4",options="header"]
+|===
+|Jira|Description|Decision|Note
+|https://issues.jboss.org/browse/CDI-380[CDI-380^]|Clarify SessionScoped|in MR|We should be less descriptive and like for CDI-381 add a general statement telling that other spec/extensions can change the behavior of built-in scope
+|https://issues.jboss.org/browse/CDI-372[CDI-372^]|clarify behavior of implicit bean archive|in MR|The notion of Bean Archive is introduce in Chapter 12, we should do an introduction before
+|https://issues.jboss.org/browse/CDI-320[CDI-320^]|Clarify whether ProcessAnnotatedType should be fired for annotations|in MR|According to pm it shouldn't and we should clarify this
+|https://issues.jboss.org/browse/CDI-318[CDI-318^]|@WithAnnotations types can appear on any supertype|in MR|Mainly Javadoc correction on @WithAnnotation
+|https://issues.jboss.org/browse/CDI-280[CDI-280^]|behavior of CDI bean @Specializes session bean is undefined|in MR|could benefit some clarification
+|https://issues.jboss.org/browse/CDI-220[CDI-220^]|Clarify interceptors are not associated with the result of a producer method/field|in MR|
+|===
+
+=== Back on CDI-377 (automatic JSR-330 annotation processing problematic)
+
+This issue will be fixed in implementation and the sepc will mention something about recommendation to provide default exclusion list for most framework.
+We still have to discuss if we introduce a jar exclusion mechanism in the spec or this will be based on existing package exclusion.
+
+== Conclusion
+
+We finished to deal with the list of Jira tickets we planned to introduce or not in MR. As we have a little more time it was decided to re-open the list for some more on next meeting
