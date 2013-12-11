@@ -55,5 +55,5 @@ All agreed we can do the revert to CDI 1.0 regarding generic type. But *pm* stre
 ==== https://issues.jboss.org/browse/CDI-397[CDI-397 Clarify Section 6.6.3 regarding singletons]
 *asd* told that we should go a little beyond and check all occurrences of "singleton" in the spec to clarify if it's an singleton session bean or a singleton scope. As nobody objected the issue was *added to the MR*
 
-==== https://issues.jboss.org/browse/CDI-397[CDI-395 Public fields in extensions should not be allowed]
+==== https://issues.jboss.org/browse/CDI-395[CDI-395 Public fields in extensions should not be allowed]
 There was a long discussion on the subject mainly between *pm*, *ms*, *al* and *jh*. Conclusion is that it can bring more problem to correct this issue. *pm* suggested that we defer it. *al* pointed the fact that test on implementation can show that it's not supported already. If it's the case it could be safely added to the MR. So further investigation are needed
