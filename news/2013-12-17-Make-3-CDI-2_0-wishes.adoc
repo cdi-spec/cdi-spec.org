@@ -1,0 +1,10 @@
+---
+title: Make 3 CDI 2.0 Wishes
+summary: Regarding CDI 2.0, everything has still to be defined. Your feedback is very precious for the future CDI 2.0 Expert Group, so do not hesitate to give your feed back. 
+layout: default
+---
+
+++++
+<iframe src="https://docs.google.com/forms/d/1AEQthlREvqd1fHMM5Ea8lyHfKiPlgiJS9omfnM8DLeQ/viewform?embedded=true" width="760" height="885" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+++++
+
