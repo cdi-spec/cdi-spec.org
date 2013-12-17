@@ -46,5 +46,5 @@ We were waiting on implementation feedback on this point. *jh* told us that ther
 
 == Next Step
 
-The list is now closed (except for 411) It's accessible link:../CDI-1-2-issues-list[here] and in http://s.shr.lc/1fBf5ix[Jira].
+The list is now closed (except for 411) It's accessible link:../CDI-1-2-issues-list[here] and in http://s.shr.lc/1dL7BrF[Jira].
 The Maintenance Release will be officially launch on the 6th january week. By then, work and discussion can start on the ticket chosen for this MR.  

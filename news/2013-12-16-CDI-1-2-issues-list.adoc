@@ -6,7 +6,7 @@ layout: default
 
 == Issue List
 
-We finished to deal with the list of 27 Jira we planned to introduce or not in MR. So 23 of them will be in MR and 4 won't. The list is also accessible on http://s.shr.lc/1fBf5ix[Jira].
+We finished to deal with the list of 27 Jira we planned to introduce or not in MR. So 23 of them will be in MR and 4 won't. The list is also accessible on http://s.shr.lc/1dL7BrF[Jira].
 
 [cols="1,6,1,4",options="header"]
 |===
