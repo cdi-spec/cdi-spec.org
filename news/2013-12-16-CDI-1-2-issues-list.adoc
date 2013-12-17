@@ -1,16 +1,20 @@
 ---
-title: Conclusion of EG preparation on CDI 1.2 MR. 
-summary: Conclusion of EG preparation work on CDI 1.2 MR. 18 issues includes, 3 out and one still pending.
+title: Conclusion of EG preparation on CDI 1.2. 
+summary: Conclusion of EG preparation work on CDI 1.2 (1.1MR). 23 issues includes and 4 out.
 layout: default
 ---
 
 == Issue List
 
-We finished to deal with the list of 22 Jira we planned to introduce or not in MR. So 18 of them will be in MR, 3 won't and 1 is not determined yet.
+We finished to deal with the list of 27 Jira we planned to introduce or not in MR. So 23 of them will be in MR and 4 won't. The list is also accessible on http://s.shr.lc/1fBf5ix[Jira].
 
 [cols="1,6,1,4",options="header"]
 |===
 |Jira|Description|Decision|Note
+|https://issues.jboss.org/browse/CDI-408[CDI-408^]|bean-discovery-mode="annotated" and Producers/Observers in @Dependent beans|in MR|
+|https://issues.jboss.org/browse/CDI-410[CDI-410^]|@RequestScoped Javadoc outdated|in MR|
+|https://issues.jboss.org/browse/CDI-388[CDI-388^]|Session bean specialization example is not valid|in MR|
+|https://issues.jboss.org/browse/CDI-376[CDI-376^]|BeanManager#getProducerFactory return type differs between API and spec|in MR|Mainly Javadoc correction on @WithAnnotation
 |https://issues.jboss.org/browse/CDI-377[CDI-377^]|automatic JSR-330 annotation processing problematic|in MR|Mention needed and perhaps a new feature
 |https://issues.jboss.org/browse/CDI-380[CDI-380^]|Clarify SessionScoped|in MR|We should be less descriptive and like for CDI-381 add a general statement telling that other spec/extensions can change the behavior of built-in scope
 |https://issues.jboss.org/browse/CDI-372[CDI-372^]|clarify behavior of implicit bean archive|in MR|The notion of Bean Archive is introduce in Chapter 12, we should do an introduction before
@@ -29,8 +33,9 @@ We finished to deal with the list of 22 Jira we planned to introduce or not in M
 |https://issues.jboss.org/browse/CDI-404[CDI-404^]|adding bean-defining annotations for Interceptor while setting bean-discovery-mode="annotated"|in MR|
 |https://issues.jboss.org/browse/CDI-389[CDI-389^]|Revert https://issues.jboss.org/browse/CDI-85[CDI-85^]|in MR|we revert to CDI 1.0 behavior but we will have to propose something better in CDI 2.0
 |https://issues.jboss.org/browse/CDI-397[CDI-397^]|Clarify Section 6.6.3 regarding singletons|in MR|we should go a little beyond and check all occurrences of "singleton" in the spec to clarify if it's an singleton session bean or a singleton scope
+|https://issues.jboss.org/browse/CDI-411[CDI-411^]|CDI conversation activation conflicts with the Servlet spec|Pending|needs some test before decicing if we can include it in MR. Test leaded by *jh*
 |https://issues.jboss.org/browse/CDI-379[CDI-379^]|Clarify life cycle of RequestScoped|out MR|each spec should detail how they stick to built-in scope
 |https://issues.jboss.org/browse/CDI-370[CDI-370^]|Expand @RequestScoped and @SessionScoped to account for WebSocket|out MR|It's the responsibility of Websocket spec. We should ensure they take the point before closing the ticket 
 |https://issues.jboss.org/browse/CDI-377[CDI-77^]|Clarify what happens when the user creates a unbound recursive injection with Dependent scoped beans|out MR|Container doesn't have to support this : the ticket should be closed
-|https://issues.jboss.org/browse/CDI-395[CDI-395^]|Public fields in extensions should not be allowed|?|it can bring backwards compatibility problem to correct this issue. We should see if impls allows it today. If it's not the case it could be safely added to the MR 
+|https://issues.jboss.org/browse/CDI-395[CDI-395^]|Public fields in extensions should not be allowed|out MR|it can bring backwards compatibility problem to correct this issue. We should see if impls allows it today. If it's not the case it could be safely added to the MR 
 |===   
