@@ -14,7 +14,7 @@ We finished to deal with the list of 27 Jira we planned to introduce or not in M
 |https://issues.jboss.org/browse/CDI-408[CDI-408^]|bean-discovery-mode="annotated" and Producers/Observers in @Dependent beans|in MR|
 |https://issues.jboss.org/browse/CDI-410[CDI-410^]|@RequestScoped Javadoc outdated|in MR|
 |https://issues.jboss.org/browse/CDI-388[CDI-388^]|Session bean specialization example is not valid|in MR|
-|https://issues.jboss.org/browse/CDI-376[CDI-376^]|BeanManager#getProducerFactory return type differs between API and spec|in MR|Mainly Javadoc correction on @WithAnnotation
+|https://issues.jboss.org/browse/CDI-376[CDI-376^]|BeanManager#getProducerFactory return type differs between API and spec|in MR|
 |https://issues.jboss.org/browse/CDI-377[CDI-377^]|automatic JSR-330 annotation processing problematic|in MR|Mention needed and perhaps a new feature
 |https://issues.jboss.org/browse/CDI-380[CDI-380^]|Clarify SessionScoped|in MR|We should be less descriptive and like for CDI-381 add a general statement telling that other spec/extensions can change the behavior of built-in scope
 |https://issues.jboss.org/browse/CDI-372[CDI-372^]|clarify behavior of implicit bean archive|in MR|The notion of Bean Archive is introduce in Chapter 12, we should do an introduction before

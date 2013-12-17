@@ -39,7 +39,7 @@ We were waiting on implementation feedback on this point. *jh* told us that ther
 |https://issues.jboss.org/browse/CDI-408[CDI-408^]|bean-discovery-mode="annotated" and Producers/Observers in @Dependent beans|in MR|
 |https://issues.jboss.org/browse/CDI-410[CDI-410^]|@RequestScoped Javadoc outdated|in MR|
 |https://issues.jboss.org/browse/CDI-388[CDI-388^]|Session bean specialization example is not valid|in MR|
-|https://issues.jboss.org/browse/CDI-376[CDI-376^]|BeanManager#getProducerFactory return type differs between API and spec|in MR|Mainly Javadoc correction on @WithAnnotation
+|https://issues.jboss.org/browse/CDI-376[CDI-376^]|BeanManager#getProducerFactory return type differs between API and spec|in MR|
 |https://issues.jboss.org/browse/CDI-411[CDI-411^]|CDI conversation activation conflicts with the Servlet spec|Pending|needs some test before decicing if we can include it in MR. Test leaded by *jh*
 |===
 
