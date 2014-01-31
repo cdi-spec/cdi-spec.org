@@ -15,5 +15,11 @@ title: Frequently Asked Questions
           ~ faq[:rendered_content]
 :javascript
   $(document).ready(function(){
-    $('.collapse').collapse('.collapse');
+    $('.collapse').each(function() { $(this).collapse('hide'); });
+    if (window.location.hash !== '') {
+      $(window.location.hash).collapse('show');
+    }
   });
+  if (window.location.hash !== '') {
+    $('html,body').animate({scrollTop: $(window.location.hash).parent().offset().top}, 200);
+  }
