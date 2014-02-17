@@ -1,13 +1,13 @@
 require File.join File.dirname(__FILE__), 'tweakruby'
-require_relative 'restclient_extensions_enabler'
+#require_relative 'restclient_extensions_enabler'
 require_relative 'common' 
 require_relative 'jira'
 require_relative 'faq'
-require 'awestruct/extensions/minify'
+#require 'awestruct/extensions/minify'
 
 Awestruct::Extensions::Pipeline.new do
-  extension Awestruct::Extensions::RestClientExtensions::EnableGetCache.new
-  extension Awestruct::Extensions::RestClientExtensions::EnableJsonConverter.new
+  #extension Awestruct::Extensions::RestClientExtensions::EnableGetCache.new
+  #extension Awestruct::Extensions::RestClientExtensions::EnableJsonConverter.new
   extension Awestruct::Extensions::DataDir.new
   extension Awestruct::Extensions::Posts.new( '/news', :news ) 
   extension Awestruct::Extensions::FAQ.new( '_faq', :faq ) 
@@ -28,6 +28,6 @@ Awestruct::Extensions::Pipeline.new do
   helper Awestruct::Extensions::GoogleAnalytics
 
   extension Awestruct::Extensions::Indexifier.new
-  transformer Awestruct::Extensions::Minify.new
+  #transformer Awestruct::Extensions::Minify.new
 end
 
