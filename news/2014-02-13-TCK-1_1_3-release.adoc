@@ -6,9 +6,9 @@ layout: default
 
 == CDI TCK 1.1.3.Final released
 
-We've just released CDI TCK 1.1.3.Final - the third bugfix version for CDI 1.1. The artifacts are available in the Maven central repository and the distribution zip file on [sourceforge.net](https://sourceforge.net/projects/jboss/files/CDI-TCK/1.1.3.Final/).
+We've just released CDI TCK 1.1.3.Final - the third bugfix version for CDI 1.1. The artifacts are available in the Maven central repository and the distribution zip file on https://sourceforge.net/projects/jboss/files/CDI-TCK/1.1.3.Final/[sourceforge.net].
 
-Note that the exclude list in the canonical [TestNG config file](https://github.com/cdi-spec/cdi-tck/blob/1.1/impl/src/main/resources/tck-tests.xml) is clean now.
+Note that the exclude list in the canonical https://github.com/cdi-spec/cdi-tck/blob/1.1/impl/src/main/resources/tck-tests.xml[TestNG config file] is clean now.
 
 See also the list of resolved issues:
 https://issues.jboss.org/issues/?jql=fixVersion%20%3D%20%221.1.3.Final%22%20AND%20project%20%3D%20CDITCK
