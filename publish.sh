@@ -60,7 +60,7 @@ deep_clean() {
 sandbox() {
   shallow_clean
   echo "**** Generating site ****"
-  awestruct -Psandbox
+  bundle exec awestruct -Psandbox
 
   if [ ! -d "$SANDBOX_CHECKOUT_DIR/.git" ]; then
     echo "**** Cloning OpenShift repo ****"
@@ -82,13 +82,13 @@ sandbox() {
 production() {
   deep_clean
   echo "**** Generating site ****"
-  awestruct -Pproduction
+  bundle exec awestruct -Pproduction
 
   echo "\n**** Publishing site to http://${PRODUCTION_URL} ****"
   rsync -Pqr --protocol=28 --delete-after --exclude=presentations $DIR/_site/* ${JBORG_DIR}@${JBORG_REPO}/${PRODUCTION_DIR}
 
   shallow_clean
-  
+
   read -p "Do you want to send release notifcations to $EMAIL_TO[y/N]? " yn
   case $yn in
       [Yy]* ) notify_email;;
@@ -99,7 +99,7 @@ production() {
 staging() {
   deep_clean
   echo "**** Generating site ****"
-  awestruct -Pstaging
+  bundle exec awestruct -Pstaging
 
   echo "**** Publishing site to http://${STAGING_URL} ****"
   rsync -Pqr --protocol=28 --delete-after --exclude=presentations $DIR/_site/* ${JBORG_DIR}@${JBORG_REPO}/${STAGING_DIR}
