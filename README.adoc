@@ -1,0 +1,81 @@
+= How to contribute to cdi-spec.org website?
+
+This website is build using http://awestruct.org[Awestruct] static website generator. To contribute and preview your modification you'll need :
+
+ * to set up a clean Ruby environment,
+ * to install and configure you Awestruct env to work on your fork of the website,
+ * to add your modifications in Asciidoc for the content and Haml for the templating,
+ * To send a PR of your modification
+
+Before going in technical detail let's look at the nature of contributions
+
+== What to contribute to cdi-spec.org?
+
+First, unless your contribution is basic (typos and others grammatical glitches), we strongly suggest that you check with us on the https://lists.jboss.org/mailman/listinfo/cdi-dev[Mailing List] or IRC channel (#jsr346 on freenode) to make us know about your contribution project. So we'll be able to guide you on this work. You can also start by drooping a github issue on https://github.com/cdi-spec/cdi-spec.org/issues if you want to check the impact of your proposal.
+Right now (march 2014) you can already contribute to these part :
+
+ * the FAQ section in (`_faq` directory). Propose it as ticket and/or on ML before
+ * the supported servers section on `index.html.haml`
+ * site design (web designer or bootstrap gurus are most welcome to contribute)
+
+We're planning to enhance the website content by adding an official CDI tutorial and pointers to CDI initiatives in the community. So there'll probably be more content to contribute in the coming months. Stay tuned
+
+== Creating a hassle free Ruby environment
+
+We've noticed, and had quite a lot of feedback about it being difficult to get up and running easily with *Awestruct*.
+The first thing that makes this difficult is the Ruby environment you'll be developing your site.
+We strongly recommend you install and use http://rvm.io[rvm], and install the latest Ruby 2.1.0 environment (while Awestruct still work fine with from Ruby 1.9.3 to 2.1.0).
+This site has been generated with Ruby 2.1.0 lately, so it could be a good starting point if you don"t have other constraints.
+
+=== For Mac user use Homebrew or rvm
+
+Ruby version provided in Mac OSX have issue with awestruct, you really should install a cleaner version allowing gem installation without admin access.
+If you use homebrew and don't need to switch your Ruby version often, you can install Ruby with the command
+
+ $ brew install ruby
+
+if you prefer rvm (for an easier way to switch Ruby's version) follow the step bellow :
+
+=== Installing rvm on Linux and Mac OSX
+
+To correctly install rvm open a terminal and execute:
+
+ $ curl -L https://get.rvm.io | bash -s stable --ruby=2.0.1
+
+This will download and install the latest stable version of Ruby version 2.0.1 in a directory in your HOME directory, eliminating the need to have root access to update or install new gems.
+
+=== Installing Ruby on Windows
+
+Creating a great working environment on Windows can be difficult.
+We recommend using the http://rubyinstaller.org/[RubyInstaller for Windows].
+http://rubyinstaller.org/downloads/[Download] the latest version of Ruby 2.0.0 and follow any instructions it gives you.
+
+== Install Awestruct
+
+On github fork the repo and clone it on your workstation. Once it's done you can launch rake (the Ruby equivalent for make / ant)
+
+  $ rake setup
+
+in the directory where you cloned the website source. It should install all needed ruby gems to work with Awestruct on the site
+
+== Work on the site
+
+Once it's done, you can generate and launch Awestruct in local with the command
+
+  $ rake
+
+or if you want a total cleanup before preview
+
+  $ rake clean preview
+
+Awestruct should be launched, generating the website and launching a local Web server on port 4242.
+So you can check the result of your work on http://localhost:4242
+Your modification should be published automatically. If you need more information on Awestruct please check http://awestruct.org
+
+Regarding rake, options are available thru
+
+  $ rake -T
+
+== Send your PR
+
+When your contribution is finished (again, please check with us on the ML or IRC before starting a big task on the site), you can send us on Pull Request on Github, we'll be happy to merge it.
