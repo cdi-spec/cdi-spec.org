@@ -8,7 +8,7 @@ Guidelines for contributing to CDI via the Expert Group (EG)
 EG Membership
 -------------
 
-We develop CDI on an open mailing list. All members of the mailing list are considered part of the EG.
+We develop CDI using an open mailing list. You don’t have to be an official member of the expert group to be part of the CDI community. We take into account all input from any member of the list
 
 * Primary mailing list: <https://lists.jboss.org/mailman/listinfo/cdi-dev>
 * CDI 1.1 JCP page: <http://jcp.org/en/jsr/summary?id=346>
@@ -18,7 +18,7 @@ We develop CDI on an open mailing list. All members of the mailing list are cons
 Resources
 ---------
 
-In addition to the mailing lists, we use JIRA to track issues [https://issues.jboss.org/browse/CDI](https://issues.jboss.org/browse/CDI). If you want to register an error in the specification (JIRA calls this a *Bug*), request a clarification (JIRA calls this a *Clarification*) or request a new feature (JIRA calls this a *Feature Request*), please create an issue. 
+In addition to the mailing lists, we use JIRA to track issues [https://issues.jboss.org/browse/CDI](https://issues.jboss.org/browse/CDI). If you want to register an error in the specification (JIRA calls this a *Bug*), request a clarification (JIRA calls this a *Clarification*) or request a new feature (JIRA calls this a *Feature Request*), please create an issue.
 
 When you create an issue please set the Affects Version to 1.0 and do not set a Fix Version. The CDI specification lead (Pete Muir) will check the issue, and either request clarification if the report is not clear, or raise it with the EG to discuss whether it should be fixed for 1.1.
 
@@ -60,4 +60,3 @@ There are a number of issues which have merit (i.e. are addressing a valid probl
 * is responsible for the spec changes (with help/review from spec lead)
 * is responsible for TCK tests (help from TCK lead, review from spec lead)
 * is not responsible for implementing the feature in the RI
-
