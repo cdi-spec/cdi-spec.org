@@ -63,6 +63,10 @@ Check the link:http://docs.jboss.org/cdi/spec/1.2/cdi-spec-diff.html#init_events
 Description of initialization phase in chapter 11 & 12 was very messing. No chronological ordering of event fired by the container, missing events. For instance we forgot to speak with `ProcessInjectionPoint` and `ProcessBeanAttributes` and `ProcessProducer` was wrongly placed before `ProcessBean` in chapter 12.
 So if you're planning to write portable extensions you should perhaps re-read  link:http://docs.jboss.org/cdi/spec/1.2/cdi-spec.html#http://docs.jboss.org/cdi/spec/1.2/cdi-spec-diff.html#packaging_deployment[chapter 12^]. Not yet a page turner but far more accurate than it use to be.
 
+==== CDI API now officially supporting OSGi
+
+We integrated all OSGi bundle information in CDI 1.2 api jar. So now it'll be easier to use CDI in OSGi environment. Before that you had to grab a special OSGi release of CDI 1.1 to have the good bundle info in our `META-INF/MANIFEST.MF`.
+
 
 === More minor changes
 
