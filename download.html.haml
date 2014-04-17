@@ -16,6 +16,40 @@ layout: base
       License
   %tr
     %td
+      CDI 1.2
+    %td
+      %a{:href=>'http://docs.jboss.org/cdi/spec/1.2/cdi-spec-1.2.pdf'}
+        PDF
+        %i.fa.fa-file
+      |
+      %a{:href=>'http://docs.jboss.org/cdi/spec/1.2/cdi-spec.html'}
+        HTML
+        %i.fa.fa-link
+    %td
+      %a{:href=>'http://search.maven.org/remotecontent?filepath=javax/enterprise/cdi-api/1.2/cdi-api-1.2.jar'}
+        API
+        %i.fa.fa-download
+      |
+      %a{:href=>'http://docs.jboss.org/cdi/api/1.2'}
+        JavaDoc
+        %i.fa.fa-link
+      |
+      %a.modal-link{"data-toggle"=>"modal", :href=>"#maven-cdi_1_2"}
+        Maven
+        %i.fa.fa-download-alt
+      %td
+        %a{:href=>'http://weld.cdi-spec.org/download/'}
+          Weld 2.2
+          %i.fa.fa-download
+      %td
+        %a{:href=>'http://sourceforge.net/projects/jboss/files/CDI-TCK/'}
+          CDI TCK 1.2
+          %i.fa.fa-download
+      %td
+        %a{:href=>"http://www.apache.org/licenses/LICENSE-2.0.html"} Apache License 2.0
+      
+  %tr
+    %td
       CDI 1.1
     %td
       %a{:href=>'http://docs.jboss.org/cdi/spec/1.1/cdi-spec.pdf'}
@@ -38,7 +72,7 @@ layout: base
         JavaDoc
         %i.fa.fa-link
       |
-      %a.modal-link{"data-toggle"=>"modal", :href=>"#maven-cdi_1_1"}
+      %a.modal-link{"data-toggle"=>"modal", "data-target"=>"#maven-cdi_1_1"}
         Maven
         %i.fa.fa-download-alt
     %td
@@ -107,42 +141,67 @@ layout: base
 
 
 - #Create Maven Modals
-%div.modal.hide{:id=>"maven-cdi_1_1"}
-  .modal-header
-    %a.close{:data=>{:dismiss=>'modal'}}
-      %i.fa.fa-remove
-    %h3 Using CDI 1.1 from Maven
-  .modal-body.clearfix
-    %p To use CDI 1.1, add this dependency:
-    %pre
-      %code#example
-        = preserve do
-          :escaped
-              <dependencies>
-                  <dependency>
-                      <groupId>javax.enterprise</groupId>
-                      <artifactId>cdi-api</artifactId>
-                      <version>1.1</version>
-                      <scope>provided</scope>
-                  </dependency>
-              </dependencies>
-%div.modal.hide{:id=>"maven-cdi_1_0"}
-  .modal-header
-    %a.close{:data=>{:dismiss=>'modal'}}
-      %i.fa.fa-remove
-    %h3 Using CDI 1.0 from Maven
-  .modal-body.clearfix
-    %p To use CDI 1.0, add this dependency:
-    %pre
-      %code#example
-        = preserve do
-          :escaped
-              <dependencies>
-                  <dependency>
-                      <groupId>javax.enterprise</groupId>
-                      <artifactId>cdi-api</artifactId>
-                      <version>1.0-SP4</version>
-                      <scope>provided</scope>
-                  </dependency>
-              </dependencies>
+%div.modal.fade{:id=>"maven-cdi_1_2", :role=>"dialog", :tabindex=>"-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %a.close{:data=>{:dismiss=>'modal'}}
+          %i.fa.fa-remove
+        %h3 Using CDI 1.2 from Maven
+      .modal-body.clearfix
+        %p To use CDI 1.2, add this dependency:
+        %pre
+          %code#example
+            = preserve do
+              :escaped
+                  <dependencies>
+                      <dependency>
+                          <groupId>javax.enterprise</groupId>
+                          <artifactId>cdi-api</artifactId>
+                          <version>1.2</version>
+                          <scope>provided</scope>
+                      </dependency>
+                  </dependencies>
+%div.modal.fade{:id=>"maven-cdi_1_1", :role=>"dialog", :tabindex=>"-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %a.close{:data=>{:dismiss=>'modal'}}
+          %i.fa.fa-remove
+        %h3 Using CDI 1.1 from Maven
+      .modal-body.clearfix
+        %p To use CDI 1.1, add this dependency:
+        %pre
+          %code#example
+            = preserve do
+              :escaped
+                  <dependencies>
+                      <dependency>
+                          <groupId>javax.enterprise</groupId>
+                          <artifactId>cdi-api</artifactId>
+                          <version>1.1</version>
+                          <scope>provided</scope>
+                      </dependency>
+                  </dependencies>
+%div.modal.fade{:id=>"maven-cdi_1_0", :role=>"dialog", :tabindex=>"-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %a.close{:data=>{:dismiss=>'modal'}}
+          %i.fa.fa-remove
+        %h3 Using CDI 1.0 from Maven
+      .modal-body.clearfix
+        %p To use CDI 1.0, add this dependency:
+        %pre
+          %code#example
+            = preserve do
+              :escaped
+                  <dependencies>
+                      <dependency>
+                          <groupId>javax.enterprise</groupId>
+                          <artifactId>cdi-api</artifactId>
+                          <version>1.0-SP4</version>
+                          <scope>provided</scope>
+                      </dependency>
+                  </dependencies>
 
