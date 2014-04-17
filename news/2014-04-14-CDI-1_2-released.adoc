@@ -82,6 +82,6 @@ You'll find concrete raw and final data in the links below.
 
 * You want to check the diff between CDI 1.1 spec and CDI 1.2 spec? You'll find it link:http://docs.jboss.org/cdi/spec/1.2/cdi-spec-diff.html[there^] 
 
-* You can't wait to read this new spec, the Javadoc or use with the API or TCK? Go to our link:../download[download page^]
+* You can't wait to read this new spec, the Javadoc or use with the API or TCK? Go to our link:/download[download page^]
 
 * You want to start coding in CDI 1.2? Good news reference implementation (Weld 2.2.0) is available and provide all that's needed to be integrated to a Java EE 7 server. More information on link:http://weld.cdi-spec.org/news/2014/04/15/weld-220-final/[Weld 2.2.0 announcement^]
