@@ -1,0 +1,9 @@
+---
+title: CDI 2.0 Survey
+summary: This survey is your opportunity to tell the future Expert Group what are your priorities for CDI 2.0. This list of features comes from our own Spec Lead list and the wishes community gave us in our first survey "Make 3 CDI 2.0 wishes" at the beginning of the year. Please take a few minutes to answer to these question since your input is our best way to provide the most valuable new features for CDI 2.0.
+layout: default
+---
+
+++++
+<iframe src="https://docs.google.com/forms/d/1R18nS65GshO46YCcksTTVILlAlgyk8PA5Vu7zJPDx2U/viewform?embedded=true" width="760" height="4100" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+++++
