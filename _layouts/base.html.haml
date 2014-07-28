@@ -2,8 +2,8 @@
 %html
   %head
     %meta{ :charset=>'utf-8' }
-    %title 
-      = "#{site.title}" 
+    %title
+      = "#{site.title}"
       - if page.title
         = " :: #{page.title}"
     %meta{ :name=>'viewport', :content=>'width=device-width, initial-scale=1.0' }
@@ -18,13 +18,13 @@
       .row
         .col-md-2
           .nav.list-group.visible-desktop#main_nav
-            %a.list-group-item{ :href=>"#{site.base_url}" } 
+            %a.list-group-item{ :href=>"#{site.base_url}" }
               %i.fa.fa-home.fa-fw
               Home
-            %a.list-group-item{ :href=>"#{site.base_url}/download" } 
+            %a.list-group-item{ :href=>"#{site.base_url}/download" }
               %i.fa.fa-download.fa-fw
               Download
-            %a.list-group-item{ :href=>"#{site.base_url}/faq" } 
+            %a.list-group-item{ :href=>"#{site.base_url}/faq" }
               %i.fa.fa-question-circle.fa-fw
               FAQ
             %a.list-group-item(href='https://plus.google.com/111798907065326961264' rel='publisher')
@@ -32,57 +32,58 @@
               Google+
             %a.list-group-item(href='https://twitter.com/cdispec')
               %i.fa.fa-twitter.fa-fw
-              Twitter    
-            %a.list-group-item{ :href=>"#{site.base_url}/news/" } 
+              Twitter
+            %a.list-group-item{ :href=>"#{site.base_url}/news/" }
               %i.fa.fa-bullhorn.fa-fw
               News
-            -#%a{ :href=>"#{site.base_url}/issues" } 
+            -#%a{ :href=>"#{site.base_url}/issues" }
               -#%i.fa.fa-tasks.fa-fw
               -#Major issues
-            %a.list-group-item{ :href=>"https://lists.jboss.org/mailman/listinfo/cdi-dev" } 
+            %a.list-group-item{ :href=>"https://lists.jboss.org/mailman/listinfo/cdi-dev" }
               %i.fa.fa-envelope.fa-fw
               Mailing List
-            %a.list-group-item{ :href=>"https://issues.jboss.org/browse/CDI" } 
+            %a.list-group-item{ :href=>"https://issues.jboss.org/browse/CDI" }
               %i.fa.fa-tasks.fa-fw
               Bug tracker
-            %a.list-group-item{ :href=>"#{site.base_url}/contribute" } 
+            %a.list-group-item{ :href=>"#{site.base_url}/contribute" }
               %i.fa.fa-edit.fa-fw
               Contribute
           %ul.nav.nav-tabs.nav-stacked.span2.hide.hidden-desktop#mobile_menu
             %li
-              %a{ :href=>"#{site.base_url}" } 
+              %a{ :href=>"#{site.base_url}" }
                 %i.fa.fa-home.fa-fw
                 Home
             %li
-              %a{ :href=>"#{site.base_url}/news" } 
+              %a{ :href=>"#{site.base_url}/news" }
                 %i.fa.fa-bullhorn.fa-fw
                 News
             %li
-              %a{ :href=>"#{site.base_url}/roadmap" } 
+              %a{ :href=>"#{site.base_url}/roadmap" }
                 %i.fa.fa-road.fa-fw
                 Road map
             %li
-              %a{ :href=>"#{site.base_url}/faq" } 
+              %a{ :href=>"#{site.base_url}/faq" }
                 %i.fa.fa-question-circle.fa-fw
                 FAQ
             %li
-              %a{ :href=>"#{site.base_url}/contribute" } 
+              %a{ :href=>"#{site.base_url}/contribute" }
                 %i.fa.fa-edit.fa-fw
                 Contribute
             %li
-              %a{ :href=>"https://community.jboss.org/en/weld" } 
+              %a{ :href=>"https://community.jboss.org/en/weld" }
                 %i.fa.fa-group.fa-fw
                 Forum
             %li
-              %a{ :href=>"https://issues.jboss.org/browse/CDI" } 
+              %a{ :href=>"https://issues.jboss.org/browse/CDI" }
                 %i.fa.fa-tasks.fa-fw
                 Bug tracker
-        .col-md-10
+        .col-md-7
           %img{:src=>"#{site.base_url}/images/cdi_word_cloud_white.gif", :width=>"834", :height=>"334"}
           .row
             .col-md-12
               ~ content
           %hr
           %footer
+        .col-md-3
   - if site.google_analytics
     = google_analytics_universal
