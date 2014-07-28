@@ -13,7 +13,7 @@ We develop CDI using an open mailing list. You don’t have to be an official me
 * Primary mailing list: <https://lists.jboss.org/mailman/listinfo/cdi-dev>
 * CDI 1.1 JCP page: <http://jcp.org/en/jsr/summary?id=346>
 * IRC: <irc://freenode.net/#jsr346>
-* Twitter: <https://twitter.com/#!/jsr346>
+* Twitter: <https://twitter.com/#!/cdispec>
 
 Resources
 ---------
