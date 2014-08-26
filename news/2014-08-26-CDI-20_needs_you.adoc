@@ -1,0 +1,88 @@
+---
+title: "CDI 2.0 needs you"
+summary: The work around CDI 2.0 specification is about to start in the coming weeks. Discover the multiple ways you can be part of it, even if you only have a few hours a week to help us.
+layout: default
+---
+
+== CDI 2.0 needs you
+
+image:/images/UncleDuke.png[Uncle Duke,width=150,float="left"] The work on CDI 2.0 specification is about to start in the coming weeks. We have a lot of ambitious features on the table as you can check in our previous link:/news/2014/07/28/what-s-in-CDI-20-jsr-proposal/[article^], but we also have only 18 months to specify and implement them. Without community help, we probably won't be able to do all the change we are planning, so your contribution is precious to us. In this post I'll explain the multiple ways you can be part of it, even if you only have a few hours a week to help us and/or are not a CDI, JCP or a Java expert. Let's check the 3 main question most of you have regarding contribution and try to answer them:
+
+* Why should I contribute?
+* Is it possible for me to contribute?
+* How do I start contributing?
+
+
+=== Why should I contribute to CDI 2.0?
+
+Contributing to a specification like CDI looks like any other Open Source contribution (by the way CDI specification and deliverable are under the http://www.apache.org/licenses/LICENSE-2.0.html[Apache License version 2^]) yet it's very different. The following points will detail these differences.
+
+==== Working on Architecture and concepts first
+
+The biggest difference between working on a standard OSS project and a specification is probably the fact that the first job is to write detailled documentation (the specification document).
+Regarding specification document, the content should be very accurate and respect a certain set of rules among them:
+
+* use an homogenous style in simple yet understandable english across the doc,
+* as specification cannot be changed easily, the work must be very precise, consequences of a choice must be analysed deeply and ambiguities in definitions shouldn't exist,
+* stick to http://docs.oracle.com/javase/specs/jls/se8/html/index.html[Java language Specification^] (JSL) rules and terms,
+* avoid http://en.wikipedia.org/wiki/Denormalization["denormalization"^]: the specification should use cross references to point to an existing definition instead of duplicating it,
+* avoid mentioning how features should be implemented while keeping in mind that specified features will have to be implemented at the end.
+
+==== Participating to code writing.
+
+Specification is useless without implementations. So after (and sometimes while) thinking, comes code writing. First the API, the code that all specifications will have to implement and then as a proof of concept of the specification we have to provide the RI (reference implementation) and TCK (Technology Compatibility Kit) which is mandatory for developing other implementations. So you can also be useful by contributing to http://weld.cdi-spec.org/[JBoss Weld] and the https://github.com/cdi-spec/cdi-tck[CDI TCK] which is the translation of the specification in a test suite. Off course these will ask more time and probably more skills for a contribution.
+
+==== Contributing to the future of Java EE and Java SE
+
+CDI 2.0 will be part of Java EE 8 but also targets Java SE. Therefore, we'd like to make CDI the Dependency Injection standard for Java. It already plays this role for Java EE. So contributing to the CDI 2.0 specification is a way to be part to the future of Java and Java applications architecture.
+
+==== Being at the source of a lot of other projects
+
+Working on CDI specification is also a way to indirectly work at (and thus, have impact on) other projects linked to it. The implementations (Apache OpenWebBeans and JBoss Weld) are off course the obvious ones, but today there are a lot of other open source frameworks or projects out there based on CDI. http://deltaspike.apache.org/[Apache Deltaspike^], http://www.vraptor.org/[VRaptor^] or http://www.openbravo.com/[Openbravo^] are some example of these (you can also consider most of JBoss Java frameworks which use CDI to be integrated).
+Working on CDI is a way to help these projects to become better or give you the knowledge to contribute to them in the future to help them getting the best of CDI 2.0 when it will be released.
+
+=== Is it possible for me to contribute?
+
+Most people disqualified themselves when it comes to contribute to a JSR. The 3 most frequent reason given are:
+
+* the technical level,
+* the lack of time or,
+* the "paperwork" tied to such a contribution.
+
+Let's review these "good" excuses that could make one thinks "contributing is not for me"
+
+==== Technical level
+
+Ok, if you are an absolute beginner in Java and CDI, it will be hard to help without making others loose their time. But as you're reading these lines, you are probably not an absolute beginner ;). One of our goal on CDI 2.0 is to make the specification as easy as possible to read. So even if you are not a top notch Java specialist, your reading skill and feedback on badly written, ambiguous or hard to understand part will be very precious to the Expert Group.
+Regarding Java Level, CDI 2.0 will leverage a lot of new features coming with Java SE 8 on which most of the contributors will have very little experience. So, on this topic specialists will be the exception.
+To make short, the minimum level to contribute is to have a reasonable knowledge on Java (enough to know your unknown and where to look to learn), have already used CDI in development, have a good knowledge of its features (DI, Events, AOP, Extensions...) and be able to read english.
+That makes a lot of people qualified to help.
+
+==== Time
+
+From the previous point you can understand that there is no minimum amount of time for contribution. For instance you can read a specification chapter and propose corrections or remarks on it, it will take you 2 or 3 hours on the 18 months of the specification. Now the best would be to provide a few hours a week. To help people that want to contribute and don't have much time, we'll try to provide a monthly synthesis of topics worked on the project to spare their time and avoid the "I'd like to do something but I don't have time to dig thru all the mailing list and Jira message to figure out what to do". These reports will also be useful for the EG members to have a big picture vision of the work regulary.
+
+==== Paper work
+
+To be officially enrolled on a JCP Expert Group requires a little paper work. You'll have to create an account on http://jcp.org[jcp.org^] and sign the Java Specification Agreement (JSPA). You'll probably have to ask you employeer an agreement to contribute. And then ask the spec lead to be part of the JSR. On the JSR side, we never refused a member in the EG in the past and plan to continue like that for the new JSR
+
+The good news is that we also accept non official contributions as any other Open Source project using ASL2. So if you don't feel like signing JCP stuff, you can still participate to discussion on the Mailing list, the IRC channel or our JIRA site. You can even send pull request on the project. The only difference will be that you won't be mentioned as a member of the expert group on the JCP website.
+
+So to make short. You can start contributing with no paper work. Stay anonymous during all the project or decide to officially join the EG at any time before the end of the JSR. The only limit would be if you start doing big contribution. In this case we'll probably ask you to join EG to avoid any future IP issues.
+
+=== How do I start contributing?
+
+The best place to start is probably the https://lists.jboss.org/mailman/listinfo/cdi-dev[Mailing List^], or if you want a more informal you can begin with the IRC channel(#cdi-dev on freenode). All the information regarding communication channel of the spec is detailled on the link:/contribute[contribute] page.
+
+You also should start reading the http://docs.jboss.org/cdi/spec/1.2/cdi-spec-1.2.pdf[existing specification^] to become familiar with its content and its style.
+
+Finally, as the specification is written in asciidoc (with the excellent asciidoctor implementation), you should also start learning it. The best place is probably the http://asciidoctor.org/docs/user-manual/[Asciidoctor user manual^]. As we're using asciidoctor maven plugin to generate the doc you won't have to install asciidoc toolchain, only Maven. You'll also nedd a text editor with optionally plugins to help writing asciidoc. https://atom.io/[Atom editor] with asciidoc language and asciidoc preview plugins is a good solution, but there are plenty of others depending on your taste and current tools.
+
+=== What's next?
+
+We are currently preparing the organization of the work around the specification. The goal is to be as efficient as possible regarding contribution. The Mailing List is the best place to stay tuned. In the meantime you can do "homework" with the existing material.
+
+
+=== Conclusion?
+
+We are trying to make CDI 2.0 a very open specification to give to the community the possibility to contribute easily to this great project. We are thrilled to count you onboard for any contribution (big or small) you'll be able to do, making CDI 2.0 your specification.
