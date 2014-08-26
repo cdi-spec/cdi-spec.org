@@ -12,7 +12,7 @@ We develop CDI using an open mailing list. You don’t have to be an official me
 
 * Primary mailing list: <https://lists.jboss.org/mailman/listinfo/cdi-dev>
 * CDI 1.1 JCP page: <http://jcp.org/en/jsr/summary?id=346>
-* IRC: <irc://freenode.net/#jsr346>
+* IRC: <irc://freenode.net/#cdi-dev>
 * Twitter: <https://twitter.com/#!/cdispec>
 
 Resources
@@ -20,7 +20,7 @@ Resources
 
 In addition to the mailing lists, we use JIRA to track issues [https://issues.jboss.org/browse/CDI](https://issues.jboss.org/browse/CDI). If you want to register an error in the specification (JIRA calls this a *Bug*), request a clarification (JIRA calls this a *Clarification*) or request a new feature (JIRA calls this a *Feature Request*), please create an issue.
 
-When you create an issue please set the Affects Version to 1.0 and do not set a Fix Version. The CDI specification lead (Pete Muir) will check the issue, and either request clarification if the report is not clear, or raise it with the EG to discuss whether it should be fixed for 1.1.
+When you create an issue please set the Affects Version to 1.2 and do not set a Fix Version. The CDI specification lead (Pete Muir or Antoine Sabot-Durand) will check the issue, and either request clarification if the report is not clear, or raise it with the EG to discuss whether it should be fixed for 2.0.
 
 The current draft of the specification is available on github at <http://github.com/cdi-spec/cdi> - you are welcome to clone this repository, and create patches and submit pull requests if you wish. It is the duty of the specification lead to ensure that the specification is consistent and well written, so expect some backwards and forwards before your patch is accepted!
 
@@ -34,11 +34,11 @@ We hope the EG can be a friendly and informal place to work, and as such we have
 
 1. Consider whether you want to send an email, or add a comment in JIRA. If you wish to discuss the merits of a change or request more explanation of a proposed change, then send an email. If you want to make a technical proposal or propose an API design, add a comment to an issue. There are no hard and fast rules about when to send an email vs add a comment, but remember that comments are there for posterity, and can help people understand why certain design decision was made.
 
-2. Try to make every post or comment say something meaningful. Endless "I agree" or "+1" emails aren't that useful and distract from the real discussion about API improvements. Of course, if you strongly disagree with a proposal, please speak up, but in general silence is taken as approval!
+2. Try to make every post or comment say something meaningful. Endless "I agree" or "+1" emails aren't that useful and distract from the real discussion about API improvements. Of course, if you strongly disagree with a proposal, please speak up, but in general silence is taken as approval! IRC is probably a better place if you want an informal exchange.
 
 3. Please try keep the EG a pleasant place - there is no need for rants, swearing or personal comments - these cannot help the specification in anyway. If you want to make an argument, back it up with concrete statements and examples.
 
-We try to reach a consensus decision on all issues. If we can't reach a consensus, we use polls to see what the wider community things. For issues on which a consensus still cannot be reached, and require a vote, we take the EG list from the JCP as the voting group. So far, whilst developing CDI 1.1, we only had to vote on one issue.
+We try to reach a consensus decision on all issues. If we can't reach a consensus, we use polls to see what the wider community thinks. For issues on which a consensus still cannot be reached, and require a vote, we take the EG list from the JCP as the voting group. So far, whilst developing CDI 1.1, we only had to vote on one issue.
 
 
 Issue Resolution Rules
