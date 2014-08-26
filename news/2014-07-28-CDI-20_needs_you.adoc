@@ -1,9 +1,0 @@
----
-title: "CDI 2.0 needs you"
-summary: The work around CDI 2.0 specification is about to start in the coming weeks. Discover the multiple ways you can be part of it, even if you only have a few hours a week to help us.
-layout: default
----
-
-== CDI 2.0 needs you
-
-The work on CDI 2.0 specification is about to start in the coming weeks. We have a lot of ambitious features on the table, but we also have olny 18 months to specify and implement them. Without comunity help, we probably won't be able to do all the change we are planning, so your contribution is precious to us. In this post we'll   Discover the multiple ways you can be part of it, even if you only have a few hours a week to help us. In this post, we'll describe the
