@@ -17,9 +17,9 @@ We develop CDI using an open mailing list. You don’t have to be an official me
 
 You should note that by using any of the communication mechanisms associated with CDI (including the mailing list, the JIRA issue tracker and the github repository) you agree that:
 
-* for all code provided on this list, you are licensing the code under the [Apache License, Version 2] (http://www.apache.org/licenses/LICENSE-2.0.html). 
+* for all code provided, you are licensing the code under the [Apache License, Version 2] (http://www.apache.org/licenses/LICENSE-2.0.html). 
 
-* for all other ideas provided on this list, the provider waives all patent and other intellectual property rights inherent in such information.
+* for all other ideas provided, the provider waives all patent and other intellectual property rights inherent in such information.
 
 Resources
 ---------
