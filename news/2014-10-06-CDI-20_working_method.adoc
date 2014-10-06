@@ -1,0 +1,39 @@
+---
+title: "Working method for CDI 2.0"
+summary: The work around CDI 2.0 specification has just started. Discover how we intend to work to ease community contribution.
+layout: default
+---
+
+== Working method for CDI 2.0
+
+Work on CDI 2.0 started at the beginning of september. As you may guess, specifying and releasing this new major version is a big challenge.
+
+To put all chance on our side we are looking for a strong commitment from the community (as explained in our link:/news/2014/08/26/CDI-20_needs_you/[previous post]). That's why the way we'll be organised is very important.
+Thus, when we started thinking about our working method we came up with the following requirements:
+
+* Keep the big picture of the spec in mind while working on all detail of each new / modified features
+* Have the right balance between "ideal specification" and the "specification only driven by implementation" approaches
+* Be able to welcome new contributors (even casual ones) without loosing them in spec history or advanced technical details at the beginning
+* Give visibility to third party (other JSR or future implementor) of the spec without forcing them to follow our ML, IRC, JIRA
+* Get feedback from the community easily while designing the spec
+
+To satisfy these points we came to the idea of creating different workshop on big CDI topics (existing and new). To begin we identified these workshop:
+
+- Parts (modularity) : how we can make CDI more modular by extracting sub part in the spec to allow it to grow without becoming bloated.
+- Java SE support :  how CDI should work in Java SE and what SPI should we add or standardise to ease its integration in home brewed stacks
+- Events enhancement : bringing asynchronicity or ordering to events. Can it be extended to all Java EE
+- Interceptor & Decorator : AOP support on produced or custom bean. Work with interceptor spec to add AOP on inner call
+- SPI enhancement for integration : give access to all metadata produced by the container, give control of CDI from outside code, support Bean addition / modification @ Runtime
+- Contexts enhancement : go beyond the the thread-bound request-response model used by context today to support new application architecture
+- Java 8 enhancement : see how new features in java 8 (type annotation, annotation repetition, lambdas, streams, default methods, type inference…) could enhance CDI in existing and new features.
+
+To ease this big picture approach we also adopted this following step to deal with each workshop:
+
+. Blueprint draft : the workgroup lead propose a draft document describing his global idea of how the future should work
+. Draft discussion The draft is commented, amended, enhanced by the group which can react to the doc by proposing new ideas. and When people feel ready by the EG
+. Detailled task / requirement: after the discussion, each adopted concept are translated in on or more tickets in our Jira to follow their realisation to start more detailled discussion
+. Spec and TCK enhancement: each task is translated to the new specification document and translated to the TCK
+
+Off course thes steps are more guidelines than a strong workflow, it's a way to ease contribution not constraint it. It will probably evolve with time.
+
+On our link:/[home page] you'll find the list of each workshop and their current status and links (working doc, Jira EPICS, etc...). Please feel free to check these links and give your feedback and don't heistate to contribute with your idea on this documents.
