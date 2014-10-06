@@ -1,0 +1,27 @@
+_(updated on October 6th)_
+
+Work on CDI 2.0 is based on different workshops as explained  link:/news/2014/10/06/CDI-20_working_method/[here^].
+The table below give to resource to different workshop. It will be updated
+
+
+[width="100%",cols="15,15,25,45",options="header"]
+|===
+
+|Workshop|Status |Doc link|Description
+
+|Parts|not started|http://bit.ly/cdi2wsprt|working on modularity (sub specs)
+
+|Events|started|http://bit.ly/cdi2wsevt|enhance events (asynchronous, ordering,etc...)
+
+|AOP|started|http://bit.ly/cdi2wsaop|Interceptors & Decoractors enhancement
+
+|Java SE|not started|http://bit.ly/cdi2wsjse|Boostrap CDI in Java SE
+
+|JDK 8 |started|http://bit.ly/cdi2wsjk8|enhancement from JDK 8
+
+|SPI |not started|http://bit.ly/cdi2wsspi|more open SPI for 3rd party
+
+|Contexts |not started|http://bit.ly/cdi2wsctx|go beyond the the thread-bound request-response model used by context today
+
+
+|===

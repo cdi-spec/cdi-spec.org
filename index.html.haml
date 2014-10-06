@@ -3,7 +3,7 @@ layout: base
 ---
 .col-md-10
   :javascript
-    $(document).ready(function(){ 
+    $(document).ready(function(){
       $('#front-menu a[data-toggle="tab"]').click(function(e){
         e.preventDefault();
         $(this).tab('show');
@@ -49,28 +49,30 @@ layout: base
         %li
           %a{:href=>"#cdi1_1", :"data-toggle"=>"tab"} CDI 1.1
     %li.dropdown
-      %a.dropdown-toggle{:href=>"#", :"data-toggle"=>"dropdown"} 
+      %a.dropdown-toggle{:href=>"#", :"data-toggle"=>"dropdown"}
         JCP pages
         %b.caret
       %ul.dropdown-menu
         %li
-          %a{:href=>"http://jcp.org/en/jsr/detail?id=299"} 
+          %a{:href=>"http://jcp.org/en/jsr/detail?id=299"}
             CDI 1.0 - JSR 299
             %i.fa.fa-external-link.fa-w
         %li
-          %a{:href=>"http://jcp.org/en/jsr/detail?id=346"} 
+          %a{:href=>"http://jcp.org/en/jsr/detail?id=346"}
             CDI 1.1 - JSR 346
             %i.fa.fa-external-link.fa-w
     %li
       %a{:href=>"#servers", :"data-toggle"=>"tab"} Servers
-    %li.active
+    %li
       %a{:href=>"#overview", :"data-toggle"=>"tab"} Overview
+    %li.active
+      %a{:href=>"#cdi2", :"data-toggle"=>"tab"} CDI 2.0 news
   .tab-content
-    .tab-pane.fade#cdi1_1 
+    .tab-pane.fade#cdi1_1
       :markdown
         CDI 1.1
         -------
-        
+
         CDI 1.1 focuses on improving CDI 1.0:
 
         * Add global enablement of interceptors (see the [Java Interceptors Specification 1.2](http://interceptors-spec.java.net/)), global enablement of decorators ([read more](http://docs.jboss.org/cdi/spec/1.1/cdi-spec.html#enabled_decorators_priority)) and alternatives ([read more](http://docs.jboss.org/cdi/spec/1.1/cdi-spec.html#unsatisfied_and_ambig_dependencies)) using the `@Priority` annotation
@@ -91,7 +93,10 @@ layout: base
         * Add `@WithAnnotations` as a way of improving extension loading performance ([read more](http://docs.jboss.org/cdi/spec/1.1/cdi-spec.html#pat))
         * Many minor improvements to portable extensions ([read more](http://docs.jboss.org/cdi/spec/1.1/cdi-spec.html#spi))
 
-    .tab-pane.fade.in.active#overview
+    .tab-pane.fade.in.active#cdi2
+      %h3 CDI 2.0 News
+      = partial('cdi2.adoc')
+    .tab-pane.fade.in#overview
       %h2 What is CDI?
       = partial('cdi_1_0.md')
       :markdown
@@ -103,7 +108,6 @@ layout: base
     .tab-pane.fade.in#cdi1_0
       %h2 CDI 1.0
       = partial('cdi_1_0.md')
-       
     .tab-pane.fade#servers
       %p
         Below is the current list of servers supporting CDI, also listed is the implementation used.
