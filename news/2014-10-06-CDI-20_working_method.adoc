@@ -17,9 +17,9 @@ Thus, when we started thinking about our working method we came up with the foll
 * Give visibility to third party (other JSR or future implementor) of the spec without forcing them to follow our ML, IRC, JIRA
 * Get feedback from the community easily while designing the spec
 
-To satisfy these points we came to the idea of creating different workshop on big CDI topics (existing and new). To begin we identified these workshop:
+To satisfy these points we came to the idea of creating different workshop on big CDI topics (existing and new). To begin we identified these workshops:
 
-- Parts (modularity) : how we can make CDI more modular by extracting sub part in the spec to allow it to grow without becoming bloated.
+- Parts (modularity) : how we can make CDI more modular by extracting sub part in the spec to allow it to grow without becoming bloated
 - Java SE support :  how CDI should work in Java SE and what SPI should we add or standardise to ease its integration in home brewed stacks
 - Events enhancement : bringing asynchronicity or ordering to events. Can it be extended to all Java EE
 - Interceptor & Decorator : AOP support on produced or custom bean. Work with interceptor spec to add AOP on inner call
@@ -34,6 +34,6 @@ To ease this big picture approach we also adopted this following step to deal wi
 . Detailled task / requirement: after the discussion, each adopted concept are translated in on or more tickets in our Jira to follow their realisation to start more detailled discussion
 . Spec and TCK enhancement: each task is translated to the new specification document and translated to the TCK
 
-Off course thes steps are more guidelines than a strong workflow, it's a way to ease contribution not constraint it. It will probably evolve with time.
+Off course these steps are more guidelines than a strong workflow, it's a way to ease contribution not constraint it. It will probably evolve with time.
 
 On our link:/[home page] you'll find the list of each workshop and their current status and links (working doc, Jira EPICS, etc...). Please feel free to check these links and give your feedback and don't heistate to contribute with your idea on this documents.
