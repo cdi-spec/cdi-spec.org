@@ -34,6 +34,6 @@ To ease this big picture approach we also adopted this following step to deal wi
 . Detailled task / requirement: after the discussion, each adopted concept are translated in on or more tickets in our Jira to follow their realisation to start more detailled discussion
 . Spec and TCK enhancement: each task is translated to the new specification document and translated to the TCK
 
-Off course these steps are more guidelines than a strong workflow, it's a way to ease contribution not constraint it. It will probably evolve with time.
+Of course these steps are more guidelines than a strong workflow, it's a way to ease contribution not constraint it. It will probably evolve with time.
 
 On our link:/[home page] you'll find the list of each workshop and their current status and links (working doc, Jira EPICS, etc...). Please feel free to check these links and give your feedback and don't heistate to contribute with your idea on this documents.
