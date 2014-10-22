@@ -1,0 +1,184 @@
+---
+title: "CDI 2.0 first Face to face meeting feedback"
+summary: Last week we had the first CDI 2.0 Face to Face meeting in Brno (Czech Republic). Check what was discussed and the first CDI 2.0 orientations
+layout: default
+---
+
+Last week we had the first CDI 2.0 Face to Face meeting in Brno (Czech Republic). Check what was discussed and the first CDI 2.0 orientations
+
+== Meeting Agenda
+
+As you may know, CDI 2.0 project was launched only six weeks ago, so we are still in early discussion stage regarding CDI 2.0 design. Yet our link:/news/2014/10/06/CDI-20_working_method/[workshop^] organisation was a good entry point to start going in more deep discussion. So we based our discussion on existing workshop documents. Here are the main decisions that came out from our discussion.
+
+=== Parts introduction
+
+Parts concept is not the most visible change we would introduce in CDI 2.0 but since it's probably the one with more impact on spec organisation, we started with this point to know if we should go in that direction. That answer was *yes*.
+We also decided that each part would be independent from the other (i.e a bigger part wouldn't depend from a smaller one but would integrate it) to solve API splitting issues. Having this principles accepted we talked about the possible parts and their content:
+
+* CDI Light: a lightweight version of CDI without Normal Scopes, Interceptors and Decorators that would allow proxy-free implementations. We worked on the API present in this Part, you can have a look to what we proposed on this https://github.com/antoinesd/cdi-spec/tree/CDI_20_LIGHT[branch^]
+
+* CDI Full: CDI as we know it today except for all the other spec integration (servlet, JSF, EJB, etc...).
+
+* CDI Java EE : CDI full including integration with other specs
+
+
+=== Events enhancement
+
+The 2 main topics here were ordering and asynchronous events.
+
+==== Asynchronous events.
+
+The main idea was to adopt a different approach than the one in EJB today. Instead of using a `@Asynchronous` annotation and manage a `Future<T>` to deal with he end of asynchronous treatment, we looked for a way to provide callback to the event trigering.
+
+The idea could be to add a `fireAsync()` method to the `Event<T>` and use Java 8 lambdas and add a functional interface like this :
+
+[source,java]
+----
+@FunctionalInterface
+public interface EventCallBack<T> {
+
+    void doCallback(T callBack);
+}
+----
+
+and use later like this
+
+[source,java]
+----
+@Inject Event<Payload> evt; 
+
+public void fireAsyncWithCallBack() { 
+    evt.fireAsync(new Payload(), callBack -> System.out.println("Job done”));
+}
+
+----
+
+Off course this approach has to be more deeply investigate (we'll do it on our coming event meeting) but it has a lot of advantages :
+
+* Introduce a more modern approach of async events processing like we have in other framework or technologies
+* Complete the EJB approach instead of duplicating it
+* Avoid asking Java EE EG to extract @Asynchronous form EJB to put it somewhere else (where?)
+
+==== Events priority
+
+Discussion on event priority was open some weeks ago. We tried to have a fresh look to the idea. The main point was about using `@Priority` annotation or not. The question is still not closed but we're more in favor of the use of a value in `@Observes` annotation. This value would give the order of the observer (the lowest being the first).
+The main reason to choose this approach instead of @Priority is the fact that while being part of java common annotation (JSR 250) spec, @Priority is not present in Java SE. So using it would :
+
+* force us to ask for JSR 250 Maintenance release to allow priority on paramaters
+* add an extra dependency jar (for only one annotation) when using CDI Light in Java SE which seems against our "light" goal
+
+The `@Observes` evolution evolution would give something like:
+
+[source,java]
+----
+public void firstObserver(@Observes(1) Payload pl) {}
+
+public void secondObserver(@Observes(2) Payload pl) {}
+----
+
+Priority value provided in `javax.interceptor.Interceptor.Priority` would be duplicated in CDI to avoid useless dependency on Interceptor spec while keeping the same approach / values.
+This ordering could be also used to order step in extensions.
+
+==== Event Range
+
+The idea behind event range would to provide a "scope" to events (i.e package, war, ear). It would prepare CDI event to become a server wide eventing system.
+The discussion came to the conclusion that while it's rather easy to implement, it's usage could be quite cumbersome.
+The idea was not discarded but we thought it was a good idea to check with community if the need was real.
+
+
+=== Interceptors and Decorators (AOP) enhancement
+
+There were a lot of discussions around enhancing interceptors and decorators. You'll find the main topics below.
+
+==== AOP on custom beans and producers
+
+Conclusion was that it is doable but with certain limitations. Among them the fact that an interceptor on producer would be applied on all method of it (no obvious solution to target specifc methods).
+
+We also discussed the syntax for binding interceptor to a produced bean. if you consider this code:
+
+[source,java]
+----
+@Produces
+ @Loggable
+ public  Foo produceMap() { 
+    return new Foo(); 
+}
+----
+
+`@Loggable` interceptor binding is bound to the method not the produced bean. We have to find an easy way to bind the interceptor to the produced bean.
+The only solution we found was to use a Stereotype with the interceptor binding and put it on the producer. Not a direct solution but rather elegant.
+
+==== AOP on internal call vs self injection pattern
+
+We already discussed about supporting AOP on call make in the same bean (calling intercepted B method from method A with interceptor triggering).
+After discussion, it seemed very difficult to introduce this new feature and AOP support on produced and custom beans at the same time. So the idea was to ease the use of self injection pattern, providing something like this.
+
+[source,java]
+----
+public class MyBean {
+
+  @Inject
+  Self<MyBean> mySelf;
+
+  @Loggable
+  public methodB() {
+    ...
+  }
+
+  public methodA() {
+    mySelf.get().methodB();
+  }
+}
+----
+
+less elegant than having it directly on internal call but still useful.
+
+==== Other AOP topics
+
+We also discussed about the following topics:
+
+* *relaunching the idea of supporting decorator without interface* like it was requested in https://issues.jboss.org/browse/CDI-403[CDI-403^] and before that in https://issues.jboss.org/browse/CDI-224[CDI-224^].
+* *standardise the https://deltaspike.apache.org/documentation/partial-bean.html[partial bean] feature from Deltaspike*. For those who don't know this feature an example can be found https://github.com/jboss-developer/jboss-wfk-quickstarts/tree/2.6.0.Final/deltaspike-partialbean-advanced[here^].
+
+
+=== Java SE support
+
+We had a long discussion on Java SE support in CDI 2.0. To decide that we should just provide a class like this:
+
+[source,java]
+----
+
+public class ContainerBoot {
+
+    /**
+     * Simple boot
+     */
+    static BeanManager initialize() {
+      ...
+    }
+
+    /**
+     * Boot with parameters
+     */
+    static BeanManager intialize(Map<?,?>) {
+      ...
+    }
+    void shutdown() {}
+}
+
+----
+
+Discussions are still going on on this topic.
+
+
+=== SPI enhancement
+
+Last but not least we also discussed about SPI enhancement. The main topic were:
+
+* *Give the possibility to modify/register beans at runtime*. The majority of present people were against this new feature. The ones in favor obtained that the door wouldn't be closed now and that the community would be consulted to see if this need was "real". So we'll be back on this feature and if you want to see it, stay tune to give it your support when we'll ask for it.
+* *Add SPI to activate/deactivate contexts*. Right now built-in context cannot be activated / deactivated by third parties, forcing them to create their own implementation of such contexts instead of using the one provided by their implementation. This small modification will greatly ease CDI advanced integration in other spec or frameworks.
+* *Add helpers to create CDI meta-data*. Today it's not very convenient to create an `AnnotatedType` or a custom `Bean`. We decided to explore the introduction of helpers inspired by Deltaspike Builders. They would be provided by lifecycle event
+
+=== Conclusion
+
+Here are the main topics we discussed during these 2 days. Other small feature will came to JIRA later. At this point there was only orientation and no final decision on any subject. So the door is still open for these as well as new feature. So don't hesitate to give your advice andv your contribution to our link:/[workshop] or https://issues.jboss.org/browse/CDI[Jira server^].

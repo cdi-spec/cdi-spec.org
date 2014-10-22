@@ -1,9 +1,8 @@
 === Hot news
 
-_(updated on October 9th)_
+_(updated on October 22nd)_
 
-Check our last (October 8th) IRC meeting
- http://transcripts.jboss.org/meeting/irc.freenode.org/cdi-dev/2014/cdi-dev.2014-10-08-16.00.html[minutes^] which was focused on Java One feedback, Face to Face meetings and started workshops.
+Last week we had our Face to Face meeting, check our feedback link:/news/2014/10/20/CDI-2_0-first-face-to-face-meeting-feedback/[here].
 
 Next IRC meeting on October 22nd will be focused on Event enhancement. If you want to participate please take a moment to read the http://bit.ly/cdi2wsevt[Event workshop document] and join the discussion to prepare the meeting.
 
