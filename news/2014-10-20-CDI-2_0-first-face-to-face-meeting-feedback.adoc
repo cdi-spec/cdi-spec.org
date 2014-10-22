@@ -4,9 +4,11 @@ summary: Last week we had the first CDI 2.0 Face to Face meeting in Brno (Czech 
 layout: default
 ---
 
+== CDI 2.0 first Face to face meeting feedback
+
 Last week we had the first CDI 2.0 Face to Face meeting in Brno (Czech Republic). Check what was discussed and the first CDI 2.0 orientations
 
-== Meeting Agenda
+=== Meeting Agenda
 
 As you may know, CDI 2.0 project was launched only six weeks ago, so we are still in early discussion stage regarding CDI 2.0 design. Yet our link:/news/2014/10/06/CDI-20_working_method/[workshop^] organisation was a good entry point to start going in more deep discussion. So we based our discussion on existing workshop documents. Here are the main decisions that came out from our discussion.
 
