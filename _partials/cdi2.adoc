@@ -1,10 +1,11 @@
 === Hot news
 
-_(updated on October 22nd)_
+_(updated on October 23rd)_
 
-Last week we had our Face to Face meeting, check our feedback link:/news/2014/10/20/CDI-2_0-first-face-to-face-meeting-feedback/[here].
+Our last IRC meeting (Oct 22nd) was focused on events. http://bit.ly/cdi2wsevt[The workshop document^] contains a lot of leads on ordering and asynchronous events.
+If you missed the debate, you can retrieve it http://transcripts.jboss.org/meeting/irc.freenode.org/cdi-dev/2014/cdi-dev.2014-10-22-16.00.log.html[here^] or if you prefere the short version the minutes of the meeting are  http://transcripts.jboss.org/meeting/irc.freenode.org/cdi-dev/2014/cdi-dev.2014-10-22-16.00.html[there^]
 
-Next IRC meeting on October 22nd will be focused on Event enhancement. If you want to participate please take a moment to read the http://bit.ly/cdi2wsevt[Event workshop document] and join the discussion to prepare the meeting.
+Last week (oct 15th-16th) we had our Face to Face meeting, check our feedback link:/news/2014/10/20/CDI-2_0-first-face-to-face-meeting-feedback/[here].
 
 === Contribution
 
