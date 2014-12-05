@@ -1,43 +1,7 @@
 ---
 layout: base
 ---
-.col-md-10
-  :javascript
-    $(document).ready(function(){
-      $('#front-menu a[data-toggle="tab"]').click(function(e){
-        e.preventDefault();
-        $(this).tab('show');
-      });
-      $('#front-menu a[data-toggle="dropdown"]').click(function(e){
-        e.preventDefault();
-        $(this).dropdown();
-      });
-      /**
-       * Adds 0 left margin to the first thumbnail on each row that don't get it via CSS rules.
-       * Recall the function when the floating of the elements changed.
-       */
-      function fixThumbnailMargins() {
-        $('.row-fluid .thumbnails').each(function () {
-          var $thumbnails = $(this).children(),
-            previousOffsetLeft = $thumbnails.first().offset().left;
-              $thumbnails.removeClass('first-in-row');
-              $thumbnails.first().addClass('first-in-row');
-              $thumbnails.each(function () {
-                var $thumbnail = $(this),
-                  offsetLeft = $thumbnail.offset().left;
-                  if (offsetLeft < previousOffsetLeft) {
-                    $thumbnail.addClass('first-in-row');
-                  }
-                  previousOffsetLeft = offsetLeft;
-              });
-          });
-      }
-
-      // Fix the margins when potentally the floating changed
-      $(window).resize(fixThumbnailMargins);
-
-      $('a[href="#servers"]').on('shown', function(){fixThumbnailMargins()});
-    })
+.col-md-12
   %ul.nav.nav-tabs-center#front-menu
     %li.dropdown
       %a.dropdown-toggle{:href=>"#", :"data-toggle"=>"dropdown"}
@@ -95,7 +59,7 @@ layout: base
 
     .tab-pane.fade.in.active#cdi2
       = partial('cdi2.adoc')
-    .tab-pane.fade.in#overview
+    .tab-pane.fade#overview
       %h2 What is CDI?
       = partial('cdi_1_0.md')
       :markdown
@@ -104,7 +68,7 @@ layout: base
 
         The latest release of CDI is 1.1. You can [download](http://docs.jboss.org/cdi/spec/1.1/cdi-spec.html) the spec or [browse the javadoc](http://docs.jboss.org/cdi/api/1.1/).
 
-    .tab-pane.fade.in#cdi1_0
+    .tab-pane.fade#cdi1_0
       %h2 CDI 1.0
       = partial('cdi_1_0.md')
     .tab-pane.fade#servers
