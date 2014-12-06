@@ -1,0 +1,155 @@
+---
+layout: base
+---
+.col-md-12
+  ul.nav.nav-tabs-center#front-menu
+    li.dropdown
+      a.dropdown-toggle href='#' data-toggle='dropdown'
+        'Highlights
+        b.caret
+      ul.dropdown-menu
+        li
+          a href='#cdi1_0' data-toggle='tab' CDI 1.0
+        li
+          a href='#cdi1_1' data-toggle='tab' CDI 1.1
+    li.dropdown
+      a.dropdown-toggle href='#' data-toggle='dropdown'
+        'JCP pages
+        b.caret
+      ul.dropdown-menu
+        li
+          a href='http://jcp.org/en/jsr/detail?id=299'
+            'CDI 1.0 - JSR 299
+            i.fa.fa-external-link.fa-w
+        li
+          a href='http://jcp.org/en/jsr/detail?id=346'
+            'CDI 1.1 - JSR 346
+            i.fa.fa-external-link.fa-w
+    li
+      a href='#servers' data-toggle='tab' Servers
+    li
+      a href='#overview' data-toggle='tab' Overview
+    li.active
+      a href='#cdi2' data-toggle='tab' CDI 2.0 news
+  .tab-content
+    .tab-pane.fade#cdi1_1
+      markdown:
+        CDI 1.1
+        -------
+
+        CDI 1.1 focuses on improving CDI 1.0:
+
+        * Add global enablement of interceptors (see the [Java Interceptors Specification 1.2](http://interceptors-spec.java.net/)), global enablement of decorators ([read more](http://docs.jboss.org/cdi/spec/1.1/cdi-spec.html#enabled_decorators_priority)) and alternatives ([read more](http://docs.jboss.org/cdi/spec/1.1/cdi-spec.html#unsatisfied_and_ambig_dependencies)) using the `@Priority` annotation
+        * Add support for `@AroundConstruct` lifecycle callback for constructors (see the Java Interceptors Specification 1.2)
+        * Allow binding interceptors to constructors
+        * Moved interceptor binding to interceptors spec, allowing for reuse by other specifications
+        * Support decorators on built in beans ([read more](http://docs.jboss.org/cdi/spec/1.1/cdi-spec.html#decorators))
+        * Add `EventMetadata` ([read more](http://docs.jboss.org/cdi/spec/1.1/cdi-spec.html#event_metadata)) to allow inspection of event metadata
+        * Add `@Vetoed` annotation allowing easy programmatic disablement of classes ([read more](http://docs.jboss.org/cdi/spec/1.1/cdi-spec.html#what_classes_are_beans))
+        * Many improvements for passivation capable beans, including `@TransientReference` allowing instances to be retained only for use within the invoked method or constructor ([read more](http://docs.jboss.org/cdi/spec/1.1/cdi-spec.html#passivation_capable_injection_points) and [read more](http://docs.jboss.org/cdi/spec/1.1/cdi-spec.html#passivating_scope))
+        * Add scope activation and destruction callback events ([read more](http://docs.jboss.org/cdi/spec/1.1/cdi-spec.html#builtin_contexts))
+        * Add `AlterableContext` allowing bean instances to be explicitly destroyed ([read more](http://docs.jboss.org/cdi/spec/1.1/cdi-spec.html#context))
+        * Add automatic enablement of CDI for beans with a scope annotation, and EJBs, in Java EE ([read more](http://docs.jboss.org/cdi/spec/1.1/cdi-spec.html#bean_discovery))
+        * Add class exclusion filters to `beans.xml` to prevent scanning of classes and packages ([read more](http://docs.jboss.org/cdi/spec/1.1/cdi-spec.html#bean_discovery))
+        * Add `Unmanaged` allowing easy access to non-contexutal instances of beans ([read more](http://docs.jboss.org/cdi/spec/1.1/cdi-spec.html#bm_obtain_unmanaged_instance))
+        * Add `CDI` allowing easy accesss to the current CDI container ([read more](http://docs.jboss.org/cdi/spec/1.1/cdi-spec.html#provider))
+        * Add `AfterTypeDiscovery` event, allowing extensions to register additional types after type discovery ([read more](http://docs.jboss.org/cdi/spec/1.1/cdi-spec.html#atd))
+        * Add `@WithAnnotations` as a way of improving extension loading performance ([read more](http://docs.jboss.org/cdi/spec/1.1/cdi-spec.html#pat))
+        * Many minor improvements to portable extensions ([read more](http://docs.jboss.org/cdi/spec/1.1/cdi-spec.html#spi))
+
+    .tab-pane.fade.in.active#cdi2
+      = partial('cdi2.adoc')
+    .tab-pane.fade#overview
+      h2 What is CDI?
+      = partial('cdi_1_0.md')
+      markdown:
+        Latest Release
+        --------------
+
+        The latest release of CDI is 1.1. You can [download](http://docs.jboss.org/cdi/spec/1.1/cdi-spec.html) the spec or [browse the javadoc](http://docs.jboss.org/cdi/api/1.1/).
+
+    .tab-pane.fade#cdi1_0
+      h2 CDI 1.0
+      = partial('cdi_1_0.md')
+    .tab-pane.fade#servers
+      p
+        |Below is the current list of servers supporting CDI, also listed is the implementation used.
+      .row
+        .col-md-4
+          .thumbnail
+            img src='#{site.base_url}/images/servers/glassfish.gif'
+            .caption
+              h4 Oracle GlassFish 3.x
+              h5 using Weld
+        .col-md-4
+          .thumbnail
+            img src='#{site.base_url}/images/servers/tmax_soft.jpg'
+            .caption
+              h4 TMAX JEUS 7
+              h5 using Weld
+        .col-md-4
+          .thumbnail
+            img src='#{site.base_url}/images/servers/IBM.gif'
+            .caption
+              h4 IBM WebSphere 8.x / Community Edition 3.0
+              h5 using OpenWebBeans
+        .col-md-4
+          .thumbnail
+            img src='#{site.base_url}/images/servers/fujitsu.png'
+            .caption
+              h4 Fujitsu Interstage v10.1 / Windows Azure
+              h5 using Weld
+        .col-md-4
+          .thumbnail
+            img src='#{site.base_url}/images/servers/oracle.gif'
+            .caption
+              h4 Oracle WebLogic 12
+              h5 using Weld
+        .col-md-4
+          .thumbnail
+            img src='#{site.base_url}/images/servers/geronimo.jpg'
+            .caption
+              h4 Apache Geronimo 3.0-beta-1
+              h5 using OpenWebBeans
+        .col-md-4
+          .thumbnail
+            img src='#{site.base_url}/images/servers/jbossas7.jpg'
+            .caption
+              h4 JBoss AS7
+              h5 using Weld
+        .col-md-4
+          .thumbnail
+            img src='#{site.base_url}/images/servers/cosminexus.png'
+            .caption
+              h4 Hitachi uCosminexus v 9.0
+              h5 using Weld
+        .col-md-4
+          .thumbnail
+            img src='#{site.base_url}/images/servers/jbosseap6.png'
+            .caption
+              h4 JBoss EAP 6
+              h5 using Weld
+        .col-md-4
+          .thumbnail
+            img src='#{site.base_url}/images/servers/caucho.jpg'
+            .caption
+              h4 Caucho Resin 4.0.17
+              h5 using CanDI
+        .col-md-4
+          .thumbnail
+            img src='#{site.base_url}/images/servers/tomee.gif'
+            .caption
+              h4 Apache TomEE 1.0
+              h5 using OpenWebBeans
+        .col-md-4
+          .thumbnail
+            img src='#{site.base_url}/images/servers/sap-logo.jpg'
+            .caption
+              h4 SAP NetWeaver Cloud
+              h5 using OpenWebBeans
+        .col-md-4
+          .thumbnail
+            img src='#{site.base_url}/images/servers/jonas.png'
+            .caption
+              h4 JOnAS
+              h5 using Weld
