@@ -31,10 +31,26 @@ html lang='en'
                 i.fa.fa-download.fa-fw
                 '
                 ' Download
+              li: a href='#{site.base_url}/contribute/'
+                i.fa.fa-edit.fa-fw
+                '
+                ' Contribute
               li: a href='#{site.base_url}/faq/'
                 i.fa.fa-question-circle.fa-fw
                 '
                 ' FAQ
+              li: a href='#{site.base_url}/news/'
+                i.fa.fa-bullhorn.fa-fw
+                '
+                ' News
+              li: a href='https://lists.jboss.org/mailman/listinfo/cdi-dev' target='_BLANK'
+                i.fa.fa-envelope.fa-fw
+                '
+                ' Mailing List
+              li: a href='https://issues.jboss.org/browse/CDI' target='_BLANK'
+                i.fa.fa-tasks.fa-fw
+                '
+                ' Bug tracker
               li.dropdown: a.dropdown-toggle href='#' data-toggle='dropdown' role='button' aria-expanded='false'
                 'Social
                 b.caret
@@ -48,22 +64,6 @@ html lang='en'
                   li: a href='https://plus.google.com/111798907065326961264' rel='publisher' target='_BLANK'
                     'Google+
                     i.fa.fa-external-link.fa-fw
-              li: a href='#{site.base_url}/news/'
-                i.fa.fa-bullhorn.fa-fw
-                '
-                ' News
-              li: a href='https://lists.jboss.org/mailman/listinfo/cdi-dev' target='_BLANK'
-                i.fa.fa-envelope.fa-fw
-                '
-                ' Mailing List
-              li: a href='https://issues.jboss.org/browse/CDI' target='_BLANK'
-                i.fa.fa-tasks.fa-fw
-                '
-                ' Bug tracker
-              li: a href='#{site.base_url}/contribute/'
-                i.fa.fa-edit.fa-fw
-                '
-                ' Contribute
     javascript:
         var indexOfSharp = window.location.pathname.indexOf('#');
         var pathname = indexOfSharp > 0 ? window.location.pathname.substring(0, indexOfSharp) : window.location.pathname;
