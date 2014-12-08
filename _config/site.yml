@@ -12,7 +12,7 @@ profiles:
     disqus: cdispec
   staging:
     base_url: http://www.cdi-spec.org/staging
-    base_uri: http://www.cdi-spec.org/staging 
+    base_uri: http://www.cdi-spec.org/staging
     path: ~/public_html/topdomain-cdi-spec-org/staging
     minify: true
     disqus_developer: true
@@ -23,4 +23,5 @@ profiles:
     path: ~/public_html/topdomain-cdi-spec-org
     minify: true
     disqus: cdispec
-    google_analytics: UA-37580744-1
+    google_analytics:
+        account: UA-37580744-1
