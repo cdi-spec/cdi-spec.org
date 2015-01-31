@@ -1,81 +1,9 @@
-doctype 5
-html lang='en'
-  head
-    meta charset='utf-8'
-    meta name='viewport' content='width=device-width, initial-scale=1.0'
-    title=(page.title && page.title != site.title ? [page.title, site.title] : [site.title, site.description]) * ' | '
-    link rel='stylesheet' href='/stylesheets/asciidoctor.css'
-    link rel='stylesheet' href='/stylesheets/styles.css'
-    link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css'
-    script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js'
-    script type='text/javascript' src='//netdna.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js'
-    /[if lt IE 9]
-        script type='text/javascript' src='//html5shim.googlecode.com/svn/trunk/html5.js'
-  body
-    nav.navbar.navbar-default.navbar-static-top.navbar-inverse role='navigation'
-      .container
-        .container-fluid
-          .navbar-header
-            button.navbar-toggle.collasped type='button' data-toggle='collapse' data-target='.navbar-collapse'
-              span.sr-only Toggle navigation
-              span.icon-bar
-              span.icon-bar
-              span.icon-bar
-            a.navbar-brand href='#{site.base_url}'
-              i.fa.fa-home.fa-fw
-              '
-              'Home
-          .navbar-collapse.collapse
-            ul.nav.navbar-nav
-              li: a href='#{site.base_url}/download/'
-                i.fa.fa-download.fa-fw
-                '
-                ' Download
-              li: a href='#{site.base_url}/contribute/'
-                i.fa.fa-edit.fa-fw
-                '
-                ' Contribute
-              li: a href='#{site.base_url}/faq/'
-                i.fa.fa-question-circle.fa-fw
-                '
-                ' FAQ
-              li: a href='#{site.base_url}/news/'
-                i.fa.fa-bullhorn.fa-fw
-                '
-                ' News
-              li: a href='https://lists.jboss.org/mailman/listinfo/cdi-dev' target='_BLANK'
-                i.fa.fa-envelope.fa-fw
-                '
-                ' Mailing List
-              li: a href='https://issues.jboss.org/browse/CDI' target='_BLANK'
-                i.fa.fa-tasks.fa-fw
-                '
-                ' Bug tracker
-              li.dropdown: a.dropdown-toggle href='#' data-toggle='dropdown' role='button' aria-expanded='false'
-                'Social
-                b.caret
-                ul.dropdown-menu role='menu'
-                  li: a href='https://github.com/cdi-spec' target='_BLANK'
-                    'Github
-                    i.fa.fa-external-link.fa-fw
-                  li: a href='https://twitter.com/cdispec' target='_BLANK'
-                    'Twitter
-                    i.fa.fa-external-link.fa-fw
-                  li: a href='https://plus.google.com/111798907065326961264' rel='publisher' target='_BLANK'
-                    'Google+
-                    i.fa.fa-external-link.fa-fw
-    javascript:
-        var indexOfSharp = window.location.pathname.indexOf('#');
-        var pathname = indexOfSharp > 0 ? window.location.pathname.substring(0, indexOfSharp) : window.location.pathname;
-        var selector = "body > .navbar > .container > .container-fluid > .navbar-collapse a[href='#{site.base_url}"+pathname+"']";
-        $(selector).closest("li").addClass("active");
-    .container
-      .row
-        .col-md-8.col-md-offset-2
-          img src='#{site.base_url}/images/cdi_word_cloud_white.gif' width='600' height='200'
-      .row
-        =content
-    hr
-    footer
-  - if site.google_analytics
-    = google_analytics
+---
+layout: common
+---
+.container
+  .row
+    .col-md-8.col-md-offset-2
+      img src='#{site.base_url}/images/cdi_word_cloud_white.gif' width='600' height='200'
+  .row
+    =content
