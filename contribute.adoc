@@ -9,7 +9,7 @@ layout: default
 We develop CDI using an open mailing list. You don’t have to be an official member of the expert group to be part of the CDI community. We take into account all input from any member of the list
 
 * Primary mailing list: https://lists.jboss.org/mailman/listinfo/cdi-dev[https://lists.jboss.org/mailman/listinfo/cdi-dev]
-* CDI 1.1 JCP page: http://jcp.org/en/jsr/summary?id=346[http://jcp.org/en/jsr/summary?id=346]
+* CDI 2.0 JCP page: http://jcp.org/en/jsr/summary?id=365[http://jcp.org/en/jsr/summary?id=365]
 * IRC: irc://freenode.net/#cdi-dev[irc://freenode.net/#cdi-dev]
 * Twitter: https://twitter.com/#!/cdispec[https://twitter.com/#!/cdispec]
 

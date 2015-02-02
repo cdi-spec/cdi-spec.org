@@ -1,6 +1,6 @@
 === Hot news
 
-You'll find all our meeting log here an minutes http://transcripts.jboss.org/meeting/irc.freenode.org/cdi-dev/index.html[here^]
+You'll find all CDI 2.0 EG meeting log and minutes http://transcripts.jboss.org/meeting/irc.freenode.org/cdi-dev/index.html[here^]
 
 _(updated on February 2nd)_
 
@@ -8,8 +8,8 @@ The Asynchronous events and Java SE support features are current hot topic.
 
 After a lot of discussion in workshop doc and IRC discussion, both features came to Jira ticket for more structured discussion
 
-* Java SE Bootstrap[https://issues.jboss.org/browse/CDI-26?focusedCommentId=13034063&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-13034063^]
-* Asynchronous events[https://issues.jboss.org/browse/CDI-499^]
+* https://issues.jboss.org/browse/CDI-26?focusedCommentId=13034063&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-13034063[Java SE Bootstrap^]
+* https://issues.jboss.org/browse/CDI-499[Asynchronous events^]
 
 
 === Contribution
