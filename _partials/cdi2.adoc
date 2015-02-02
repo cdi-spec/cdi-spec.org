@@ -1,11 +1,16 @@
 === Hot news
 
-_(updated on October 23rd)_
+You'll find all our meeting log here an minutes http://transcripts.jboss.org/meeting/irc.freenode.org/cdi-dev/index.html[here^]
 
-Our last IRC meeting (Oct 22nd) was focused on events. http://bit.ly/cdi2wsevt[The workshop document^] contains a lot of leads on ordering and asynchronous events.
-If you missed the debate, you can retrieve it http://transcripts.jboss.org/meeting/irc.freenode.org/cdi-dev/2014/cdi-dev.2014-10-22-16.00.log.html[here^] or if you prefere the short version the minutes of the meeting are  http://transcripts.jboss.org/meeting/irc.freenode.org/cdi-dev/2014/cdi-dev.2014-10-22-16.00.html[there^]
+_(updated on February 2nd)_
 
-Last week (oct 15th-16th) we had our Face to Face meeting, check our feedback link:/news/2014/10/20/CDI-2_0-first-face-to-face-meeting-feedback/[here].
+The Asynchronous events and Java SE support features are current hot topic.
+
+After a lot of discussion in workshop doc and IRC discussion, both features came to Jira ticket for more structured discussion
+
+* Java SE Bootstrap[https://issues.jboss.org/browse/CDI-26?focusedCommentId=13034063&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-13034063^]
+* Asynchronous events[https://issues.jboss.org/browse/CDI-499^]
+
 
 === Contribution
 
@@ -28,13 +33,13 @@ The table below give to resource to different workshop. It will be updated
 
 |AOP|started|http://bit.ly/cdi2wsaop|Interceptors & Decoractors enhancement
 
-|Java SE|not started|http://bit.ly/cdi2wsjse|Boostrap CDI in Java SE
+|Java SE|Jira ticke|http://bit.ly/cdi2wsjse|Boostrap CDI in Java SE
 
 |JDK 8 |started|http://bit.ly/cdi2wsjk8|enhancement from JDK 8
 
 |SPI |not started|http://bit.ly/cdi2wsspi|more open SPI for 3rd party
 
-|Contexts |not started|http://bit.ly/cdi2wsctx|go beyond the the thread-bound request-response model used by context today
+|Contexts |not started|http://bit.ly/cdi2wsctx|provide a way to start/stop contexts for SE mode
 
 
 |===
