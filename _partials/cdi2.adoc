@@ -1,4 +1,4 @@
-=== Hot news
+=== CDI 2.0 Hot news
 
 You'll find all CDI 2.0 EG meeting log and minutes http://transcripts.jboss.org/meeting/irc.freenode.org/cdi-dev/index.html[here^]
 
