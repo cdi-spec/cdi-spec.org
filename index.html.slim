@@ -11,7 +11,7 @@ layout: base
         li
           a href='#cdi1_0' data-toggle='tab' CDI 1.0
         li
-          a href='#cdi1_1' data-toggle='tab' CDI 1.1
+          a href='#cdi1_1' data-toggle='tab' CDI 1.1 & 1.2
     li.dropdown
       a.dropdown-toggle href='#' data-toggle='dropdown'
         'JCP pages
@@ -38,10 +38,10 @@ layout: base
   .tab-content
     .tab-pane.fade#cdi1_1
       markdown:
-        CDI 1.1
+        CDI 1.1 & 1.2
         -------
 
-        CDI 1.1 focuses on improving CDI 1.0:
+        CDI 1.1 focuses on improving CDI 1.0 and CDI 1.2 is a minor update correcting issues in 1.1:
 
         * Add global enablement of interceptors (see the [Java Interceptors Specification 1.2](http://interceptors-spec.java.net/)), global enablement of decorators ([read more](http://docs.jboss.org/cdi/spec/1.1/cdi-spec.html#enabled_decorators_priority)) and alternatives ([read more](http://docs.jboss.org/cdi/spec/1.1/cdi-spec.html#unsatisfied_and_ambig_dependencies)) using the `@Priority` annotation
         * Add support for `@AroundConstruct` lifecycle callback for constructors (see the Java Interceptors Specification 1.2)
@@ -77,83 +77,89 @@ layout: base
       = partial('cdi_1_0.adoc')
     .tab-pane.fade#servers
       p
-        |Below is the current list of servers supporting CDI, also listed is the implementation used.
+        |Below is the current list of servers supporting CDI, also listed is the implementation used. Only the last servers major version are listed
       .row
         .col-md-4
           .thumbnail
             img src='#{site.base_url}/images/servers/glassfish.gif'
             .caption
-              h4 Oracle GlassFish 3.x
-              h5 using Weld
+              h4 Oracle GlassFish 4.1+
+              h5 using Weld 2.2.x / CDI 1.2
         .col-md-4
           .thumbnail
             img src='#{site.base_url}/images/servers/tmax_soft.jpg'
             .caption
-              h4 TMAX JEUS 7
-              h5 using Weld
+              h4 TMAX JEUS 8
+              h5 using Weld 2.0 / CDI 1.1
+        .col-md-4
+          .thumbnail
+            img src='#{site.base_url}/images/servers/wildfly.png'
+            .caption
+              h4 WildFly 8.2.0
+              h5 using Weld 2.2.6 / CDI 1.2
+        .col-md-4
+          .thumbnail
+            img src='#{site.base_url}/images/servers/cosminexus.png'
+            .caption
+              h4 Hitachi Cosminexus v 1.0
+              h5 using Weld 2.0 / CDI 1.1
+        .col-md-4
+          .thumbnail
+            img src='#{site.base_url}/images/servers/jbosseap6.png'
+            .caption
+              h4 JBoss EAP 6.3
+              h5 using Weld 1.1.23 / CDI 1.0
         .col-md-4
           .thumbnail
             img src='#{site.base_url}/images/servers/IBM.gif'
             .caption
-              h4 IBM WebSphere 8.x / Community Edition 3.0
-              h5 using OpenWebBeans
+              h4 IBM WebSphere 8.5.x & Liberty profile
+              h5 using OpenWebBeans 1.2.x / CDI 1.0
         .col-md-4
           .thumbnail
             img src='#{site.base_url}/images/servers/fujitsu.png'
             .caption
               h4 Fujitsu Interstage v10.1 / Windows Azure
-              h5 using Weld
+              h5 using Weld 1.1.x / CDI 1.0
         .col-md-4
           .thumbnail
             img src='#{site.base_url}/images/servers/oracle.gif'
             .caption
               h4 Oracle WebLogic 12
-              h5 using Weld
+              h5 using Weld 1.1.3 / CDI 1.0
         .col-md-4
           .thumbnail
             img src='#{site.base_url}/images/servers/geronimo.jpg'
             .caption
-              h4 Apache Geronimo 3.0-beta-1
-              h5 using OpenWebBeans
+              h4 Apache Geronimo 3.0.1
+              h5 using OpenWebBeans 1.1.1 / CDI 1.0
         .col-md-4
           .thumbnail
             img src='#{site.base_url}/images/servers/jbossas7.jpg'
             .caption
-              h4 JBoss AS7
-              h5 using Weld
-        .col-md-4
-          .thumbnail
-            img src='#{site.base_url}/images/servers/cosminexus.png'
-            .caption
-              h4 Hitachi uCosminexus v 9.0
-              h5 using Weld
-        .col-md-4
-          .thumbnail
-            img src='#{site.base_url}/images/servers/jbosseap6.png'
-            .caption
-              h4 JBoss EAP 6
-              h5 using Weld
+              h4 JBoss AS 7.1.1
+              h5 using Weld 1.1.5 / CDI 1.0
         .col-md-4
           .thumbnail
             img src='#{site.base_url}/images/servers/caucho.jpg'
             .caption
               h4 Caucho Resin 4.0.17
-              h5 using CanDI
+              h5 using CanDI 1.0 / CDI 1.0
         .col-md-4
           .thumbnail
             img src='#{site.base_url}/images/servers/tomee.gif'
             .caption
-              h4 Apache TomEE 1.0
-              h5 using OpenWebBeans
+              h4 Apache TomEE 1.6
+              h5 using OpenWebBeans 1.2.6 / CDI 1.0
         .col-md-4
           .thumbnail
             img src='#{site.base_url}/images/servers/sap-logo.jpg'
             .caption
               h4 SAP NetWeaver Cloud
-              h5 using OpenWebBeans
+              h5 using OpenWebBeans 1.x / CDI 1.0
         .col-md-4
           .thumbnail
             img src='#{site.base_url}/images/servers/jonas.png'
             .caption
-              h4 JOnAS
-              h5 using Weld
+              h4 JOnAS 5.3.0
+              h5 using Weld 1.1.10 / CDI 1.0
