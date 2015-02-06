@@ -5,12 +5,13 @@ html lang='en'
     meta name='viewport' content='width=device-width, initial-scale=1.0'
     title=(page.title && page.title != site.title ? [page.title, site.title] : [site.title, site.description]) * ' | '
     link rel='stylesheet' href='/stylesheets/asciidoctor.css'
+    link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css'
     link rel='stylesheet' href='/stylesheets/styles.css'
-    link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css'
+    link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css'
     script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js'
-    script type='text/javascript' src='//netdna.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js'
+    script type='text/javascript' src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js'
     /[if lt IE 9]
-        script type='text/javascript' src='//html5shim.googlecode.com/svn/trunk/html5.js'
+      script type='text/javascript' src='//html5shim.googlecode.com/svn/trunk/html5.js'
   body
     nav.navbar.navbar-default.navbar-static-top.navbar-inverse role='navigation'
       .container
@@ -23,38 +24,41 @@ html lang='en'
               span.icon-bar
             a.navbar-brand href='#{site.base_url}'
               i.fa.fa-home.fa-fw
-              '
-              'Home
+              '  Home
           .navbar-collapse.collapse
             ul.nav.navbar-nav
-              li: a href='#{site.base_url}/specdoc/'
-                i.fa.fa-book.fa-fw
-                '
-                ' The Spec
+              /li: a href='#{site.base_url}/specdoc/'
+              /  i.fa.fa-book.fa-fw
+              /  '  Read the Spec
               li: a href='#{site.base_url}/download/'
                 i.fa.fa-download.fa-fw
-                '
-                ' Download
-              li: a href='#{site.base_url}/contribute/'
-                i.fa.fa-edit.fa-fw
-                '
-                ' Contribute
-              li: a href='#{site.base_url}/faq/'
-                i.fa.fa-question-circle.fa-fw
-                '
-                ' FAQ
+                '  Get CDI resources
+              li.dropdown: a.dropdown-toggle href='#' data-toggle='dropdown' role='button' aria-expanded='false'
+                'Use CDI
+                b.caret
+                ul.dropdown-menu role='menu'
+                  li: a href='#{site.base_url}/ecosystem/'
+                    i.fa.fa-plug.fa-fw
+                    '  CDI ecosystem
+                  li: a href='#{site.base_url}/faq/'
+                    i.fa.fa-question-circle.fa-fw
+                    '  FAQ
+              li.dropdown: a.dropdown-toggle href='#' data-toggle='dropdown' role='button' aria-expanded='false'
+                'Contribute to CDI
+                b.caret
+                ul.dropdown-menu role='menu'
+                  li: a href='#{site.base_url}/contribute/'
+                    i.fa.fa-edit.fa-fw
+                    '  How to contribute
+                  li: a href='https://issues.jboss.org/browse/CDI' target='_BLANK'
+                    i.fa.fa-tasks.fa-fw
+                    '  Bug tracker
               li: a href='#{site.base_url}/news/'
                 i.fa.fa-bullhorn.fa-fw
-                '
-                ' News
-              li: a href='https://lists.jboss.org/mailman/listinfo/cdi-dev' target='_BLANK'
+                '  Blog
+              li: a href='/mailinglist'
                 i.fa.fa-envelope.fa-fw
-                '
-                ' Mailing List
-              li: a href='https://issues.jboss.org/browse/CDI' target='_BLANK'
-                i.fa.fa-tasks.fa-fw
-                '
-                ' Bug tracker
+                '  Mailing List
               li.dropdown: a.dropdown-toggle href='#' data-toggle='dropdown' role='button' aria-expanded='false'
                 'Social
                 b.caret
@@ -69,10 +73,10 @@ html lang='en'
                     'Google+
                     i.fa.fa-external-link.fa-fw
     javascript:
-        var indexOfSharp = window.location.pathname.indexOf('#');
-        var pathname = indexOfSharp > 0 ? window.location.pathname.substring(0, indexOfSharp) : window.location.pathname;
-        var selector = "body > .navbar > .container > .container-fluid > .navbar-collapse a[href='#{site.base_url}"+pathname+"']";
-        $(selector).closest("li").addClass("active");
+      var indexOfSharp = window.location.pathname.indexOf('#');
+      var pathname = indexOfSharp > 0 ? window.location.pathname.substring(0, indexOfSharp) : window.location.pathname;
+      var selector = "body > .navbar > .container > .container-fluid > .navbar-collapse a[href='#{site.base_url}" + pathname + "']";
+      $(selector).closest("li").addClass("active");
     =content
     hr
     footer
