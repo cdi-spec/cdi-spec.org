@@ -1,0 +1,136 @@
+---
+layout: base
+---
+.col-md-12
+  h1 CDI Ecosystem
+  p
+    'Because CDI goes well beyond standard Java EE, you'll find on this page resources of the CDI open source ecosystem. These are project or frameworks based on CDI to add high level features to your project
+     or tools to help you develop your own CDI integration or framework.
+     If you think a tool or framework is missing here. Feel free to contribute to this page, send a tweet to  
+    a href='https://twitter.com/cdispec' target='_BLANK' @cdispec
+    '  or send a message on the
+    a href='https://lists.jboss.org/mailman/listinfo/cdi-dev' target='_BLANK' mailing list
+  .panel.panel-default
+    .panel-heading
+      h3.panel-title Apache DeltaSpike    
+    .panel-body
+      .col-md-3
+        img src='#{site.base_url}/images/ecosystem/deltaspike.png' width='300px'
+      .col-md-9
+        p  
+          |DeltaSpike consists of a core module and a number of optional modules for providing additional enterprise functionality to your applications. The modules include features for enhanced security with type-safe control over method invocations, integration with schedulers, injection of CDI objects into validators, and a transactional context and scope. DeltaSpike also provides boot and shutdown control over CDI containers in Java SE applications.
+        p
+          'check 
+          a href='http://deltaspike.apache.org' target='_BLANK'
+            'Apache DeltaSpike website
+            i.fa.fa-external-link.fa-w
+  .panel.panel-default
+    .panel-heading
+      h3.panel-title VRaptor
+    .panel-body
+      .col-md-9
+        p
+          |VRaptor delivers high productivity to your Java Web applications on top of CDI. VRaptor is an opensource MVC framework with a large developers and users community
+        p
+          |Last version (VRaptor 4) is based on CDI 1.1 while the previous version can be used with CDI 1.0
+        p
+          'check 
+          a href='http://www.vraptor.org/en/' target='_BLANK'
+            'VRaptor website
+            i.fa.fa-external-link.fa-w
+      .col-md-3
+        img src='#{site.base_url}/images/ecosystem/vraptor.png' width='300px'
+  .panel.panel-default
+    .panel-heading
+      h3.panel-title PicketLink   
+    .panel-body
+      .col-md-3
+        img src='#{site.base_url}/images/ecosystem/picketlink.png' width='300px' 
+      .col-md-9   
+        p  
+          |PicketLink is an Application Security Framework for Java EE applications.
+        p
+          |It provides features for authenticating users, authorizing access to the business methods of your application, managing your application's users, groups, roles and permissions, plus much more. It integrates in a portable way with Java EE thanks to CDI.
+        p
+          'check 
+          a href='http://picketlink.org' target='_BLANK'
+            'PicketLink website
+            i.fa.fa-external-link.fa
+  .panel.panel-default
+    .panel-heading
+      h3.panel-title JBoss Forge
+    .panel-body
+      .col-md-9
+        p
+          |JBoss forge is a productivity tool helping you generating and managing boilerplate code in your Java EE and Maven project 
+        p
+          |It's a new code generation tool that lets you the control of generated code. CDI is everywhere in Forge generated projects
+        p
+          'check 
+          a href='https://forge.jboss.org' target='_BLANK'
+            'Forge website
+            i.fa.fa-external-link.fa-w
+      .col-md-3
+        img src='#{site.base_url}/images/ecosystem/forge.png' width='300px'
+  .panel.panel-default
+    .panel-heading
+      h3.panel-title Arquillian   
+    .panel-body
+      .col-md-3
+        img src='#{site.base_url}/images/ecosystem/arquillian.png' width='300px' 
+      .col-md-9   
+        p  
+          |Arquillian is an innovative and highly extensible testing platform for the JVM that enables developers to easily create automated integration, functional and acceptance tests for Java middleware.
+        p
+          |It provides extra-light containers to test your CDI code on major implementations or full container to test your CDI code against major Java EE application servers 
+        p
+          'check 
+          a href='http://arquillian.org' target='_BLANK'
+            'Arquillian website
+            i.fa.fa-external-link.fa
+  .panel.panel-default
+    .panel-heading
+      h3.panel-title Apache Camel CDI
+    .panel-body
+      .col-md-9
+        p
+          |Apache Camel is an open source Java framework that focuses on making integration easier and more accessible to developers. It does this by providing:
+        ul
+          li concrete implementations of all the widely used EIPs
+          li connectivity to a great variety of transports and APIs
+          li easy to use Domain Specific Languages (DSLs) to wire EIPs and transports together 
+        p
+          |Camel CDI provides a Camel DSL for CDI  
+        p
+          'check 
+          a href='https://github.com/astefanutti/camel-cdi' target='_BLANK'
+            'Camel CDI project
+            i.fa.fa-external-link.fa-w
+      .col-md-3
+        img src='#{site.base_url}/images/ecosystem/apache-camel.png' width='300px'
+  .panel.panel-default
+    .panel-heading
+      h3.panel-title Metrics CDI
+    .panel-body
+      .col-md-3
+        img src='#{site.base_url}/images/ecosystem/metrics.jpg' width='300px'
+      .col-md-9
+        p
+          |Metrics provides a powerful toolkit of ways to measure the behavior of critical components in your production environment.
+        p
+          |Metrics CDI provides support for the Metrics annotations in CDI enabled environments. It implements the contract specified by these annotations with the following level of functionality:
+          ul
+            li Intercept invocations of bean constructors, methods and public methods of bean classes annotated with @Counted, @ExceptionMetered, @Metered and @Timed,
+            li Create Gauge and CachedGauge instances for bean methods annotated with @Gauge and @CachedGauge respectively,
+            li Inject Counter, Gauge, Histogram, Meter and Timer instances,
+            li Register or retrieve the produced Metric instances in the resolved MetricRegistry bean,
+            li Declare automatically a default MetricRegistry bean if no one exists in the CDI container.
+        p
+          'check 
+          a href='https://dropwizard.github.io/metrics/3.1.0/#' target='_BLANK'
+            'Metrics website
+            i.fa.fa-external-link.fa-w
+          ' and 
+          a href='https://github.com/astefanutti/metrics-cdi' target='_BLANK'
+            'Metrics CDI project
+            i.fa.fa-external-link.fa-w
