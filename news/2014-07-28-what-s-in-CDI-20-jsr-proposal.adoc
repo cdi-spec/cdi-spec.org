@@ -1,10 +1,11 @@
 ---
 title: "What's in CDI 2.0 JSR proposal?"
 summary: Few days ago we submitted the JSR proposal for CDI 2.0. Find in this post the most important feature we plan to provide in this new version.
-layout: default
+layout: post
+authors: [asd]
+tags: [JSR,proposal]
 ---
 
-== What's in CDI 2.0 JSR proposal?
 
 A few days ago, we submitted the official proposal for CDI 2.0. This new version is focused on 2 main goal:
 
@@ -13,14 +14,14 @@ A few days ago, we submitted the official proposal for CDI 2.0. This new version
 
 Off course a lot of feature and enhancement will come from this 2 goals and we'll add a few more if possible. Let's check what's on the menu.
 
-=== A new name
+== A new name
 Not the most important part, but as we plan supporting Java SE, we slightly changed the name of the specification. Previously, the full name of CDI was: *Contexts and Dependency Injection for Java EE*. The proposed new name is: *Contexts and Dependency Injection for Java*. So to SE we go ;).
 
-=== New features and enhancement proposed
+== New features and enhancement proposed
 
 Beyond the two main points introduced above (or because of them), we have the following features in mind
 
-==== Identify the Java EE part in CDI
+=== Identify the Java EE part in CDI
 We have a lot of work to prepare the Java SE support in CDI. The first will be to check what's is pure CDI and what's is link to Java EE.
 So for CDI 2.0, The specification and TCK require a significant overhaul to be split into two parts.
 
@@ -29,26 +30,26 @@ So for CDI 2.0, The specification and TCK require a significant overhaul to be s
 
 Some of the splitting is straight forward (thre's no EJB in Java SE), other could bring some discussion and extra work (do we want to support `@Transactional` in Java SE and how?).
 
-==== Defining a portable bootstrap API for CDI.
+=== Defining a portable bootstrap API for CDI.
 Currently CDI does not define an API for bootstrap, instead relying on a Java EE deployment to start the container.
 To add support for Java SE, we really need such an API. Additionally, we would like to introduce a programmatic API for binding beans, allowing much greater flexibility for portably wiring a container.
 
-==== Enhance the CDI context model
+=== Enhance the CDI context model
 The context model in CDI is based around the thread-bound request-response model. This model is more prevalent in web applications than elsewhere, and, also is less pervasive than it once was. We would like to overhaul the context model to allow the application or container to portably push the active context to CDI when it requires the use of CDI. This change would be largely transparent to applications, and we might want to consider an API facade over it.
 
-==== Introduce modularity to CDI.
+=== Introduce modularity to CDI.
 One of the most often given reason by other JSR or frameworks to limit their CDI adoption is the size of the specification. Too big, too many features.
 CDI is becoming an important component model in Java EE, and we think that learning from the experience of long running specifications of specifications (like EJB) is important. Before we starting adding features to CDI, we want to see if we can introduce “parts”, to avoid creating a spec that gives the impression of being big and heavy.
 There’s already some preparation work around this topic. For instance JAX-RS asked if it was possible to only have only the event part of CDI. Other discussion with the future java config specification are dealing with a "type discovery" part.
 One of the most asked module is a lightweight container, which takes the annotations specified by the @Inject specification, defines the behavior of the container (which @Inject failed to do), and adds a couple of popular features from CDI such as producer methods. This will allow much wider adoption of CDI in the Java world, and provide a great stepping stone between Java SE, a servlet container, OSGi and a full Java EE server.
 
-==== Other features
+=== Other features
 Off course there'll be other features introduced in CDI 2.0. They come from
 
 . Standardization of existing extension like the ones created in http://deltaspike.apache.org/[Apache Deltaspike^] project
 . Request from our http://www.cdi-spec.org/news/2014/05/28/CDI-2_0-survey/[CDI 2.0 survey^] which will close on july 31st
 . Features coming from other Java EE 8 spec, like `@Transactional` was introduced in CDI 1.1 after it was extracted from EJB spec.
 
-=== Next Step
+== Next Step
 The proposal is being discussed among JCP executive committee members and if everything goes well it should be accepted in the coming days. At this moment we'll start forming the CDI 2.0 Expert Group and begin effective work around this specification.
 We hope deliver the final spec in Q4 2015 or Q1 2016. Stay tuned on this blog or on http://twitter.com/cdispec[@cdispec] to have fresh news regarding the spec and the coming expert group.

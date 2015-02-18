@@ -1,10 +1,10 @@
 ---
 title: "Working method for CDI 2.0"
 summary: The work around CDI 2.0 specification has just started. Discover how we intend to work to ease community contribution.
-layout: default
+layout: post
+authors: [asd]
+tags: [method,EG]
 ---
-
-== Working method for CDI 2.0
 
 Work on CDI 2.0 started at the beginning of september. As you may guess, specifying and releasing this new major version is a big challenge.
 

@@ -1,10 +1,11 @@
 ---
-title: 12/02/2013 EG Meeting
+title: "CDI EG meeting 12/02/2013 notes on CDI 1.2 MR"
 summary: Feedback on Java EE Expert Group Conf call. Adoption of 1.2 as MR name and discussion on 9 ticket for MR inclusion.
-layout: default
+layout: post
+authors: [asd]
+tags: [meeting]
 ---
 
-== CDI EG meeting 12/02/2013 notes on CDI 1.2 MR
 
 The following people assisted this meeting :
 
@@ -16,7 +17,7 @@ The following people assisted this meeting :
 * JJ Snyder (jj)
 * Antoine Sabot-Durand (asd)
 
-=== Proposed Agenda 
+== Proposed Agenda 
 
 The following agenda was proposed
 
@@ -24,7 +25,7 @@ The following agenda was proposed
 
 2. Issues discussion : 9 issues where proposed
 
-=== Feedback on Java EE EG meeting
+== Feedback on Java EE EG meeting
 
 To sum up :
 
@@ -41,7 +42,7 @@ To sum up :
 * We also talk about classloader issue that were raised during https://issues.jboss.org/browse/CDI-377[CDI-377^] (automatic JSR-330 annotation processing problematic). EG members agreed that it's a good point but very difficult to resolve. It could only be solve in a major EE release. 
 
 
-===  Issues discussion
+==  Issues discussion
 
 The discussion around the proposed ticket was quite straight forward. The result is in the table below
 
@@ -59,6 +60,6 @@ The discussion around the proposed ticket was quite straight forward. The result
 |https://issues.jboss.org/browse/CDI-377[CDI-77^]|Clarify what happens when the user creates a unbound recursive injection with Dependent scoped beans|out MR|Container doesn't have to support this : the ticket should be closed
 |===
 
-=== Conclusion
+== Conclusion
 
 EG has still 8 issues to discuss (inluding https://issues.jboss.org/browse/CDI-377[CDI-377^]). We should close the list as planned on mid-december.

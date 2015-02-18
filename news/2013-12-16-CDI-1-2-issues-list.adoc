@@ -1,10 +1,10 @@
 ---
-title: Conclusion of EG preparation on CDI 1.2. 
+title: "Conclusion of EG preparation on CDI 1.2" 
 summary: Conclusion of EG preparation work on CDI 1.2 (1.1MR). 23 issues includes and 4 out.
-layout: default
+layout: post
+authors: [asd]
+tags: [EG,features]
 ---
-
-== Issues List
 
 _Updated on 01/07/2014_
 

@@ -3,3 +3,4 @@ vendor
 Gemfile
 Gemfile.lock
 *.sh
+.idea/workspace.xml

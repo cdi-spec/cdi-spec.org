@@ -1,7 +1,9 @@
 ---
-title: Make 3 CDI 2.0 Wishes
+title: "Make 3 CDI 2.0 Wishes"
 summary: Regarding CDI 2.0, everything has still to be defined. Your feedback is very precious for the future CDI 2.0 Expert Group, so do not hesitate to give your feed back. 
-layout: default
+layout: post
+authors: [asd]
+tags: [survey]
 ---
 
 ++++

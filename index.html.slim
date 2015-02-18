@@ -64,14 +64,18 @@ layout: base
     .tab-pane.fade.in.active#cdi2
       = partial('cdi2.adoc')
     .tab-pane.fade#overview
-      h2 What is CDI?
-      = partial('cdi_1_0.adoc')
-      markdown:
-        Latest Release
-        --------------
-
-        The latest release of CDI is 1.2. You can [download](http://docs.jboss.org/cdi/spec/1.2/cdi-spec.html) the spec or [browse the javadoc](http://docs.jboss.org/cdi/api/1.2/).
-
+      .col-md-8
+        h2 What is CDI?
+        = partial('cdi_1_0.adoc')
+        markdown:
+          Latest Release
+          --------------
+  
+          The latest release of CDI is 1.2. You can [download](http://docs.jboss.org/cdi/spec/1.2/cdi-spec.html) the spec or [browse the javadoc](http://docs.jboss.org/cdi/api/1.2/).
+      .col-md-4
+        a.twitter-timeline data-widget-id="564817995261026304" href="https://twitter.com/cdispec"  Tweets by @cdispec
+        javascript:
+          !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
     .tab-pane.fade#cdi1_0
       h2 CDI 1.0
       = partial('cdi_1_0.adoc')

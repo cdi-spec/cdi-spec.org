@@ -1,10 +1,11 @@
 ---
-title: 12/16/2013 EG Meeting
+title: "CDI EG meeting 12/16/2013 notes on CDI 1.2"
 summary: Conclusion on CDI 1.2 preparation. Decision for pending issue. Adding last issues...
-layout: default
+layout: post
+authors: [asd]
+tags: [meeting]
 ---
 
-== CDI EG meeting 12/16/2013 notes on CDI 1.2
 
 The following people assisted this meeting :
 
@@ -16,7 +17,7 @@ The following people assisted this meeting :
 * Phil Zampino (pz)
 * Antoine Sabot-Durand (asd)
 
-=== Proposed Agenda 
+== Proposed Agenda 
 
 The following agenda was proposed
 
@@ -24,12 +25,12 @@ The following agenda was proposed
 2. Last second ticket
 3. Next step for the MR.
 
-===  Discussion on CDI-395
+==  Discussion on CDI-395
 
 We were waiting on implementation feedback on this point. *jh* told us that there was too much risk to create retro-compatibility issues. So it was decided to remove CDI-395 from MR.
 
 
-=== Last minute issues
+== Last minute issues
 
 
 

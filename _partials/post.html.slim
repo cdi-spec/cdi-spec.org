@@ -1,0 +1,69 @@
+article.post
+  .panel.panel-primary
+    .panel-body
+      - if page.alone
+        ul.pager.visible-md-block.visible-lg-block
+          - if page.post.previous_post
+            li.previous
+              a href='#{page.post.previous_post.url}' Previous: #{page.post.previous_post.title} 
+          - if page.post.next_post
+            li.next
+              a href='#{page.post.next_post.url}' Next: #{page.post.next_post.title} 
+
+        ul.pager.visible-sm-block.visible-xs-block
+          - if page.post.previous_post
+            li.previous
+              a href='#{page.post.previous_post.url}'  Previous
+          - if page.post.next_post
+            li.next
+              a href='#{page.post.next_post.url}'  Next
+      h1
+        a href='#{page.post.url}'
+          = page.post.title
+      .meta
+        strong
+          ' Posted by 
+          span.authors= "#{page.post.authors.map { |u| site.identities.method_missing(u).firstName+' '+site.identities.method_missing(u).lastName }.join(', ')}"
+          '  on 
+          span.date= page.post.date.strftime('%b %d, %Y')
+          - if site.disqus
+            '  | 
+            = page.post.disqus_comments_link
+
+      .content
+        = page.post.content
+
+      .footer
+        a href='#{page.post.url}'  Permalink
+        - if site.disqus
+          = page.post.disqus_comments_link
+
+        - if page.post.tags
+          span.tags
+            i.icon-tags
+            | Tags :
+            - for tag in page.post.tags
+              - unless tag.nil?
+                a.tag href='#{tag.primary_page.url}' = tag
+
+      - if page.alone
+        ul.pager.visible-md-block.visible-lg-block
+          - if page.post.previous_post
+            li.previous
+              a href='#{page.post.previous_post.url}' Previous: #{page.post.previous_post.title} 
+          - if page.post.next_post
+            li.next
+              a href='#{page.post.next_post.url}' Next: #{page.post.next_post.title} 
+
+        ul.pager.visible-sm-block.visible-xs-block
+          - if page.post.previous_post
+            li.previous
+              a href='#{page.post.previous_post.url}'  Previous
+          - if page.post.next_post
+            li.next
+              a href='#{page.post.next_post.url}'  Next
+
+        = page.post.disqus_comments_count
+
+        .comments
+          = page.post.disqus_comments

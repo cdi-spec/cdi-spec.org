@@ -1,0 +1,100 @@
+---
+layout: base
+---
+
+.row
+  .col-md-9
+    .posts
+      - page.posts.each do |post|
+        = partial('post.html.slim', {'parent'=>page, 'post'=>post, 'alone' => false})
+
+    = page.disqus_comments_count
+
+    - current_page_number = page.posts.current_page_index + 1
+    div.visible-xs
+      ul.pager
+        - if page.posts.previous_page
+          li.previous
+            a href='#{page.posts.previous_page.url}'  Previous
+        - if !page.posts.previous_page
+          li.previous.disabled
+            a href='#'  Previous
+        li.disabled
+          a href='#' #{current_page_number} of #{page.posts.pages.size} 
+        - if page.posts.next_page
+          li.next
+            a href='#{page.posts.next_page.url}'  Next
+        - if !page.posts.next_page
+          li.next.disabled
+            a href='#'  Next
+
+    div.hidden-xs
+      ul.pager
+        - if page.posts.previous_page
+          li
+            a href='#{site.base_url}/news/'  First
+          li
+            a href='#{page.posts.previous_page.url}'  Previous
+        - if !page.posts.previous_page
+          li.disabled
+            a href='#'  First
+          li.disabled
+            a href='#'  Previous
+        - if current_page_number > 3
+          li.disabled
+            a href='#'  ...
+          li
+            a href='#{site.base_url}/news/page/#{current_page_number - 2}/' #{current_page_number - 2} 
+        - if current_page_number == 3
+          li
+            a href='#{site.base_url}/news/' #{current_page_number - 2} 
+        - if current_page_number > 2
+          li
+            a href='#{site.base_url}/news/page/#{current_page_number - 1}/' #{current_page_number - 1} 
+        - if current_page_number == 2
+          li
+            a href='#{site.blog_prefix}/' 
+              = current_page_number - 1
+        li.active
+          a href='#' #{current_page_number} of #{page.posts.pages.size} 
+        - if (page.posts.pages.size - current_page_number) > 0
+          li
+            a href='#{site.base_url}/news/page/#{current_page_number + 1}/' #{current_page_number + 1} 
+        - if (page.posts.pages.size - current_page_number) > 1
+          li
+            a href='#{site.base_url}/news/page/#{current_page_number + 2}/' #{current_page_number + 2} 
+        - if (page.posts.pages.size - current_page_number) > 2
+          li.disabled
+            a href='#'  ...
+        - if page.posts.next_page
+          li
+            a href='#{page.posts.next_page.url}'  Next
+          li
+            a href='#{site.base_url}/news/page/#{page.posts.pages.size}/'  Last
+        - if !page.posts.next_page
+          li.disabled
+            a href='#'  Next
+          li.disabled
+            a href='#'  Last
+
+  .col-md-3
+    .follow-scroll.hidden-xs
+      div style='margin-bottom:20px;text-align:center;' 
+        = partial( 'subscribe.html.slim' )
+
+      .panel.panel-default
+        .panel-heading
+          h3.panel-title
+            | Tag Cloud
+        .panel-footer style='text-align:justify;' 
+          = site.posts_tag_cloud
+    .visible-xs
+      div style='margin-bottom:20px;text-align:center;' 
+        = partial( 'subscribe.html.slim' )
+
+      .panel.panel-default
+        .panel-heading
+          h3.panel-title
+            | Tag Cloud
+        .panel-footer style='text-align:justify;' 
+          = site.posts_tag_cloud

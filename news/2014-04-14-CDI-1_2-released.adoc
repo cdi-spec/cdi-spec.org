@@ -1,20 +1,21 @@
 ---
 title: "CDI 1.2 released"
 summary: The Maintenance review for CDI 1.1 (aka CDI 1.2) was adopted by the JCP. Let's check what's in this new version
-layout: default
+layout: post
+authors: [asd]
+tags: [release]
 ---
 
-== CDI 1.2 is released
 
 After one year of existence, the CDI 1.1 specification is updated by a maintenance release. This maintenance review known as CDI 1.2 was adopted by the link:https://jcp.org/en/jsr/results?id=5623[JCP^] with 24 yes and one Expert Member forgetting to vote. The minor increment (from 1.1 to 1.2) instead of a 1.1-SP1 is due to the the fact that we changed the javadoc and the TCK but beyond that there are far less changes from 1.1 to 1.2 than from 1.0 to 1.1.
 That's being said, CDI 1.2 brings a lot of clarifications and small behavior changes. Let's check what's on the menu.
 
 
-=== Major changes
+== Major changes
 
 Some of these changes are only big clarifications but some other have an impact on the implementations (these last ones have an asterisk in their title below). In order to use them you'll have to grab a CDI 1.2 implementation (more info at the end of this post).
 
-==== Rethinking the default bean discovery mode *
+=== Rethinking the default bean discovery mode *
  
 The default bean discovery mode (`annotated`) that allows CDI to be activated by default in Java EE 7 without `beans.xml`, file was the root of a lot of issues with other frameworks implementing the AtInject specification (JSR-330) or with libraries thought to be used with such frameworks.
 To solve these issues we changed the set of link:http://docs.jboss.org/cdi/spec/1.2/cdi-spec.html#bean_defining_annotations[Bean defining annotations^] (class annotations that make a class an implicit bean candidate) :
@@ -23,13 +24,13 @@ To solve these issues we changed the set of link:http://docs.jboss.org/cdi/spec/
 * `@Interceptor` and `@Decorator` were added,
 * all stereotype annotations (annotations annotated with `@Stereotype`) were added.
 
-==== Clarification of conversation resolution
+=== Clarification of conversation resolution
 
 Conversation resolution mechanism could bring conflicts with servlet spec as stated in link:https://issues.jboss.org/browse/CDI-411[CDI-411^].
 
 We clarified the fact that implementation should prevent these conflict during conversation resolution in link:http://docs.jboss.org/cdi/spec/1.2/cdi-spec-diff.html#conversation_context[conversation context lifecycle^]
 
-==== Rework on event chapter
+=== Rework on event chapter
 
 You think you know how event resolution works in CDI? If you gained this knowledge by a careful reading of chapter 10 of the specification, think again. This chapter had a lot of approximations and confusing mentions. It was reviewed and partly rewritten (and yes, `@Any` is totally useless for `Event<>` injection, event firing and observers resolution).
 
@@ -38,7 +39,7 @@ This chapter is worth the link:http://docs.jboss.org/cdi/spec/1.2/cdi-spec.html#
 You can also check the link:http://docs.jboss.org/cdi/spec/1.2/cdi-spec-diff.html#events[diff^], if you prefer.
 
 
-==== BeanManager more permissive during initialization *
+=== BeanManager more permissive during initialization *
 
 In CDI 1.1, some BeanManager methods couldn't be called before the `AfterDeploymentValidation` was fired. A non portable behavior was tolerated to allow use of these in `AfterBeanDiscovery` observers. These brought confusing mention in specification and javadoc. We decided to standardized the non portable behavior (not a big deal since all implementations adopted it). So in CDI 1.2 the following `BeanManager` method can be called (with restrictions) in an `AfterBeanDiscovery` observer method:
 
@@ -53,28 +54,28 @@ In CDI 1.1, some BeanManager methods couldn't be called before the `AfterDeploym
 
 more details on the link:http://docs.jboss.org/cdi/spec/1.2/cdi-spec-diff.html#beanmanager[diff^]
 
-==== Clarification on container lifecycle event use
+=== Clarification on container lifecycle event use
 
 We clarified the fact these event should only be used during invocation of their observer methods.
 Check the link:http://docs.jboss.org/cdi/spec/1.2/cdi-spec-diff.html#init_events[diff^] of the whole 11.5 paragraph
 
-==== Rework on the initialization phase parts
+=== Rework on the initialization phase parts
 
 Description of initialization phase in chapter 11 & 12 was very messing. No chronological ordering of event fired by the container, missing events. For instance we forgot to speak with `ProcessInjectionPoint` and `ProcessBeanAttributes` and `ProcessProducer` was wrongly placed before `ProcessBean` in chapter 12.
 So if you're planning to write portable extensions you should perhaps re-read  link:http://docs.jboss.org/cdi/spec/1.2/cdi-spec.html#http://docs.jboss.org/cdi/spec/1.2/cdi-spec-diff.html#packaging_deployment[chapter 12^]. Not yet a page turner but far more accurate than it use to be.
 
-==== CDI API now officially supporting OSGi
+=== CDI API now officially supporting OSGi
 
 We integrated all OSGi bundle information in CDI 1.2 api jar. So now it'll be easier to use CDI in OSGi environment. Before that you had to grab a special OSGi release of CDI 1.1 to have the good bundle info in our `META-INF/MANIFEST.MF`.
 
 
-=== More minor changes
+== More minor changes
 
 You can check the link:http://docs.jboss.org/cdi/spec/1.2/cdi-spec.html#_major_changes[change section^] of the spec to check the more minor changes we introduces in the spec.
 We also work on Javadoc to synchronize it with the specification by updating it or correcting the spec when api description were wrong. 
 
 
-=== Concrete stuff
+== Concrete stuff
 
 You'll find concrete raw and final data in the links below.
 

@@ -1,10 +1,11 @@
 ---
-title: "11/18/2013 EG Meeting"
+title: "CDI EG meeting 11/18/2013 notes on CDI 1.1.1 MR"
 summary: The goal of this 1st meeting was to organize the MR launching, and start discussing its content. Meeting focused on CDI Scoped in Websocket spec and co-existence issues with other JSR330 implementations
-layout: default
+layout: post
+authors: [asd]
+tags: [meeting]
 ---
 
-== CDI EG meeting 11/18/2013 notes on CDI 1.1.1 MR
 
 The goal of this 1st meeting was to organize the MR launching, and start discussing its content
 The following people assisted this meeting :
@@ -16,7 +17,7 @@ The following people assisted this meeting :
 * Arne Limburg (al)
 * Antoine Sabot-Durand (asd)
 
-=== Proposed Agenda 
+== Proposed Agenda 
 
 The following agenda was proposed by *asd*
 
@@ -27,7 +28,7 @@ The following agenda was proposed by *asd*
  * CDI-370 : Expand @RequestScoped and @SessionScoped to account for WebSocket 
  * others 
 
-=== Proposed Roadmap
+== Proposed Roadmap
 As we should run the MR in 60 days and that we cannot change its content after its start we proposed the following roadmap
 
 * 16th Dec - list of issues complete
@@ -37,20 +38,20 @@ As we should run the MR in 60 days and that we cannot change its content after i
 
 This roadmap integrates the holidays constraints as well. It'll be confirmed after the meeting *pm* and *asd* will have with the Java EE spec leads/Oracle on 11/26 
 
-=== Content of the proposed list
+== Content of the proposed list
 
 *asd* stressed on the fact that the long proposed list won't probably fit in the MR but that would be nice to provide them a status.
 We decided to deal the most important ticket first. 
 
-=== list of tickets
+== list of tickets
 
-==== https://issues.jboss.org/browse/CDI-377[CDI-377 : automatic JSR-330 annotation processing problematic]
+=== https://issues.jboss.org/browse/CDI-377[CDI-377 : automatic JSR-330 annotation processing problematic]
 All the participant agreed that this ticket could be quite tricky. 2 scenario for solving it
 
 * Having an umbrella scanning mechanism : beyond CDI and off course the MR.*pm* took note of escalate this need to the JCP
 * in the meantime could investigate an exclusion in beans.xml. this solution is to be explored and if we have an agreement we could provide a fix in MR scope
   
-==== https://issues.jboss.org/browse/CDI-370[CDI-370 : Expand @RequestScoped and @SessionScoped to account for WebSocket]
+=== https://issues.jboss.org/browse/CDI-370[CDI-370 : Expand @RequestScoped and @SessionScoped to account for WebSocket]
 A tricky issue as well. No one in the EG has a sufficient knowloedge of websocket sepc to statute ont in so *pm* propose to ask help to *Matthias Wessendorf* 
 
 Other tickets related to `@RequestScoped` clarification 
