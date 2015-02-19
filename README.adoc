@@ -11,14 +11,8 @@ Before going in technical detail let's look at the nature of contributions
 
 == What to contribute to cdi-spec.org?
 
-First, unless your contribution is basic (typos and others grammatical glitches), we strongly suggest that you check with us on the https://lists.jboss.org/mailman/listinfo/cdi-dev[Mailing List] or IRC channel (#jsr346 on freenode) to make us know about your contribution project. So we'll be able to guide you on this work. You can also start by drooping a github issue on https://github.com/cdi-spec/cdi-spec.org/issues if you want to check the impact of your proposal.
-Right now (march 2014) you can already contribute to these part :
+First, unless your contribution is basic (typos and others grammatical glitches), we strongly suggest that you check with us on the https://lists.jboss.org/mailman/listinfo/cdi-dev[Mailing List] or IRC channel (#cdi-dev on freenode) to make us know about your contribution project. So we'll be able to guide you on this work. You can also start by drooping a github issue on https://github.com/cdi-spec/cdi-spec.org/issues if you want to check the impact of your proposal.
 
- * the FAQ section in (`_faq` directory). Propose it as ticket and/or on ML before
- * the supported servers section on `index.html.haml`
- * site design (web designer or bootstrap gurus are most welcome to contribute)
-
-We're planning to enhance the website content by adding an official CDI tutorial and pointers to CDI initiatives in the community. So there'll probably be more content to contribute in the coming months. Stay tuned
 
 == Creating a hassle free Ruby environment
 
