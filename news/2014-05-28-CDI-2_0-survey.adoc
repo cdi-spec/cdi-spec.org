@@ -7,5 +7,5 @@ tags: [survey]
 ---
 
 ++++
-<iframe src="https://docs.google.com/forms/d/1R18nS65GshO46YCcksTTVILlAlgyk8PA5Vu7zJPDx2U/viewform?embedded=true" width="760" height="4100" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+<iframe src="https://docs.google.com/forms/d/1R18nS65GshO46YCcksTTVILlAlgyk8PA5Vu7zJPDx2U/viewform?embedded=true" width="760" height="350" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
 ++++
