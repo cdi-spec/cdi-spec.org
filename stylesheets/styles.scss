@@ -1,17 +1,12 @@
 // Building our own custom compilation of bootstrap
-
 // Core variables and mixins
 @import "bootstrap";
 //@import "partials/variables"; // Variables from bootswatch
-
 @import "compass/css3";
 //@import "compass/css3/text-shadow";
 //@import "compass/css3/box-shadow";
-
 //@import "partials/bootswatch";
-
 //@import url("//fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700");
-
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic|Noto+Serif:400,400italic,700,700italic|Droid+Sans+Mono:400");
 
 //body {
@@ -20,9 +15,8 @@
 
 p {
   font-size: 1.15em;
-  line-height:1.6;
+  line-height: 1.6;
 }
-
 
 .centered {
   text-align: center;
@@ -46,15 +40,15 @@ p {
 
 // centered nav tabs and pills
 .nav-tabs-center > li, .nav-pills-center > li {
-  float:none;
-  display:inline-block;
+  float: none;
+  display: inline-block;
   margin-bottom: -1px;
-  *display:inline; /* ie7 fix */
-  zoom:1; /* hasLayout ie7 trigger */
+  *display: inline; /* ie7 fix */
+  zoom: 1; /* hasLayout ie7 trigger */
 }
 
 .nav-tabs-center, .nav-pills-center {
-  text-align:center;
+  text-align: center;
   border-bottom: 1px solid #ddd;
 }
 
@@ -75,6 +69,7 @@ p {
   -moz-border-radius: 4px 4px 0 0;
   border-radius: 4px 4px 0 0;
 }
+
 .nav-tabs-center:before, .nav-tabs-center:after,
 .nav-pills-center:before,
 .nav-pills-center:after {
@@ -82,6 +77,7 @@ p {
   content: "";
   line-height: 0;
 }
+
 .nav-tabs-center:after,
 .nav-pills-center:after {
   clear: both;
@@ -99,23 +95,28 @@ p {
   border-bottom-color: transparent;
   cursor: default;
 }
+
 .nav-pills-center > .active > a,
 .nav-pills-center > .active > a:hover {
   color: white;
   background-color: #558bc4;
 }
+
 .nav-tabs-center .dropdown-menu {
   -webkit-border-radius: 0 0 6px 6px;
   -moz-border-radius: 0 0 6px 6px;
   border-radius: 0 0 6px 6px;
 }
+
 .nav-tabs-center .dropdown-toggle .caret {
   margin-top: 8px;
 }
+
 .nav-tabs-center .active .dropdown-toggle .caret {
   border-top-color: #777777;
   border-bottom-color: #777777;
 }
+
 .nav-tabs-center .open .dropdown-toggle,
 .nav-pills-center .open .dropdown-toggle,
 .nav > li.dropdown.open.active > a:hover {
@@ -124,44 +125,66 @@ p {
   border-color: #bbbbbb;
 }
 
+.navbar {
+  margin-bottom: 50px;
+  border-bottom-right-radius: 10px ;
+  border-bottom-left-radius: 10px ;
+}
+
+.bannerhome {
+  text-align: center;
+  background: #4a5d75;
+  border: 0;
+  color: white;
+  display: block;
+  background: url(/images/cdi_hero_bg.jpg) center top no-repeat;
+  #background-size: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  margin-top: 15px;
+}
+
 .scrollTop {
   font-size: 40px;
-  opacity:0.3;
-  position:fixed;
-  bottom:50px;
-  right:100px;
-  display:none;
-  width:40px;
-  height:40px;
+  opacity: 0.3;
+  position: fixed;
+  bottom: 50px;
+  right: 100px;
+  display: none;
+  width: 40px;
+  height: 40px;
 }
 
 #main_nav {
-  position:fixed;
-  top:40px;
-  width:190px;
+  position: fixed;
+  top: 40px;
+  width: 190px;
 }
 
 a.list-group-item {
-  color:#428bca;
+  color: #428bca;
 }
 
 code {
   background-color: inherit;
 }
-.first-in-row { margin-left: 0 !important; }
+
+.first-in-row {
+  margin-left: 0 !important;
+}
 
 // keep high constrast color on alert
 
 .alert-danger {
-background-color: #d47500;
-border-color: #c54c00;
-color: #fff;
+  background-color: #d47500;
+  border-color: #c54c00;
+  color: #fff;
 }
 
 .alert-success {
-background-color: #819e37;
-border-color: #818b30;
-color: #fff;
+  background-color: #819e37;
+  border-color: #818b30;
+  color: #fff;
 }
 
 // Calendar event display
@@ -174,7 +197,7 @@ color: #fff;
   @include single-text-shadow();
   text-align: center;
   @include border-radius(5px);
-  @include single-box-shadow(rgba(0,0,0,0.09), 0, 1px, 3px);
+  @include single-box-shadow(rgba(0, 0, 0, 0.09), 0, 1px, 3px);
   border: 1px solid;
   background-color: white;
   vertical-align: top;
@@ -229,7 +252,6 @@ img.right {
   float: right;
   margin: 0px 0px 10px 15px;
 }
-
 
 ul.twitter-list li {
   padding-bottom: 6px;
@@ -297,12 +319,12 @@ ul.twitter-list li.nav-header {
 }
 
 .social-button-container {
-    margin-top: 20px;
-    overflow: hidden; 
+  margin-top: 20px;
+  overflow: hidden;
 }
 
 .social-button {
-    float: left;
-    margin-right : 5px;
-    height: 32px;
+  float: left;
+  margin-right: 5px;
+  height: 32px;
 }
