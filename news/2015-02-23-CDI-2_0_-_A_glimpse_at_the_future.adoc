@@ -10,6 +10,7 @@ tags: [cdi2]
 Before we have a look at the changes in the upcoming CDI 2.0 specification, lets talk about where they come from. Did you know that they were provided by the community, so maybe by you?
 
 Before the work on https://www.jcp.org/en/jsr/detail?id=365[JSR 365^] started, former expert group members, the expert group members of other specifications and the community were asked which changes they would like to see in CDI 2.0. 260 developers provided their feedback in the community survey. Based on these information, the 6 main topics were defined:
+
  * modularity,
  * enhancements of the event system,
  * improvements for interceptors and decorators,
