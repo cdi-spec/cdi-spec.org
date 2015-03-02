@@ -1,0 +1,73 @@
+---
+title: "CDI 2.0 - A glimpse at the future"
+summary: A quick look to CDI 2.0
+layout: post
+authors: [thj]
+tags: [cdi2]
+---
+
+== Introduction
+Before we have a look at the changes in the upcoming CDI 2.0 specification, lets talk about where they come from. Did you know that they were provided by the community, so maybe by you?
+
+Before the work on https://www.jcp.org/en/jsr/detail?id=365[JSR 365^] started, former expert group members, the expert group members of other specifications and the community were asked which changes they would like to see in CDI 2.0. 260 developers provided their feedback in the community survey. Based on these information, the 6 main topics were defined:
+ * modularity,
+ * enhancements of the event system,
+ * improvements for interceptors and decorators,
+ * CDI for Java SE,
+ * usage of Java 8 features and
+ * SPI and context enhancements.
+
+The work on these topic is organized in 6 workshops, one for each main topic. This allows the members to focus their efforts and the group to work on several topics in parallel. The work of each workshop is tracked in a publicly available workshop document. You can find a reference to each document in the following paragraphs.
+
+The 3.0.0.Alpha releases of Weld, the CDI reference implementation, provide prototype implementations for the discussed features. The goal is to create an early proof of concept and to give the community a chance to try the new features and to provide feedback. +
+But please be aware, that these releases should not be used for production. They are only prototypes and the following releases are likely to contain incompatible changes.
+
+== Main Topics for CDI 2.0
+OK, enough banter for now. Lets have a more detailed look at the current status of work and some new features in the following subsection.
+
+=== Modularity
+One of the main topics for CDI 2.0 is modularization. In general, no one likes to consume a huge and heavy spec, if only a small part of it is required for the job. To make CDI easier to consume, the plan is to split the specification into different parts that provide different subsets of it. A project or JSR could then decide which parts it likes to use and define its dependencies accordingly.
+
+The work on this topic is still in a very early state and so far, there are just some ideas on how the specification shall be modularized. The documented suggestion of 5 different parts that depend on each other will most likely not be the final version.   +
+The new idea is to split the specification into 3 parts: CDI full with Java EE support, CDI full and CDI light. CDI full with Java EE support will provide the full feature set of the specification. CDI full and CDI light will only provide a subset of it. The Java EE support will be missing in both of them. Additionally, the support for Contexts and AOP will be missing in CDI light. We will have to see, if this will be the final version.
+
+These are the current ideas on how to create a modular CDI specification. If you like to get more details or follow future discussions on this topic, you can find the workshop document https://docs.google.com/document/d/1jzCuFQjtCSrnZGRAHjn0oknWvEaP3h0KizW1mHB4AZU/edit?usp=sharing[here^].
+
+=== Enhancements of the events system
+The enhancement of the existing event mechanics seems to be in heavy demand of the community and is one of the bigger topics for CDI 2.0. The main features requested by the community were to support asynchronous events and to get a better control about events and event observers. There are several ideas that are discussed at the moment and the latest Weld 3.0.0 Alpha releases provided prototype implementations for some of them.
+
+Lets have a look at two of the momentarily discussed features. And again, the work is still ongoing and everything can still change.
+
+==== Ordering of events
+One of the requested enhancements is an option to order the event observers. The currently agreed solution is to use an approach similar to the priority definition for interceptors. The @Priority annotation can be used to define the priority of an event observer. The observers will process the event in ascending order of their priority. A working prototype for this feature was released with Weld 3.0.0.Alpha1. You can find more information about it in the http://weld.cdi-spec.org/news/2014/10/02/weld-300Alpha1/[release announcement^].
+
+==== Asynchronous events:
+Up to now, events in CDI were processed synchronously. There are some workarounds to trigger asynchronous processing, e.g. using asynchronous EJBs, but this was outside the CDI specification and shall be changed with CDI 2.0.  +
+The Weld 3.0.0.Alpha3 release provides a working prototype, which adds the method fireAsync to the Event interface. The processing of an asynchronous event is similar to the processing of a synchronous one. The event object is mutable and thread-safe and the event observers will process the event in the defined order. You can read more about it in the http://weld.cdi-spec.org/news/2014/12/10/an-update-on-weld-3/[release announcement of Weld 3.0.0.Alpha3].
+
+You can get an overview about all discussed changes and ideas in the https://docs.google.com/document/d/1lFtgLm6hY-uECdA1r0Sfimq6vkVYThoUZsevPUaSP0E/edit[workshop document^].
+
+=== Improvements for interceptors and decorators
+There are several enhancements to interceptors and decorators in CDI that are planned for CDI 2.0. Some of them are to support AOP on custom or produced beans, to support AOP on inner calls and to improve the interceptor chaining. The work on these topics has not started yet. But there are some small enhancements that were already implemented with Weld 3.0.0.Alpha1.  +
+As Jozef Hartinger described in his http://weld.cdi-spec.org/news/2014/10/02/weld-300Alpha1/[release announcement^], support for repeatable annotations was added for qualifiers and interceptor bindings. And the _javax.interceptor.InvocationContext_ interface was extended to make it easier to access the interceptor binding in the interceptor.
+
+You will find more information about it in the https://drive.google.com/open?id=10iexiDfMT9tYaUPa2cGiw4P68VG_bryDIS0DKzP1ils&authuser=0[workshop document^] as soon as the work has started.
+
+=== CDI for Java SE
+CDI requires an up and running CDI container to process its components. This is usually no problem in an Java EE environment because the application server is taking care of the CDI container. But this is different in an Java SE environment, where the container has to be booted by the application. The main problem is, that the specification does not define an API to boot the container. Therefore Weld and Open Web Beans provide its own proprietary APIs to do it and http://javaeesquad.blogspot.be/2014/12/cdi-for-java-se-already-standardised.html[Apache DeltaSpike offers an uniform API^] on top of that. Beginning with CDI 2.0 the start of the container shall be defined in the standard.
+
+The work on this topic is still ongoing and there are several open questions that need to be answered in the upcoming discussions. You can read about  it in the https://drive.google.com/open?id=1LgsGT-AAlrF72Z5pW4xNQiVjUHGUME46ZmB-wwF35Yw&authuser=0[workshop document^].
+
+=== Usage of Java 8 features
+Java 8 was released in March 2014 and is therefore not used by the Java EE 7 specifications which were released in 2013. This will change with Java EE 8 and this means that CDI 2.0 can also make use of the new features.  +
+The discussions about the influence of the new Java features on CDI are still in an early state, but there are several JEPs that seem to be applicable to improve the specification. Some of them, like the CompletionStage API and repeating annotations, are already used in the proposals for http://weld.cdi-spec.org/news/2014/12/10/an-update-on-weld-3/#_asynchronous_events[asynchronous events^] and http://weld.cdi-spec.org/news/2014/10/02/weld-300Alpha1/#_repeatable_qualifiers_and_interceptor_bindings[repeatable interceptor bindings^]. But the usage of the new Java 8 features will not be limited to the new CDI features, there will also be talks on how to improve the existing parts of the specification.  +
+The current ideas can be found in this https://drive.google.com/open?id=1KUaxXIXJ_r-h5UJGIij6I4vrLS7uXkeeeZr2SaRipWQ&authuser=0[document^].
+
+=== SPI and context enhancements
+The work on SPI changes has also not started yet. Some goals of the CDI 2.0 specification will be to improve the access to all meta data created by CDI and to provide a way to add beans at runtime. The requested changes to provide a better control about contexts, especially to activate and deactivate them, will also require some SPI enhancements. +
+An additional huge topic will be the changes caused by the adoption of Java 8 and how to keep the SPI binary backward compatible. +
+The changes will be described in the https://drive.google.com/open?id=1aK3aIQG-W9D72Ti9fj0xLFNmqxQtYyy_vjc6QgN3Z2Y&authuser=0[workshop document^].
+
+== Schedule
+As described in the previous paragraphs, the work on the CDI 2.0 specification is ongoing and there are lots of things that need further discussions. An early draft of the specification, which will contain the most stable new features, shall be completed in Q1 of 2015. The public review shall start in Q3 of 2015 and provide feedback for the final release. The final version of the CDI 2.0 specification shall be released in Q1 of 2016. 
+
