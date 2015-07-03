@@ -1,0 +1,140 @@
+---
+title: "CDI 2.0 Early Draft Review 1 released"
+summary: The first Early draft for CDI 2.0 is now available. 
+layout: post
+authors: [asd]
+tags: [release]
+---
+
+After eight months of work, the CDI 2.0 expert group is pleased to release this first draft of link:https://docs.jboss.org/cdi/spec/2.0.EDR1/cdi-spec.html[CDI 2.0 specification^] for community review. This draft contains important and long awaited features that will change CDI as we know it.
+
+But these features are still proposals and we really need your feedback to know if the way we specified them fits your needs. 
+  Let's check what's on the menu.
+
+
+== CDI runs now in Java SE
+
+One of the oldest request was the support of Java SE in CDI. Since the beginning both implementations (JBoss Weld and Apache OpenWebBeans) proposed proprietary solutions to use CDI in Java SE.
+
+Then, Apache DeltaSpike came in and provided an absract solution to boot either implementations, but this wasn't never standardized at spec level, until now...
+
+=== Why this important?
+
+So, if implementation and a third party project already provide this Java SE support, what's the big deal to have it at spec level? The answer is "increase adoption by other specifications".
+
+A lot of Java EE specification provide a Java SE support (like JPA or JAX-RS). Since CDI doesn't provide this support as well, they can't rely totally on it since it is not available in  Java SE.
+So, the side effect of this new Java SE support will be a better CDI integration in Java EE. If we add to this a broader adoption by third parties framework, we see that the benefits for CDI and its users goes far beyond the simple feature. 
+
+=== Preparing Java SE support (API split)
+
+Adding such a straight forward feature to CDI seems quite easy on paper but, trust me, it wasn't.
+
+If you check the link:http://docs.jboss.org/cdi/spec/1.2/cdi-spec.html[current 1.2 specification^], you'll see that EJB is everywhere in the spec. You also have reference to JSF, servlet or Expression Language all accross the document.
+
+So the first work was to split the spec to put he Java EE specific feature in a dedicated part to have all CDI core feature (no tie to other spec) in its own part. This specification has now 3 parts plus an introduction as explain in the link:https://docs.jboss.org/cdi/spec/2.0.EDR1/cdi-spec.html#_foreword[foreword section^]. 
+ 
+This work was done as carefully as possible to avoid destroying, duplicating or modifying rules, yet, your double check here is most welcome to be sure that we didn't forget something in the rewriting.
+
+Yes it's rather long work to read (or re-read) the whole specification but it's also the ocasion to see it with a fresh eye with this new organisation. You migh want grab the link:https://docs.jboss.org/cdi/spec/2.0.EDR1/cdi-spec-2.0.pdf[pdf version^] (whose look has been updated) of the spec to go through it.
+
+=== Booting CDI in Java SE
+
+After all this work (invisible for end users), we introduced the Java SE support by adding a bootstrap API for Java SE. The solution make use of already existing link:http://docs.jboss.org/cdi/api/2.0.EDR1/javax/enterprise/inject/spi/CDIProvider.html[`CDIProvider`^] interface and link:http://docs.jboss.org/cdi/api/2.0.EDR1/javax/enterprise/inject/spi/CDI.html[`CDI`^] class.
+  
+Code for booting CDI in Java SE looks like this:
+
+[source,java]
+----
+public static void main(String... args) {
+    try(CDI<Object> cdi = CDI.getCDIProvider().initialize()) {
+        // start the container, retrieve a bean and do work with it
+        MyBean myBean = cdi.select(MyBean.class).get();
+        myBean.doWork();
+    }
+    // shuts down automatically after the try with resources block.
+}
+----
+
+Go check the link:https://docs.jboss.org/cdi/spec/2.0.EDR1/cdi-spec.html#bootstrap-se[Bootstrapping a CDI container in Java SE^] chapter in the specification and tell us what do you think.
+
+=== Still work to do
+
+Java SE support needs more work and we are still working on the feature. The two main aspect are:
+
+* link:https://issues.jboss.org/browse/CDI-529[work on bean discovery mode in SE^]
+* link:https://issues.jboss.org/browse/CDI-530[work on context control in SE^]
+
+Again, your feedback and ideas are most welcome to help us for these part specification.
+
+
+== Ordering event observers
+
+One of the https://issues.jboss.org/browse/CDI-4[oldest requested feature^] for CDI was resolved in this EDR : observer ordering.
+
+The feature was simply design by using `@Priority` annotation (from commons annotation) and will be used like this:
+
+[source, java]
+----
+void afterLogin(@Observes @Priority(APPLICATION) LoggedInEvent event) { ... }
+----
+
+The use of `@Priority` was rather obvious since we already use this annotaion for interceptor, decorator or alternatives activation and ordering. The only issue here is that the annotation only targets types right now. We asked for a review of JSR-250 to add parameter as accepted target for `@Priority`.
+
+Check the link:https://docs.jboss.org/cdi/spec/2.0.EDR1/cdi-spec.html#observer_ordering[section dealing with observer ordering^] to have all the details.
+
+== Asynchronous events
+
+Another important feature requested by many of you. Introducing Asynchronous event wasn't an easy thing, because we needed to keep backward compatibilty with existing events. We also wanted to leverage new asynchronous API in Java 8 to provide the most up to date approach in the spec.
+
+The solution we choose was to introduce `@ObservesAsync` and add methods `fireAsync()` in the `Event` interface. So the exisitng observer (defined with `@Observes`) will stay synhcronous and new observer defined by `@ObservesAsync` will be called asynchronously if the event was triggered with `fireAsync()` (and won't be called from a classical `fire()`).
+
+So asynchronous event usage will look like this:
+
+[source, java]
+----
+@Inject Event<LoggedInEvent> loggedInEvent;
+
+public void login() {
+    ...
+    loggedInEvent.fireAsync( new LoggedInEvent(user) );
+}
+
+...
+
+public void asyncAfterLogin(@ObservesAsync LoggedInEvent event) { ... }
+----
+
+The best is to re-read link:https://docs.jboss.org/cdi/spec/2.0.EDR1/cdi-spec.html#events[all the event chapter^] in the spec to get the details.
+
+=== Why this double activation is needed? 
+For the producer (`fire()`) side it’s rather obvious : we cannot magically change all synchronous event call to async. We need an handle on the work in progress (so a new method signature with `CompletionStage`), the payload mutation mechanism would break as all transactional events. So there’s no debate on `fireAsync()`. 
+
+On the observer side, the reason is for backward compatibility. CDI events are a great way to cross boundaries of our own code and activate unknown code at runtime in another module of the app (i.e. another jar) that we don’t own. This other code can be a framework, a code developed by an other team in a big project or a legacy jar that we don’t want to touch. 
+
+Imagine the following use cases (all code running on CDI 2) 
+
+* I’m compiling in CDI 1.x and one of the Jar (framework for instance) already migrated to CDI 2.0 firing async event where it use to fire sync events. Without activation on the observer side, I have all the chance to see my observer break. And if I decide to upgrade to CDI 2.0 I must have a way to activate / deactivate async call on given observers 
+
+* I’m compiling in CDI 2.0 but use `jar1` in CDI 1.0 and `jar2 in CDI 2.0 coming from other teams. `jar2` and `jar1` are old related pieces of code communicating the event. The guys in `jar2` had time to migrate to CDI 2.0 and switch most fire() to fireAsync(). Observer in jar1 will be called asynchronously if the default is to have async activated for all observers. 
+
+These example looks like corner cases but the side effect will be that no framework developers will switch to fireAsync() for the sake of defensive programming. So async event would have a serious adoption problem withotu this double activation.
+More than that, as we are designing a Java EE specification we must be committed to backward compatibility and cannot change behavior of old code, like it would do if we chose to not have activation on observer side. 
+
+== Other change, corrections and clarifications
+
+You can check the link:https://issues.jboss.org/secure/ReleaseNote.jspa?projectId=12311062&version=12327364[release notes^] of this early draft to discover the more minor changes we also introduced in the spec.
+
+== Implementation and TCK
+
+TCK team and JBoss Weld team are currently working hard to provide a Reference Implementation for this draft. You'll be notified as soon as there'll be released.
+
+== We need you  
+
+To go on on this Early draft, we really need your feedback. The review period will be launch in the coming days by the JCP and will run for 90 days. You can give your feedback in many way:
+
+* By commenting this post
+* On the link:https://lists.jboss.org/mailman/listinfo/cdi-dev[mailing list^]
+* On our link:https://issues.jboss.org[Jira platform^]
+* or, if it's rather short on link:https://twitter.com/cdispec[Twitter^]
+
+Thank you for helping us making CDI one of the best programming model for Java and Java EE.

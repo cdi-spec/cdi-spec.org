@@ -2,15 +2,12 @@
 
 You'll find all CDI 2.0 EG meeting log and minutes http://transcripts.jboss.org/meeting/irc.freenode.org/cdi-dev/index.html[here^]
 
-_(updated on February 2nd)_
+_(updated on July 3nrd)_
 
-The Asynchronous events and Java SE support features are current hot topic.
 
-After a lot of discussion in workshop doc and IRC discussion, both features came to Jira ticket for more structured discussion
+CDI 2.0 Early draft has been released. The review is about to begin on the JCP.
 
-* https://issues.jboss.org/browse/CDI-26?focusedCommentId=13034063&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-13034063[Java SE Bootstrap^]
-* https://issues.jboss.org/browse/CDI-499[Asynchronous events^]
-
+Please read the  link:/news/2015/07/03/CDI-2_0-EDR1-released/[announcement] to learn about this draft verion.
 
 === Contribution
 
@@ -27,13 +24,13 @@ The table below give to resource to different workshop. It will be updated
 
 |Workshop|Status |Doc link|Description
 
-|Parts|not started|http://bit.ly/cdi2wsprt|working on modularity (sub specs)
+|Parts|API was split|http://bit.ly/cdi2wsprt|working on modularity (sub specs)
 
-|Events|started|http://bit.ly/cdi2wsevt|enhance events (asynchronous, ordering,etc...)
+|Events|finished|link:https://docs.jboss.org/cdi/spec/2.0.EDR1/cdi-spec.html#events[see spec]|enhance events (asynchronous, ordering,etc...)
 
 |AOP|started|http://bit.ly/cdi2wsaop|Interceptors & Decoractors enhancement
 
-|Java SE|Jira ticke|http://bit.ly/cdi2wsjse|Boostrap CDI in Java SE
+|Java SE|first part done|link:https://docs.jboss.org/cdi/spec/2.0.EDR1/cdi-spec.html#bootstrap-se[see spec^]|Boostrap CDI in Java SE
 
 |JDK 8 |started|http://bit.ly/cdi2wsjk8|enhancement from JDK 8
 

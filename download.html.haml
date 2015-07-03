@@ -3,7 +3,7 @@ layout: base
 ---
 %table.table.table-bordered
   %tr
-    %th{:width=>'8%'}
+    %th{:width=>'10%'}
     %th
       Specification
     %th
@@ -16,6 +16,43 @@ layout: base
       TCK
     %th
       License
+  %tr
+    %td
+      CDI 2.0 EDR1
+    %td
+      %a{:href=>'http://docs.jboss.org/cdi/spec/2.0.EDR1/cdi-spec-2.0.pdf'}
+        PDF
+        %i.fa.fa-file
+      |
+      %a{:href=>'http://docs.jboss.org/cdi/spec/2.0.EDR1/cdi-spec.html'}
+        HTML
+        %i.fa.fa-link
+    %td
+      %a{:href=>'http://search.maven.org/remotecontent?filepath=javax/enterprise/cdi-api/2.0-EDR1/cdi-api-2.0-EDR1.jar'}
+        API
+        %i.fa.fa-download
+      |
+      %a{:href=>'http://docs.jboss.org/cdi/api/2.0.EDR1'}
+        JavaDoc
+        %i.fa.fa-link
+      |
+      %a.modal-link{"data-toggle"=>"modal", :href=>"#maven-cdi_2_0_EDR1"}
+        Maven
+        %i.fa.fa-download-alt
+      %td
+        -#%a{:href=>'http://weld.cdi-spec.org/download/'}
+        -#  Weld 2.2
+        -#  %i.fa.fa-download
+      %td
+        -#%a{:href=>'http://openwebbeans.apache.org/download.html', :target=>'_BLANK'}
+        -#  Apache OWB 1.6
+        -#  %i.fa.fa-download
+      %td
+        -#%a{:href=>'http://sourceforge.net/projects/jboss/files/CDI-TCK/'}
+        -#  TCK 1.2
+        -#  %i.fa.fa-download
+      %td
+        %a{:href=>"http://www.apache.org/licenses/LICENSE-2.0.html"} ASL 2.0
   %tr
     %td
       CDI 1.2
@@ -152,6 +189,27 @@ layout: base
 
 
 - #Create Maven Modals
+%div.modal.fade{:id=>"maven-cdi_2_0_EDR1", :role=>"dialog", :tabindex=>"-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %a.close{:data=>{:dismiss=>'modal'}}
+          %i.fa.fa-remove
+        %h3 Using CDI 2.0-EDR1 from Maven
+      .modal-body.clearfix
+        %p To use CDI 2.0-EDR1, add this dependency:
+        %pre
+          %code#example
+            = preserve do
+              :escaped
+                  <dependencies>
+                      <dependency>
+                          <groupId>javax.enterprise</groupId>
+                          <artifactId>cdi-api</artifactId>
+                          <version>2.0-EDR1</version>
+                          <scope>provided</scope>
+                      </dependency>
+                  </dependencies>
 %div.modal.fade{:id=>"maven-cdi_1_2", :role=>"dialog", :tabindex=>"-1"}
   .modal-dialog
     .modal-content
