@@ -14,7 +14,7 @@ But these features are still proposals and we really need your feedback to know 
 
 == CDI runs now in Java SE
 
-One of the oldest request was the support of Java SE in CDI. Since the beginning both implementations (JBoss Weld and Apache OpenWebBeans) proposed proprietary solutions to use CDI in Java SE.
+One of the oldest request was the support of Java SE in CDI. Since the beginning the two main implementations (JBoss Weld and Apache OpenWebBeans) proposed proprietary solutions to use CDI in Java SE.
 
 Then, Apache DeltaSpike came in and provided an absract solution to boot either implementations, but this wasn't never standardized at spec level, until now...
 
