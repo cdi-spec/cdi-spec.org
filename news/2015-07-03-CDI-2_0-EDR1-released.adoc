@@ -115,7 +115,7 @@ Imagine the following use cases (all code running on CDI 2)
 
 * I’m compiling in CDI 1.x and one of the Jar (framework for instance) already migrated to CDI 2.0 firing async event where it use to fire sync events. Without activation on the observer side, I have all the chance to see my observer break. And if I decide to upgrade to CDI 2.0 I must have a way to activate / deactivate async call on given observers 
 
-* I’m compiling in CDI 2.0 but use `jar1` in CDI 1.0 and `jar2 in CDI 2.0 coming from other teams. `jar2` and `jar1` are old related pieces of code communicating the event. The guys in `jar2` had time to migrate to CDI 2.0 and switch most fire() to fireAsync(). Observer in jar1 will be called asynchronously if the default is to have async activated for all observers. 
+* I’m compiling in CDI 2.0 but use `jar1` in CDI 1.0 and `jar2` in CDI 2.0 coming from other teams. `jar2` and `jar1` are old related pieces of code communicating the event. The guys in `jar2` had time to migrate to CDI 2.0 and switch most fire() to fireAsync(). Observer in jar1 will be called asynchronously if the default is to have async activated for all observers. 
 
 These example looks like corner cases but the side effect will be that no framework developers will switch to fireAsync() for the sake of defensive programming. So async event would have a serious adoption problem withotu this double activation.
 More than that, as we are designing a Java EE specification we must be committed to backward compatibility and cannot change behavior of old code, like it would do if we chose to not have activation on observer side. 
