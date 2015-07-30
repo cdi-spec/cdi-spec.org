@@ -1,0 +1,13 @@
+---
+layout: default
+---
+
+== CDI TCK
+
+Our https://en.wikipedia.org/wiki/Technology_Compatibility_Kit[TCK^] is open as well and contributions are more than welcome. Important information:
+
+* Source code at http://github.com/cdi-spec/cdi-tck[GitHub^]
+* Issue tracker in https://issues.jboss.org/browse/CDITCK[JIRA^]
+* https://docs.jboss.org/cdi/tck/reference/[Documentation^]
+* Distribution bundles are available at http://download.jboss.org/cdi/tck/[download.jboss.org/cdi/tck/^]
+* Mailing list: cdi-tck@lists.jboss.org
