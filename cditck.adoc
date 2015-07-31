@@ -11,3 +11,5 @@ Our https://en.wikipedia.org/wiki/Technology_Compatibility_Kit[TCK^] is open as 
 * https://docs.jboss.org/cdi/tck/reference/[Documentation^]
 * Distribution bundles are available at http://download.jboss.org/cdi/tck/[download.jboss.org/cdi/tck/^]
 * Mailing list: cdi-tck@lists.jboss.org
+
+You can check the connection between specification and TCK by looking at link:$$https://docs.jboss.org/cdi/spec/2.0.EDR1/cdi-spec-with-assertions.html$$[specification with TCK assertions] where each chapter starts with a list of TCK assertions with links to TCK tests for given chapter.
