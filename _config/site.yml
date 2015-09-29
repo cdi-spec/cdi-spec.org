@@ -1,5 +1,23 @@
 title: Contexts and Dependency Injection
 encoding: UTF-8
+asciidoc:
+  engine: asciidoctor
+asciidoctor:
+  :safe: unsafe
+  :base_dir: null
+  :attributes:
+    source-highlighter: highlight.js
+    compat-mode: '@'
+    attribute-missing: warn
+    relfileprefix: '../'
+    outfilesuffix: '/'
+    idprefix: ''
+    idseparator: '-'
+    icons: font
+    sectanchors: ''
+    linkattrs: ''
+    #source-highlighter: coderay
+    prewrap: null
 haml:
   attr_wrapper: '"'
   escape_attrs: :once
