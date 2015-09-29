@@ -1,0 +1,143 @@
+---
+title: "CDI 2.0 Second Face to face meeting feedback"
+summary: Last week we had our second CDI 2.0 Face to Face meeting in Paris (France). Check the point we discussed for the finalisation and the future of the spec
+layout: post
+authors: [asd]
+tags: [meeting]
+---
+
+Last week we had our second CDI 2.0 Face to Face meeting in Paris (France).
+This is a summary of the point discussed and leads we'd like to follow.
+Of course each point we'll lead to a proposal later and discussed on the mailing list.
+
+== Roadmap
+
+CDI 2.0 is still planned for 1st half 2016.
+We'll focus on new feature and SE support for this release.
+
+CDI 2.1 should start after 2.0 release and focus Java EE 8 specific enhancement.
+We'll probably focus a bit more on modularity since Java 9 will be around the corner giving us a better visibility of how anticipate its new module approach.
+Content of 2.1 will be defined in the coming weeks
+
+== CDI SE review
+
+CDI bootstrap on Java SE is one of the feature released in our first early draft.
+The Java SE support needed extra work to be complete and we wanted to review the boot api included to see how it could be enhanced.
+
+=== bootstrap API
+
+We'd like to review the proposed bootstrap API to make it a bit richer and have the boot process in a specific class.
+The idea is to get inspiration from the new Weld Se bootstrap with a builder pattern (see https://github.com/weld/core/blob/master/environments/se/core/src/main/java/org/jboss/weld/environment/se/Weld.java[`Weld`] and https://github.com/weld/core/blob/master/environments/se/core/src/main/java/org/jboss/weld/environment/se/WeldContainer.java[`WeldContainer`] classes) and the possibility to explicitly choose the implementation if multiple impl should be in classpath.
+
+=== Context control
+
+This feature seemed a bit risky to specify. We'd preferred an approach based on existing built-in scope: RequestScoped and an interceptor activating it for a given invocation and unactivating it just after . something like this:
+
+[source,java]
+----
+@WithinRequest
+public void doSomethigWithRequestScopedBeans() {
+}
+----
+
+This could give users the possibility to start and stop a context without explicitly adding these methods in the SPI
+We also discussed the possibility to have a Conversation-like context activated thru a built-in scope.
+
+=== Bean discovery mode
+
+The new bootstrap api should prevent us to specify a new bean discovery mode since the builder api will contains a mean to deactivate bean discovery and create a synthetic bean archive by adding class and packages of beans.
+
+== Async event review
+
+There was discussion about exceptions handling and the issues raised from mixing sync and async observers. So the leads we'd like to follow are the following
+
+* stop calling sync observer from fireAsync() (fire() is for @Observes and fireAsync() is for @ObservesAsync)
+* Remove `FireAsyncException` in favor of `CompletionException` since an exception during async events pipeline execution is noting more than that.
+
+To sum it up:
+
+.async and sync events rules
+[cols="1,2,2",width="70"]
+|===
+|Event method |`@Observes` notified|`@ObservesAsync` notified
+
+|`fire()`
+|yes, in the same thread
+|no
+
+|`fireAsync()`
+|no
+|yes, in a different thread
+|===
+
+
+== CDI Lite
+
+As you know, CDI lite is one of the expected features for CDI 2.0.
+Yet, adding it with the SE / EE split for 2.0 could bring a lot of glitches and could reveal itself a catastrophe without speaking of specific impl and TCK for it.
+
+That's why we choose to add it in the annexe of the spec as a proposal for a next CDI version.
+Implementation will be allowed to create their CDI lite version based on this subset of CDI features:
+
+* JSR 330 with CDI type resolution rules
+* CDI qualifiers usage
+* Producers and disposers
+* Programmatic lookup
+* `@Singleton` and `@Dependent` pseudo-scopes support
+* SE bootstrap
+
+We choose not to include events and spi to keep the impl lite.
+Of course this could be change during our discussion.
+
+== AOP on producer and custom beans
+
+The goal was to propose a solution to apply Interceptors and Decorators on produced beans or custom beans.
+For producers we also have the problem of applying interceptor binding only on some method and not on the whole class.
+We looked for a solution that could be used in both case and that was more an "advanced users" approach than an out of box one.
+ 
+The idea is to provide a class or a built-in bean to help produced bean instances using AnnotatedType to allow override of annotation on instance class.
+This suppose the addition of `AnnotatedTypeBuilder` to the SPI to ease the use of building a synthetic `AnnotatedType`.
+This would follow the same idea than the `Unmanaged` class which provide a way to inject bean in a non bean (non managed) class.
+
+That would give something like:
+
+[source,java]
+----
+public class MyAdvancedProducerBean {
+
+    public BeanInstanceBuilder<MyClass> bib = new BeanInstanceBuilder<>();
+
+    @Produces
+    @RequestScoped
+    public MyClass produceTransactionalMyClass() {
+
+        AnnotatedTypeBuilder<MyClass> atb = new AnnotatedTypeBuilder<>()
+           .readFrom(MyClass.class)
+           .addToMethod(MyClass.class.getMethod("performInTransaction")
+            , new TransactionalLiteral());
+
+        return bib.readFromType(atb.build())
+            .build(); //instance of the bean with requested interceptors / decorators
+    }
+
+    public void disposeMyClass (@Disposes Myclass td) {
+
+        bib.dispose(td);
+    }
+
+}
+
+----
+
+A similar mechanism could be used in the `create()` method of custom beans.
+
+
+== Conclusion
+
+Of course, all these points will be described in more detail in coming proposal documents.
+You'll only find here general ideas of what we like to propose.
+
+We also worked on other points in Jira for clarification or fix.
+This will go to the mailing list.
+
+This post will be updated with new information or clarification if needed.
