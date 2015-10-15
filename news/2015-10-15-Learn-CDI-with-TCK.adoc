@@ -1,0 +1,74 @@
+---
+title: "Learn CDI spec with our TCK"
+summary: CDI TCK is one of the easiest to understand and now it's linked to the spec
+layout: post
+authors: [asd]
+tags: [TCK]
+---
+
+Beyond being one of the few open source TCK around, CDI TCK is one of the easiest to get started with.
+
+Now that we have released a new version of spec doc embedding TCK test, it's easier than ever.
+
+Learn what we dit and how to use it.
+
+== CDI TCK for the dummies
+
+TCK stands for Test Compatibility Kit.
+It's one of the 3 part a JSR expert group has to release (2 others being the spec and the Reference Implementation).
+
+A TCK is a collection of tests that actively define the spec.
+It's the tool that is used to determine if an implementation is a CDI implementation or not.
+So this piece of code is the most important and the hardest to develop and maintain.
+Ok, RI could seem more important, but it's under the spotlight and is nothing without the TCK.
+
+To make short, TCK is the code that makes CDI a specification and thus a standard.
+
+The great guy behind our TCK is https://github.com/tremes[*Tomas Remes*^] and he doing an awesome job pointing holes or unclear statements in spec text or refactoring all the TCK after CDI split in 2.0-EDR1.
+
+If you want to learn more about the TCK I suggest that you check link:/cditck[our dedicated page^].
+
+== TCK is more than what it seems
+
+The TCK role is not restricted to the specification mold, it can also be a great way to learn the spec by code.
+To crown that, thanks to http://arquillian.org[Arquillian^], CDI TCK is very easy to understand and very expressive.
+
+But jumping from specification to test can be a bit complicated and this exercise can discourage many of our user.
+
+That's why, a few months ago, we started to think about a solution to create links from the spec text to the TCK.
+
+It seemed quite doable snce the reverse link has always existed: each since TCK tests have meta data about the spec section it refers.
+
+So, Tomas made the required upgrade to the TCK and developed a script to add tests to the spec.
+
+== Meet Spec doc with TCK assertion
+
+Thanks to this work we are able to release a http://docs.jboss.org/cdi/spec/1.2/cdi-spec-with-assertions.html[special edition of CDI 1.2 specification document including TCK assertion and link to their matching test class on Github^].
+The same is done for the http://docs.jboss.org/cdi/spec/2.0.EDR1/cdi-spec-with-assertions.html[CDI 2.0 work in progress specification].
+
+
+Don't worry the original specifications docs stay unchanged, we only released a new flavor for them on our link:/download[download page].
+
+== Assertion link by example
+
+Due to normalization constraint (rules duplication avoidance) we have on the spec, some statement could seem confusing when reading them.
+
+Let's take, for instance, the first statement of section http://docs.jboss.org/cdi/spec/1.2/cdi-spec-with-assertions.html#unproxyable[3.15 Unproxyable bean types^]:
+
+[quote]
+____
+The container uses proxies to provide certain functionality. Certain legal bean types cannot be proxied by the container:
+
+* classes which don’t have a non-private constructor with no parameters,
+____
+
+Yeah a triple negation...
+
+You could take the next minute to figure out the exact meaning of the sentence or you could click on the "Show TCK assertions" link and check the two tests related to this section to see the cases were this rules make the deployment fails.
+
+== Learn, test and challenge
+
+Now that you have this nice tool in your hand, TCK will be your CDI Lab, and perhaps, you'll come back with corner use cases not covered or new challenges for the TCK.
+
+Go and learn!
+
