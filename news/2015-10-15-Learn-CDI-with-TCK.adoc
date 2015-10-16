@@ -64,7 +64,7 @@ ____
 
 Yeah a triple negation...
 
-You could take the next minute to figure out the exact meaning of the sentence or you could click on the "Show TCK assertions" link and check the two tests related to this section to see the cases were this rules make the deployment fails.
+You could take the next minute to figure out the exact meaning of the sentence or you could click on the "Show TCK assertions" link and check the two tests related to this section to see the cases where this rules make the deployment fails.
 
 == Learn, test and challenge
 
