@@ -10,7 +10,7 @@ Beyond being one of the few open source TCK around, CDI TCK is one of the easies
 
 Now that we have released a new version of spec doc embedding TCK test, it's easier than ever.
 
-Learn what we dit and how to use it.
+Learn what we did and how to use it.
 
 == CDI TCK for the dummies
 
@@ -37,7 +37,7 @@ But jumping from specification to test can be a bit complicated and this exercis
 
 That's why, a few months ago, we started to think about a solution to create links from the spec text to the TCK.
 
-It seemed quite doable snce the reverse link has always existed: each since TCK tests have meta data about the spec section it refers.
+It seemed quite doable since the reverse link has always existed: each since TCK tests have meta data about the spec section it refers.
 
 So, Tomas made the required upgrade to the TCK and developed a script to add tests to the spec.
 
