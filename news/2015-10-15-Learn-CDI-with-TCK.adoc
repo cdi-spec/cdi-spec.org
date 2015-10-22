@@ -14,7 +14,7 @@ Learn what we did and how to use it.
 
 == CDI TCK for the dummies
 
-TCK stands for Test Compatibility Kit.
+TCK stands for Technology Compatibility Kit.
 It's one of the 3 part a JSR expert group has to release (2 others being the spec and the Reference Implementation).
 
 A TCK is a collection of tests that actively define the spec.
