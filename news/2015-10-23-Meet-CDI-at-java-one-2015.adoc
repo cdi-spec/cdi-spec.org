@@ -1,0 +1,33 @@
+---
+title: "Meet CDI at Java One 2015"
+summary: During Java One 2015, a lot of CDI related talks and event will happen. This post list most of them
+layout: post
+authors: [asd]
+tags: [Java One,Talks]
+---
+
+During Java One 2015, a lot of CDI related talks and event will happen. find most of them in this post
+
+
+== CDI related talks
+
+In this agenda you'll find most of CDI related talk to help you prepare your schedule
+
+++++
+<iframe src="https://calendar.google.com/calendar/embed?title=CDI%20Talks%20in%20Java%20One%202015&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showCalendars=0&amp;mode=AGENDA&amp;height=600&amp;wkst=1&amp;hl=en&amp;bgcolor=%23FFFFFF&amp;src=sabot-durand.net_uq9ukhrb7o6mi5g6t3dlbbd8sc%40group.calendar.google.com&amp;color=%231B887A&amp;ctz=America%2FLos_Angeles&dates=20151025%2F20151030" style="border-width:0" width="800" height="700" frameborder="0" scrolling="no"></iframe>
+++++
+
+== Focus on EG talks
+
+If you want to have the best of CDI overview in Java One, don't miss these talks:
+
+* *CDI 2.0: Whats in the Works?* (monday 12:30, Cyril Magnin I): to learn about coming features in CDI 2.0
+* *Apache DeltaSpike, the CDI Toolbox* (monday 2:30, Cyril Magnin I): Discover Apache DeltaSpike, the heart of CDI Ecosystem
+* *Advanced CDI in live coding* (tuesday 8:30, Cyril Magnin II/II): learn the power of CDI portable extension to integrate your framework in CDI programming model
+
+== I'll be available for you questions
+
+You'll find me at the Hackergarten Tuesday afternoon and wednesday morning to help you on CDI, answer your question or discuss the spec.
+You can even pass by just to say Hello aor bring me a [line-through]#beer#, coffee ;).
+
+Have a nice Java One Week.
