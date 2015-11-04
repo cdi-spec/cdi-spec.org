@@ -4,6 +4,8 @@ summary: Discussion on 6 ticket for MR inclusion. And coming back on CDI-377 (au
 layout: post
 authors: [asd]
 tags: [meeting]
+priority: 1
+change_frequency: daily
 ---
 
 The following people assisted this meeting :

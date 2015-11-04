@@ -4,6 +4,8 @@ summary: The work around CDI 2.0 specification is about to start in the coming w
 layout: post
 authors: [asd]
 tags: [EG,community,method]
+priority: 1
+change_frequency: daily
 ---
 
 image:/images/UncleDuke.png[Uncle Duke,width=150,float="left"] The work on CDI 2.0 specification is about to start in the coming weeks. We have a lot of ambitious features on the table as you can check in our previous link:/news/2014/07/28/what-s-in-CDI-20-jsr-proposal/[article^], but we also have only 18 months to specify and implement them. Without community help, we probably won't be able to do all the change we are planning, so your contribution is precious to us. In this post I'll explain the multiple ways you can be part of it, even if you only have a few hours a week to help us and/or are not a CDI, JCP or a Java expert. Let's check the 3 main question most of you have regarding contribution and try to answer them:

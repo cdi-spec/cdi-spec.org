@@ -4,6 +4,8 @@ summary: Regarding CDI 2.0, everything has still to be defined. Your feedback is
 layout: post
 authors: [asd]
 tags: [survey]
+priority: 1
+change_frequency: daily
 ---
 
 ++++

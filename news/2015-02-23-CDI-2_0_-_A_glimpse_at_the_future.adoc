@@ -4,6 +4,8 @@ summary: A quick look to CDI 2.0
 layout: post
 authors: [thj]
 tags: [cdi2]
+priority: 1
+change_frequency: daily
 ---
 
 == Introduction

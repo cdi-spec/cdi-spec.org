@@ -4,6 +4,8 @@ summary: The work around CDI 2.0 specification has just started. Discover how we
 layout: post
 authors: [asd]
 tags: [method,EG]
+priority: 1
+change_frequency: daily
 ---
 
 Work on CDI 2.0 started at the beginning of september. As you may guess, specifying and releasing this new major version is a big challenge.

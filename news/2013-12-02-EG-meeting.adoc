@@ -4,6 +4,8 @@ summary: Feedback on Java EE Expert Group Conf call. Adoption of 1.2 as MR name 
 layout: post
 authors: [asd]
 tags: [meeting]
+priority: 1
+change_frequency: daily
 ---
 
 

@@ -4,6 +4,8 @@ summary: Conclusion of EG preparation work on CDI 1.2 (1.1MR). 23 issues include
 layout: post
 authors: [asd]
 tags: [EG,features]
+priority: 1
+change_frequency: daily
 ---
 
 _Updated on 01/07/2014_
