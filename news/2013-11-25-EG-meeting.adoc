@@ -4,6 +4,8 @@ summary: Back on Websocket and CDI Scope issue (CDI-370), then followed issues d
 layout: post
 authors: [asd]
 tags: [meeting]
+priority: 1
+change_frequency: daily
 ---
 
 In this meeting we came back on CDI-370 : Expand @RequestScoped and @SessionScoped to account for WebSocket and added some other issues.

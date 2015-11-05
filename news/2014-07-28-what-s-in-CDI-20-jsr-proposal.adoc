@@ -4,6 +4,8 @@ summary: Few days ago we submitted the JSR proposal for CDI 2.0. Find in this po
 layout: post
 authors: [asd]
 tags: [JSR,proposal]
+priority: 1
+change_frequency: daily
 ---
 
 

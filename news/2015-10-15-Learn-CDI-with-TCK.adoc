@@ -4,6 +4,8 @@ summary: CDI TCK is one of the easiest to understand and now it's linked to the 
 layout: post
 authors: [asd]
 tags: [TCK]
+priority: 1
+change_frequency: daily
 ---
 
 Beyond being one of the few open source TCK around, CDI TCK is one of the easiest to get started with.

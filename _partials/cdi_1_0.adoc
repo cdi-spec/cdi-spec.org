@@ -1,3 +1,8 @@
+---
+priority: 1
+change_frequency: weekly
+---
+
 Contexts and Dependency Injection for Java EE (CDI) 1.0 was introduced as part of the Java EE 6 platform, and has quickly become one of the most important and popular components of the platform. 
 
 CDI defines a powerful set of complementary services that help improve the structure of application code.

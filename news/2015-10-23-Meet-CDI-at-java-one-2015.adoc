@@ -4,6 +4,8 @@ summary: During Java One 2015, a lot of CDI related talks and event will happen.
 layout: post
 authors: [asd]
 tags: [Java One,Talks]
+priority: 1
+change_frequency: daily
 ---
 
 During Java One 2015, a lot of CDI related talks and event will happen. find most of them in this post

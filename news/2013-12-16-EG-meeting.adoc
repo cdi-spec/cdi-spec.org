@@ -4,6 +4,8 @@ summary: Conclusion on CDI 1.2 preparation. Decision for pending issue. Adding l
 layout: post
 authors: [asd]
 tags: [meeting]
+priority: 1
+change_frequency: daily
 ---
 
 

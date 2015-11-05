@@ -4,6 +4,8 @@ summary: This survey is your opportunity to tell the future Expert Group what ar
 layout: post
 authors: [asd]
 tags: [survey]
+priority: 1
+change_frequency: daily
 ---
 
 ++++

@@ -4,6 +4,8 @@ summary: CDI 1.1 Final Draft submitted to JCP
 layout: post
 authors: [pmuir]
 tags: [release]
+priority: 1
+change_frequency: daily
 ---
 
 

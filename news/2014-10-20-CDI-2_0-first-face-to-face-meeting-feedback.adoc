@@ -4,6 +4,8 @@ summary: Last week we had the first CDI 2.0 Face to Face meeting in Brno (Czech 
 layout: post
 authors: [asd]
 tags: [meeting]
+priority: 1
+change_frequency: daily
 ---
 
 

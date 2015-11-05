@@ -4,6 +4,8 @@ summary: The first Early draft for CDI 2.0 is now available.
 layout: post
 authors: [asd]
 tags: [release]
+priority: 1
+change_frequency: daily
 ---
 
 After eight months of work, the CDI 2.0 expert group is pleased to release this first draft of link:https://docs.jboss.org/cdi/spec/2.0.EDR1/cdi-spec.html[CDI 2.0 specification^] for community review. This draft contains important and long awaited features that will change CDI as we know it.

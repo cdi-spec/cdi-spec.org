@@ -4,6 +4,8 @@ summary: The goal of this 1st meeting was to organize the MR launching, and star
 layout: post
 authors: [asd]
 tags: [meeting]
+priority: 1
+change_frequency: daily
 ---
 
 

@@ -1,5 +1,7 @@
 ---
 layout: default
+priority: 0.5
+change_frequency: weekly
 ---
 
 == CDI TCK

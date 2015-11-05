@@ -4,6 +4,8 @@ summary: The third bugfix version for CDI 1.1 is out!
 layout: post
 authors: [mkouba]
 tags: [release]
+priority: 1
+change_frequency: daily
 ---
 
 
