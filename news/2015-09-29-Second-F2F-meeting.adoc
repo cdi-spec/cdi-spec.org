@@ -5,6 +5,7 @@ layout: post
 authors: [asd]
 tags: [meeting]
 priority: 1
+desc: Face to face meeting in Paris
 change_frequency: daily
 ---
 
