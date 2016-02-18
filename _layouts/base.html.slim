@@ -94,7 +94,7 @@ html lang='en'
             var pathname = indexOfSharp > 0 ? window.location.pathname.substring(0, indexOfSharp) : window.location.pathname;
             var selector = "body > .container > .row > .col-md-12 > .navbar > .container-fluid > .navbar-collapse a[href='#{site.base_url}" + pathname + "']";
             $(selector).closest("li").addClass("active");
-      .row
+      .row.content-wrapper
         .col-md-12
           =content
     hr
