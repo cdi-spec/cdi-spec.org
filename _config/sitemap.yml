@@ -1,2 +1,2 @@
-excluded_extensions: ['.ico', '.haml', '.adoc', '.sh']
+excluded_extensions: ['.ico', '.haml', '.adoc', '.sh', '.iml']
 excluded_files: [ '/CNAME' , '/Rakefile' ]
