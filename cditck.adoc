@@ -1,6 +1,8 @@
 ---
 layout: default
 priority: 0.5
+title: Basic information about CDI TCK (Technology Compatibility Kit)
+desc: Basic information about CDI TCK (Technology Compatibility Kit)
 change_frequency: weekly
 ---
 

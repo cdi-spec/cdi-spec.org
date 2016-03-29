@@ -5,6 +5,7 @@ layout: post
 authors: [asd]
 tags: [release]
 priority: 1
+desc: CDI 2.0.EDR1 released, Java SE support, CDI boot in Java SE
 change_frequency: daily
 ---
 

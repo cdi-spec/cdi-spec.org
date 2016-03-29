@@ -5,6 +5,7 @@ layout: post
 authors: [asd]
 tags: [TCK]
 priority: 1
+desc: Learn CDI TCK (Technology Compatibility Kit), spec with TCK assertions, testing
 change_frequency: daily
 ---
 

@@ -3,6 +3,7 @@ html lang='en'
   head
     meta charset='utf-8'
     meta name='viewport' content='width=device-width, initial-scale=1.0'
+    meta name='description' content=page.desc
     title=(page.title && page.title != site.title ? [page.title, site.title] : [site.title, site.description]) * ' | '
     link rel='shortcut icon' href='/favicon.ico'
     link rel='stylesheet' href='/stylesheets/asciidoctor.css'
@@ -94,7 +95,7 @@ html lang='en'
             var pathname = indexOfSharp > 0 ? window.location.pathname.substring(0, indexOfSharp) : window.location.pathname;
             var selector = "body > .container > .row > .col-md-12 > .navbar > .container-fluid > .navbar-collapse a[href='#{site.base_url}" + pathname + "']";
             $(selector).closest("li").addClass("active");
-      .row
+      .row.content-wrapper
         .col-md-12
           =content
     hr
