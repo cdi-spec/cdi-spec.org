@@ -1,10 +1,12 @@
 require 'bootstrap-sass'
+require 'compass'
+require 'slim'
+require 'asciidoctor-diagram'
 require File.join File.dirname(__FILE__), 'tweakruby'
 require_relative 'restclient_extensions_enabler'
 require_relative 'common' 
 # require_relative 'jira'
 require_relative 'faq'
-require 'awestruct/extensions/minify'
 
 Awestruct::Extensions::Pipeline.new do
   extension Awestruct::Extensions::RestClientExtensions::EnableGetCache.new
