@@ -35,9 +35,9 @@ change_frequency: weekly
             i.fa.fa-external-link.fa-w
     li
       a href='#servers' data-toggle='tab' Servers
-    li
-      a href='#overview' data-toggle='tab' Overview
     li.active
+      a href='#overview' data-toggle='tab' Overview
+    li
       a href='#cdi2' data-toggle='tab' CDI 2.0 news
   .tab-content
     .tab-pane.fade#cdi1_1
@@ -65,9 +65,9 @@ change_frequency: weekly
         * Add `@WithAnnotations` as a way of improving extension loading performance ([read more](http://docs.jboss.org/cdi/spec/1.2/cdi-spec.html#process_annotated_type))
         * Many minor improvements to portable extensions ([read more](http://docs.jboss.org/cdi/spec/1.2/cdi-spec.html#spi))
 
-    .tab-pane.fade.in.active#cdi2
+    .tab-pane.fade#cdi2
       = partial('cdi2.adoc')
-    .tab-pane.fade#overview
+    .tab-pane.fade.in.active#overview
       .col-md-8
         h2 What is CDI?
         = partial('cdi_1_0.adoc')
