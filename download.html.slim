@@ -22,41 +22,42 @@ table.table.table-bordered
       ' License
   tr
     td
-      ' CDI 2.0 EDR1
+      ' CDI 2.0 EDR2
     td
-      a href='http://docs.jboss.org/cdi/spec/2.0.EDR1/cdi-spec-2.0.pdf'
+      a href='http://docs.jboss.org/cdi/spec/2.0.EDR2/cdi-spec-2.0.pdf'
         ' PDF
         i.fa.fa-file
       ' |
-      a href='http://docs.jboss.org/cdi/spec/2.0.EDR1/cdi-spec.html'
+      a href='http://docs.jboss.org/cdi/spec/2.0.EDR2/cdi-spec.html'
         ' HTML
         i.fa.fa-link
       ' |
-      a href='http://docs.jboss.org/cdi/spec/2.0.EDR1/cdi-spec-with-assertions.html'
+      a href='http://docs.jboss.org/cdi/spec/2.0.EDR2/cdi-spec-with-assertions.html'
         ' HTML with TCK assertions
         i.fa.fa-link
     td
-      a href='http://search.maven.org/remotecontent?filepath=javax/enterprise/cdi-api/2.0-EDR1/cdi-api-2.0-EDR1.jar'
+      a href='http://search.maven.org/remotecontent?filepath=javax/enterprise/cdi-api/2.0-EDR2/cdi-api-2.0-EDR2.jar'
         ' API
         i.fa.fa-download
       ' |
-      a href='http://docs.jboss.org/cdi/api/2.0.EDR1'
+      a href='http://docs.jboss.org/cdi/api/2.0.EDR2'
         ' JavaDoc
         i.fa.fa-link
       ' |
-      a.modal-link data-toggle="modal" href="#maven-cdi_2_0_EDR1"
+      a.modal-link data-toggle="modal" href="#maven-cdi_2_0_EDR2"
         ' Maven
         i.fa.fa-download-alt
       td
-        a href='http://download.jboss.org/weld/3.0.0.Alpha13/'
+        'coming soon
+        //a href='http://download.jboss.org/weld/3.0.0.Alpha13/'
           ' Weld 3.0.0.Alpha13
           i.fa.fa-download
       td
         /%a{:href=>'http://openwebbeans.apache.org/download.html', :target=>'_BLANK'}
-        /  Apache OWB 1.6
-        /  %i.fa.fa-download
+          Apache OWB 1.6
+          %i.fa.fa-download
       td
-        a href='http://download.jboss.org/cdi/tck/2.0.0.Alpha6/cdi-tck-2.0.0.Alpha6-dist.zip'
+        a href='http://downloads.jboss.org/cdi/tck/2.0.0.Alpha8/'
           ' TCK 2.0.Alpha
           i.fa.fa-download
       td
@@ -197,19 +198,19 @@ p
 .alert.alert-success
   ' This process is commonly known as
   a href="http://en.wikipedia.org/wiki/Multi-licensing"  dual-licensing
-  ' \. The CDI specification is dual-licensed as it allows Red Hat to follow JCP rules and provide a liberally licensed version of the specification.
+  ' . The CDI specification is dual-licensed as it allows Red Hat to follow JCP rules and provide a liberally licensed version of the specification.
 
 
 - #Create Maven Modals
-div.modal.fade id="maven-cdi_2_0_EDR1" role="dialog" tabindex="-1"
+div.modal.fade id="maven-cdi_2_0_EDR2" role="dialog" tabindex="-1"
   .modal-dialog
     .modal-content
       .modal-header
         a.close data-dismiss='modal'
           i.fa.fa-remove
-        h3 Using CDI 2.0-EDR1 from Maven
+        h3 Using CDI 2.0-EDR2 from Maven
       .modal-body.clearfix
-        p To use CDI 2.0-EDR1, add this dependency:
+        p To use CDI 2.0-EDR2, add this dependency:
         pre
           code#example
             '
@@ -217,7 +218,7 @@ div.modal.fade id="maven-cdi_2_0_EDR1" role="dialog" tabindex="-1"
                 &lt;dependency&gt;
                   &lt;groupId&gt;javax.enterprise&lt;/groupId&gt;
                   &lt;artifactId&gt;cdi-api&lt;/artifactId&gt;
-                  &lt;version&gt;2.0-EDR1&lt;/version&gt;
+                  &lt;version&gt;2.0-EDR2&lt;/version&gt;
                   &lt;scope&gt;provided&lt;/scope&gt;
                 &lt;/dependency&gt;
               &lt;/dependencies&gt;
