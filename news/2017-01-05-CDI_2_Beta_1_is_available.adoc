@@ -1,0 +1,54 @@
+---
+title: "CDI 2.0 Beta 1 is available"
+summary: CDI 2.0 is around the corner. Its feature list is now closed and Beta RI is available
+layout: post
+authors: [asd]
+tags: [Release]
+desc: CDI 2.0 release information
+priority: 1
+change_frequency: daily
+---
+
+After more than 2 years of work CDI 2.0 is around the corner. Its feature list is now complete and Beta for RI (Weld 3.0 Beta1) is available for download.
+This post lists what's included and give you some insight on the final release and what comes next
+
+== Give it a try
+
+First, you may want to start testing the RI and discover the new API, all the resources are listed below:
+
+* You can browse the spec document in http://docs.jboss.org/cdi/spec/2.0.Beta1/cdi-spec.html[html^] or http://docs.jboss.org/cdi/spec/2.0.Beta1/cdi-spec.pdf[pdf]
+* If you prefer Javadoc you can read it http://docs.jboss.org/cdi/api/2.0.Beta1[here]
+* CDI 2.0 Beta API is available on http://search.maven.org/#artifactdetails|javax.enterprise|cdi-api|2.0.Beta1|jar[Maven Central^]. You can also download the jar http://search.maven.org/remotecontent?filepath=javax/enterprise/cdi-api/2.0.Beta1/cdi-api-2.0.Beta1.jar[here]
+* Last but not least, the reference implementation (Weld 3.0 Beta 1) is downloadable http://download.jboss.org/weld/3.0.0.Beta1/[here^] and can be also be used from http://search.maven.org/#artifactdetails|org.jboss.weld|weld-core-impl|3.0.0.Beta1|jar[Maven^]
+
+
+== Major features included in CDI 2.0
+
+This CDI 2.0 includes important changes for the platform.
+
+* The spec was split into http://docs.jboss.org/cdi/spec/2.0.Beta1/cdi-spec.html#doc_organisation[3 parts^] to add the support for Java SE.
+* API to http://docs.jboss.org/cdi/spec/2.0.Beta1/cdi-spec.html#se_bootstrap[boot CDI in Java SE^].
+* Observers (i.e. events) http://docs.jboss.org/cdi/spec/2.0.Beta1/cdi-spec.html#observer_ordering[ordering^].
+* http://docs.jboss.org/cdi/spec/2.0.Beta1/cdi-spec.html#firing_events_asynchronously[Asynchronous event^].
+* http://docs.jboss.org/cdi/spec/2.0.Beta1/cdi-spec.html#configurators[Configurators^] for major SPI elements
+* Possibility to http://docs.jboss.org/cdi/spec/2.0.Beta1/cdi-spec.html#process_observer_method[configure or veto observer methods^].
+* Add http://docs.jboss.org/cdi/spec/2.0.Beta1/cdi-spec.html#built_in_annotation_literals[built-in annotation literals^]
+* Make possible to http://docs.jboss.org/cdi/spec/2.0.Beta1/cdi-spec.html#interception_factory[apply interceptor on producers^].
+* Alignment on Java 8 features (streams, lambdas, repeating qualifiers)
+
+A lot of other small feature will be delivered. Refer to the coming release notes to check them all.
+
+== Release agenda
+
+If everything stays on track we should send the PFD (proposed final draft) with TCK and RI to the JCP soon.
+
+If the JCP ballot is green, CDI 2.0 final could be released before end of February.
+
+
+== What's next
+
+Our release plan for CDI 2.0 has always been to deliver it before Java EE 8 to let other spec grab our new features and make the best out of them.
+
+We are still considering to start working on CDI 2.1 to clarify or add the few features needed for Java EE 8 and beyond.
+
+Stay tuned.
