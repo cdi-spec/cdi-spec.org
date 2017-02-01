@@ -1,0 +1,65 @@
+---
+title: "CDI 2.0 is in public review"
+summary: CDI 2.0 is now in public review.
+layout: post
+authors: [asd]
+tags: [Release]
+desc: CDI 2.0 PRD release information
+priority: 1
+change_frequency: daily
+---
+
+CDI 2.0 is now in public review status, you can now grab the https://jcp.org/aboutJava/communityprocess/pr/jsr365/index.html[PRD of the spec^] ot download the https://jcp.org/aboutJava/communityprocess/pr/jsr365/index.html[Javadoc^].
+
+== Major features included in CDI 2.0
+
+This CDI 2.0 includes important changes for the platform.
+
+* The spec was split into http://docs.jboss.org/cdi/spec/2.0-PRD/cdi-spec.html#doc_organisation[3 parts^] to add the support for Java SE.
+* API to http://docs.jboss.org/cdi/spec/2.0-PRD/cdi-spec.html#se_bootstrap[boot CDI in Java SE^].
+* Observers (i.e. events) http://docs.jboss.org/cdi/spec/2.0-PRD/cdi-spec.html#observer_ordering[ordering^].
+* http://docs.jboss.org/cdi/spec/2.0-PRD/cdi-spec.html#firing_events_asynchronously[Asynchronous event^].
+* http://docs.jboss.org/cdi/spec/2.0-PRD/cdi-spec.html#configurators[Configurators^] for major SPI elements
+* Possibility to http://docs.jboss.org/cdi/spec/2.0-PRD/cdi-spec.html#process_observer_method[configure or veto observer methods^].
+* Add http://docs.jboss.org/cdi/spec/2.0-PRD/cdi-spec.html#built_in_annotation_literals[built-in annotation literals^]
+* Make possible to http://docs.jboss.org/cdi/spec/2.0-PRD/cdi-spec.html#interception_factory[apply interceptor on producers^].
+* Alignment on Java 8 features (streams, lambdas, repeating qualifiers)
+
+A lot of other small feature will be delivered. Refer to the coming release notes to check them all.
+
+== RI is also available
+
+We also provide a pre-release for the RI and API, thus You can start testing CDI 2.0 with Weld 3.0 CR1 that you can download http://download.jboss.org/weld/3.0.0.CR1/[here^].
+
+
+To develop your CDI 2.0 code just switch cdi-api in your pom.xml to this version:
+
+----
+<dependency>
+    <groupId>javax.enterprise</groupId>
+    <artifactId>cdi-api</artifactId>
+    <version>2.0-PFD</version>
+</dependency>
+----
+
+
+We also provide a http://download.jboss.org/weld/3.0.0.CR1/[patch for WildFly 10.1.0^] to help users evaluate CDI 2.0 under a Java EE application server.
+
+To do so just download and unzip http://wildfly.org/downloads/[WildFly 10.1.0.Final^], then download the patch (no need to unzip it), go to the `<WILDFLY_HOME>/bin` directory and patch the server with the following command:
+
+`./jboss-cli.sh --command="patch apply <PATH_TO_PATCH>/wildfly-10.1.0.Final-weld-3.0.0.CR1-patch.zip"`
+
+you should obtain the following result in the console:
+
+----
+{
+    "outcome" : "success",
+    "result" : {}
+}
+----
+
+Your WildFly server is now patched to use CDI 2.0 and Weld 3.0 CR1.
+
+
+Happy testing!
+
