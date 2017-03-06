@@ -3,45 +3,18 @@ priority: 1
 change_frequency: weekly
 ---
 
-=== CDI 2.0 Hot news
+== CDI 2.0
 
-You'll find all CDI 2.0 EG meeting log and minutes http://transcripts.jboss.org/meeting/irc.freenode.org/cdi-dev/index.html[here^]
+CDI 2.0 is part of Java EE 8 but is also the first CDI version that support standalone mode on Java SE.
 
-_(updated on July 3nrd)_
+In this version major enhancements are:
 
-
-CDI 2.0 Early draft has been released. The review is about to begin on the JCP.
-
-Please read the  link:/news/2015/07/03/CDI-2_0-EDR1-released/[announcement] to learn about this draft verion.
-
-=== Contribution
-
-Contribution to CDI 2.0 is open to all (no need to be part of the Expert Group or the JCP). If you want to contribute, the best place to start is to read our link:/news/2014/08/26/CDI-20_needs_you/[blog post] on the subject.
-
-=== Work status
-
-Work on CDI 2.0 is based on different workshops as explained  link:/news/2014/10/06/CDI-20_working_method/[here^].
-The table below give to resource to different workshop. It will be updated
-
-
-[width="100%",cols="15,15,25,45",options="header"]
-|===
-
-|Workshop|Status |Doc link|Description
-
-|Parts|API was split|http://bit.ly/cdi2wsprt|working on modularity (sub specs)
-
-|Events|finished|link:https://docs.jboss.org/cdi/spec/2.0.EDR1/cdi-spec.html#events[see spec]|enhance events (asynchronous, ordering,etc...)
-
-|AOP|started|http://bit.ly/cdi2wsaop|Interceptors & Decoractors enhancement
-
-|Java SE|first part done|link:https://docs.jboss.org/cdi/spec/2.0.EDR1/cdi-spec.html#bootstrap-se[see spec^]|Boostrap CDI in Java SE
-
-|JDK 8 |started|http://bit.ly/cdi2wsjk8|enhancement from JDK 8
-
-|SPI |not started|http://bit.ly/cdi2wsspi|more open SPI for 3rd party
-
-|Contexts |not started|http://bit.ly/cdi2wsctx|provide a way to start/stop contexts for SE mode
-
-
-|===
+* The spec was split into http://docs.jboss.org/cdi/spec/2.0-PRD/cdi-spec.html#doc_organisation[3 parts^] to add the support for Java SE.
+* API to http://docs.jboss.org/cdi/spec/2.0-PRD/cdi-spec.html#se_bootstrap[boot CDI in Java SE^].
+* Observers (i.e. events) http://docs.jboss.org/cdi/spec/2.0-PRD/cdi-spec.html#observer_ordering[ordering^].
+* http://docs.jboss.org/cdi/spec/2.0-PRD/cdi-spec.html#firing_events_asynchronously[Asynchronous event^].
+* http://docs.jboss.org/cdi/spec/2.0-PRD/cdi-spec.html#configurators[Configurators^] for major SPI elements
+* Possibility to http://docs.jboss.org/cdi/spec/2.0-PRD/cdi-spec.html#process_observer_method[configure or veto observer methods^].
+* Add http://docs.jboss.org/cdi/spec/2.0-PRD/cdi-spec.html#built_in_annotation_literals[built-in annotation literals^]
+* Make possible to http://docs.jboss.org/cdi/spec/2.0-PRD/cdi-spec.html#interception_factory[apply interceptor on producers^].
+* Alignment on Java 8 features (streams, lambdas, repeating qualifiers)

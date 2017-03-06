@@ -5,7 +5,7 @@ title: Contexts and Dependency Injection for Java Specification
 desc: Latest news about CDI 2.0 , JCP pages, Servers supporting CDI, Overview of Contexts and Dependency Injection for Java EE (CDI),
 change_frequency: weekly
 ---
-.col-md-12
+.col-md-8
   ul.nav.nav-tabs-center#front-menu
     li.dropdown
       a.dropdown-toggle href='#' data-toggle='dropdown'
@@ -13,25 +13,27 @@ change_frequency: weekly
         b.caret
       ul.dropdown-menu
         li
-          a href='#cdi1_0' data-toggle='tab' CDI 1.0
+          a href='#cdi2_0' data-toggle='tab' CDI 2.0
         li
           a href='#cdi1_1' data-toggle='tab' CDI 1.1 & 1.2
+        li
+          a href='#cdi1_0' data-toggle='tab' CDI 1.0
     li.dropdown
       a.dropdown-toggle href='#' data-toggle='dropdown'
         'JCP pages
         b.caret
       ul.dropdown-menu
         li
-          a href='http://jcp.org/en/jsr/detail?id=299'
-            'CDI 1.0 - JSR 299
+          a href='http://jcp.org/en/jsr/detail?id=365' target='_blank'
+            'CDI 2.0 - JSR 365
             i.fa.fa-external-link.fa-w
         li
-          a href='http://jcp.org/en/jsr/detail?id=346'
+          a href='http://jcp.org/en/jsr/detail?id=346' target='_blank'
             'CDI 1.2 - JSR 346
             i.fa.fa-external-link.fa-w
         li
-          a href='http://jcp.org/en/jsr/detail?id=365'
-            'CDI 2.0 - JSR 365
+          a href='http://jcp.org/en/jsr/detail?id=299' target='_blank'
+            'CDI 1.0 - JSR 299
             i.fa.fa-external-link.fa-w
     li
       a href='#servers' data-toggle='tab' Servers
@@ -65,21 +67,15 @@ change_frequency: weekly
         * Add `@WithAnnotations` as a way of improving extension loading performance ([read more](http://docs.jboss.org/cdi/spec/1.2/cdi-spec.html#process_annotated_type))
         * Many minor improvements to portable extensions ([read more](http://docs.jboss.org/cdi/spec/1.2/cdi-spec.html#spi))
 
-    /.tab-pane.fade#cdi2
+    .tab-pane.fade#cdi2_0
       = partial('cdi2.adoc')
     .tab-pane.fade.in.active#overview
-      .col-md-8
-        h2 What is CDI?
-        = partial('cdi_1_0.adoc')
-        markdown:
-          Latest Release
-          --------------
-  
-          The latest release of CDI is 1.2. You can [download](http://docs.jboss.org/cdi/spec/1.2/cdi-spec.html) the spec or [browse the javadoc](http://docs.jboss.org/cdi/api/1.2/).
-      .col-md-4
-        a.twitter-timeline data-widget-id="564817995261026304" href="https://twitter.com/cdispec"  Tweets by @cdispec
-        javascript:
-          !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+      h2 What is CDI?
+      = partial('cdi_1_0.adoc')
+      markdown:
+        Latest Release
+        --------------
+        The latest release of CDI is 1.2. You can [download](http://docs.jboss.org/cdi/spec/1.2/cdi-spec.html) the spec or [browse the javadoc](http://docs.jboss.org/cdi/api/1.2/).
     .tab-pane.fade#cdi1_0
       h2 CDI 1.0
       = partial('cdi_1_0.adoc')
@@ -171,3 +167,8 @@ change_frequency: weekly
             .caption
               h4 JOnAS 5.3.0
               h5 using Weld 1.1.10 / CDI 1.0
+
+.col-md-4
+  a.twitter-timeline data-widget-id="564817995261026304" href="https://twitter.com/cdispec"  Tweets by @cdispec
+  javascript:
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
