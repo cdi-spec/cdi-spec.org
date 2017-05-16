@@ -1,0 +1,120 @@
+---
+title: "CDI 2.0 is released"
+summary: CDI 2.0 and its RI are now released.
+layout: post
+authors: [asd]
+tags: [Release]
+desc: CDI 2.0 is released
+priority: 1
+change_frequency: daily
+---
+
+Our https://www.jcp.org/en/jsr/detail?id=365[JCP Expert Group^] is pleased to announce the release of Contexts and Dependency Injection for Java 2.0.
+
+Specification, reference implementation (*JBoss Weld 3.0.0.Final*) and TCK can be downloaded http://www.cdi-spec.org/download/[here^].
+
+== What is CDI?
+
+CDI is one of the major Java EE specification.
+
+It was introduced with Java EE 6 in 2009, updated  for Java EE 7 and now with version 2.0 it is ready for Java EE 8 as well for Java SE or other platform like http://microprofile.io[Micropofile^].
+
+CDI defines a powerful set of complementary services that help improve the structure of application code.
+
+* A well-defined lifecycle for stateful objects bound to lifecycle contexts, where the set of contexts is extensible
+* A sophisticated, typesafe dependency injection mechanism, including the ability to select dependencies at either development or deployment time, without verbose configuration
+* Support for Java EE modularity and the Java EE component architecture?the modular structure of a Java EE application is taken into account when resolving dependencies between Java EE components
+* Integration with the Unified Expression Language (EL), allowing any contextual object to be used directly within a JSF or JSP page
+* The ability to decorate injected objects
+* The ability to associate interceptors to objects via typesafe interceptor bindings
+* An event notification model
+* A web conversation context in addition to the three standard web contexts defined by the Java Servlets specification
+* An SPI allowing portable extensions to integrate cleanly with the container
+
+== Major features included in CDI 2.0
+
+This CDI 2.0 includes important changes for the platform.
+
+* The spec was split into http://docs.jboss.org/cdi/spec/2.0/cdi-spec.html#doc_organisation[3 parts] to add the support for Java SE.
+* API to http://docs.jboss.org/cdi/spec/2.0/cdi-spec.html#se_bootstrap[boot CDI in Java SE].
+* Observers (i.e. events) http://docs.jboss.org/cdi/spec/2.0/cdi-spec.html#observer_ordering[ordering].
+* http://docs.jboss.org/cdi/spec/2.0/cdi-spec.html#firing_events_asynchronously[Asynchronous event].
+* http://docs.jboss.org/cdi/spec/2.0/cdi-spec.html#configurators[Configurators] for major SPI elements
+* Possibility to http://docs.jboss.org/cdi/spec/2.0/cdi-spec.html#process_observer_method[configure or veto observer methods].
+* Add http://docs.jboss.org/cdi/spec/2.0/cdi-spec.html#built_in_annotation_literals[built-in annotation literals]
+* Make possible to http://docs.jboss.org/cdi/spec/2.0/cdi-spec.html#interception_factory[apply interceptor on producers].
+* Alignment on Java 8 features (streams, lambdas, repeating qualifiers)
+
+A lot of other small feature will be delivered. Refer to the coming release notes to check them all.
+
+== Start using CDI 2.0 today with Weld 3.0
+
+To develop your CDI 2.0 code just add cdi-api 2.0 your pom.xml.
+
+[source,xml]
+----
+<dependency>
+    <groupId>javax.enterprise</groupId>
+    <artifactId>cdi-api</artifactId>
+    <version>2.0</version>
+</dependency>
+----
+
+You can then run your code on Java SE or on WildFly 
+
+=== Running on Java SE with Weld SE
+
+You can then run your code on Java SE thanks to Weld SE, just add this dependency to your project:
+
+[source,xml]
+----
+<dependency>
+    <groupId>org.jboss.weld.se</groupId>
+    <artifactId>weld-se-shaded</artifactId>
+    <version>3.0.0.Final</version>
+</dependency>
+----
+
+You can then, bootstrap the CDI container in your code like this
+
+[source,java]
+----
+public static void main(String... args) {
+    try(SeContainer container = SeContainerInitializer.newInstance().initialize()) {
+        // start the container, retrieve a bean and do work with it
+        MyBean myBean = container.select(MyBean.class).get();
+        myBean.doWork();
+    }
+    // shuts down automatically after the try with resources block.
+}
+----
+
+
+=== Running on Java EE by patching WildFly
+
+We also provide a http://download.jboss.org/weld/3.0.0.Final/[patch for WildFly 10.1.0] to update Weld and thus CDI version on JBoss WildFly.
+
+To do so just download and unzip http://wildfly.org/downloads/[WildFly 10.1.0.Final], then download the patch (don't unzip it), go to the `<WILDFLY_HOME>/bin`  directory and patch the server with the following command:
+
+
+`./jboss-cli.sh --command="patch apply <PATH_TO_PATCH>/wildfly-10.1.0.Final-weld-3.0.0.Final-patch.zip"`
+
+
+you should obtain the following result in the console:
+
+[source,json]
+----
+{
+    "outcome" : "success",
+    "result" : {}
+}
+----
+
+Your WildFly server is now patched to use CDI 2.0 and Weld 3.0.0.Final.
+
+GlassFish 5.0 with CDI 2.0 support should be release in the coming weeks.
+
+[[stay-tuned]]
+== Stay tuned
+
+We'll provide more article on CDI 2.0 new features so stay tuned by following https://twitter.com/cdispec[@cdispec] twitter account.
