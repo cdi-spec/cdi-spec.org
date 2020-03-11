@@ -46,7 +46,7 @@ GEM
       http_parser.rb (~> 0.6.0)
     eventmachine (1.2.7)
     execjs (2.7.0)
-    ffi (1.9.17)
+    ffi (1.12.2)
     formatador (0.2.5)
     git (1.6.0)
       rchardet (~> 1.8)
