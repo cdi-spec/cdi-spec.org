@@ -1,0 +1,100 @@
+---
+title: "CDI for the future"
+summary: How to prepare CDI for the future.
+layout: post
+authors: [asd]
+tags: [Proposal]
+desc: CDI future
+priority: 1
+change_frequency: daily
+---
+
+image::inside_quark_web.jpg[width="285",float="right"]
+A few months  ago, CDI turned 10! Yes, CDI 1.0 was released 10 years ago and is today one of the most successful specifications in Java EE and now Jakarta EE. Providing a very efficient programming model and elegant means to integrate with 3rd party technology it rapidly became the Java EE cornerstone. As other specifications were adopting its programming model, CDI brought a unified way to write Java EE code and made the platform more consistent than before. So when MicroProfile was launched nearly four years ago, it was obvious that CDI should be part of the core platform along with JAX-RS and JSON-P. Today, MicroProfile programming model relies deeply on CDI and the platform success is partly due to the consistency CDI brings to developer experience.
+
+Yet, CDI was designed more than 10 years ago at a time when monolithic applications were deployed as ears and wars sharing a highly dynamic yet monolithic application server. Things have changed, where containers are immutable, obviating the need for hot redeploy and dynamic discovery, and aspects that we used to rely on traditional application servers for, such as availability and redundancy are now handled using cloud orchestration with kubernetes. We also have seen a shift from monolithic apps to a greater emphasis on decoupling and resilience through microservices.  These factors have given rise to the “single app stack”, where the framework and the application are fused as one.  With traditional application servers,  applications had to be dynamic *because* they needed to differentiate their needs on shared application server infrastructure, where configuration and resources applied equally to all applications. With single application stacks, applications can express their needs more statically because they are scoped to a single application.
+
+In addition, today's deployments require increasing efficiency to achieve cost reduction, whether deploying to cloud providers or in-house virtualized data centers. A single application server instance  is often replaced by a dozen microservice “single-app stack”  instances, with double or triple that amount to achieve redundancy. CDI, as it is today, is not suited for this cloud ready approach. Some of its features imply a rather heavy resource consumption (both boot-time and memory usage) in its implementations. +
+This blog post covers some of my CDI vision for the future to make the specification relevant for the next 10 years.
+
+== How to make CDI cloud ready?
+
+If we want to make CDI a cloud ready specification we have to look into all of its requirements that impact memory, cpu, and more broadly performance. As part of that we should revisit which capabilities and features are still required, since as mentioned above application architecture and deployment environments have changed significantly over the years. Although, that alone is not enough, we need to ensure CDI is flexible and adaptable enough to allow for innovative implementation approaches, such as build-time injection wiring.
+
+Of course, It should be possible to implement runtime-based approaches in a more efficient manner, and in many ways these goals are complimentary.  One example of this is overly aggressive bean discovery and thus the extensive type scanning required by CDI during initialization.  While bean discovery allows seamless integration in that 3rd party non-CDI classes can be discovered as bean, storing state and generating events on classes which were never intended to be a bean is very costly. That’s the reason why, when we introduced CDI for Java SE in CDI 2.0, we provided a way to disable https://docs.jboss.org/cdi/spec/2.0/cdi-spec.html#se_container_initializer[bean discovery] and let the developers explicitly declare classes that should become beans or allow the creation of synthetic beans before launching the container.
+
+== Eclipse MicroProfile Challenges
+
+The CDI spec was originally written with Jakarta EE integration in mind, and as such, it assumes the full platform is available and thus the spec and the TCKs require JSF, EL, and EJB. This is not the best fit for MicroProfile, since it targets microservice usage patterns. Under MicroProfile not even Servlet is required, let alone EJB, EL, and JSF. Likewise, MicroProfile can’t be based on CDI SE, since SE does not include JAX-RS integration, which is essential for REST based microservices.
+
+To solve this problem, the MicroProfile specifications effectively depend on a subset of the CDI spec, explicitly noting the above API elements are to be excluded. This is awkward and has led to confusion about how one achieves compliance.
+
+Ultimately, the problem is that the CDI spec couples too many elements together. We need greater flexibility to allow for as many different platforms and environments to adopt and build off the standard.
+
+== Introducing CDI Lite
+
+If you followed the CDI 2.0 expert group work a few years back, this title should ring a bell. CDI Lite was in the air back then, since we did expect some future need of added flexibility, but due to a lack of time and clear target we postponed its addition to the spec.
+
+With the CDI programming model being core to MicroProfile, it seems obvious that its use cases should be considered as a first-class usage of CDI. Further, we should enable CDI composition into any other  platform, such as future Jakarta EE profiles, or combining it with other frameworks on top of plain old Java as a contribution to future innovations within the Java ecosystem.
+
+So what should CDI Lite’s goal be? In my opinion we should define it as: “the core subset of CDI features that enables the greatest number of CDI implementations, CDI usage within the Java ecosystem, and opens the door to innovation, notably build-time injection approaches.”
+
+Not only would this improve the existing CDI ecosystem, it opens the door to many other interesting use cases such as:
+
+* *Transcompilation.* It becomes possible to compile Java based injection into other language environments, such as Javascript. This is currently possible with Dagger and Kodein for Kotlin but not CDI
+* *Mobile platform support.* By enabling build time injection, it also becomes possible for an implementer to target mobile platforms such as Android.
+* *Native Compilation.* By enabling build-time Java, the door is also opened to generating optimal native compiled images utilizing static compilers such as the GraalVM project.
+
+=== How to add CDI lite to the spec?
+
+Today, thanks to CDI 2.0 work, the spec is split into 3 parts: core, CDI for SE and CDI for EE.
+
+.Current CDI spec layering
+image::cdi2-layers.png[]
+
+Users and implementers are already familiar with the notion of different “flavors” for CDI.  Adding CDI Lite implies some work but the spec is already well organized to support such a change. Roughly, CDI lite should be defined as the core subset of which core, EE and SE extend. Further the EE spec integrations themselves can be defined in such a way so that each framework’s integration is optional, allowing any combination such as a standalone JAX-RS implementation with CDI support. Additionally this would enable future additional Jakarta EE profiles beyond just web and full. +
+This evolution would split Core CDI in CDI Lite and “Heavy CDI” as shown below. The CDI lite part could benefit CDI for Se as other platforms like MicroProfile.
+
+.Spliting CDI Core in 'lite' and 'full'
+image::cdi3-layers.png[]
+
+
+=== CDI Lite Scope
+
+The essential fundamental core of CDI is the programming model exposed to users which enables uniform annotation driven injection and further supports contextual state driven injection. Just the annotations defined in JSR-330 are not enough, there is also the need for a number of other common patterns and usages to make the framework complete.
+
+Support popular CDI features like:
+
+* Beans (class, producers and synthetic beans)
+* CDI DI (typesafe resolution, qualifiers, dynamic lookup)
+* Most built-in scopes (singleton, application, request, and dependent)
+* Contextual instances and their lifecycle
+* Interceptors
+* Events
+
+Other features may be added but may not have reached broad adoption like decorators, transactional events or specialization, so additional discussion would be needed.. Ideally we would utilize the opportunity to reduce technical debt, since each increases code complexity, and some of these underused capabilities are a major source of bug reports:
+
+. Decorators have 67 issues in the RI alone
+. Specialization has 28 RI issues and 6 open spec issues
+
+
+=== Outside CDI Lite Scope
+
+A number of features are only relevant to particular framework integrations. For example SessionScope is only relevant if the runtime environment implements Servlet (HttpSession), and ConversationScope is incomplete without EL and JSF. These technologies are not needed in a microservice scenario, as is the case in MicroProfile, and so should not be required.
+
+Another capability that should be excluded from CDI Lite is portable extensions, but still part of CDI Full. Portable extensions run in opposition to the goals described above, since they are inherently a runtime-only contract which mandates a very specific container initialization lifecycle. As an example, portable extensions are often stateful, but they are not serializable, and any state they have can be passed into other beans or as part of lifecycle events that are required to occur. Further they are allowed to manipulate almost anything pertaining to a bean at just about every phase of the CDI lifecycle. These factors effectively preclude any implementation that aims to pregenerate wiring at build time. Yet extension implementations rarely need such an open-ended do-anything-you-want API.
+
+Instead,  the CDI-Lite could address these concerns through purpose-built SPIs, such as  introducing a new explicit way to register annotated types and beans. It’s already partly done in CDI for SE in which users can programmatically add synthetic beans without portable extensions.
+
+All of the elements outside of the CDI-Lite scope would still be a part of the full specification, as the intention is not to affect existing implementations, only to open the door to new approaches and new implementations.
+
+In the end, we would end up with a much more flexible standard that benefits everyone and carries over the same powerful programming model to new use-cases while bringing  improved efficiency to modern cloud deployment scenarios.  +
+CDI Llite introduction wouldn’t be the pretext to deprecate existing features but to make the framework more modular and ready for all todays use cases and make it ready for future evolution.
+
+
+== Conclusion
+
+As you may guess this spec evolution idea will require a lot of analysis and discussion. Should the Jakarta Contexts and Dependency Injection Project agree to go this way, we could imagine starting work on this new CDI version, but as usual, feedback from the community is very important to us. So feel free to share your thoughts in the comments of this post.
+
+Thanks for helping us keep the CDI programming model around for the next 10 years!
+

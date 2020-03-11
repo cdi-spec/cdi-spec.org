@@ -5,7 +5,7 @@ desc: Latest news about CDI
 ---
 
 .row
-  .col-md-9
+  .col-md-12
     .posts
       - page.posts.each do |post|
         = partial('post.html.slim', {'parent'=>page, 'post'=>post, 'alone' => false})
@@ -79,7 +79,7 @@ desc: Latest news about CDI
           li.disabled
             a href='#'  Last
 
-  .col-md-3
+/  .col-md-3
     .follow-scroll.hidden-xs
       div style='margin-bottom:20px;text-align:center;' 
         = partial( 'subscribe.html.slim' )

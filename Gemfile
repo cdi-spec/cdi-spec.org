@@ -1,7 +1,7 @@
 # A sample Gemfile
 source "https://rubygems.org"
 
-gem 'awestruct', '~> 0.5.7'
+gem 'awestruct', '~> 0.6.0'
 gem 'asciidoctor-diagram'
 gem 'slim'
 gem 'redcarpet'

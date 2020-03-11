@@ -3,22 +3,22 @@ layout: base
 ---
 
 .row
-  .col-md-9
+  .col-md-12
     = partial('post.html.slim', {'parent'=>page, 'post'=>page, 'alone' => true})
   
-  .col-md-3
+/  .col-md-3
     aside.hidden-xs
       .panel.panel-default
         .panel-heading
           h3.panel-title
             | Tag Cloud
-        .panel-footer style='text-align:justify;' 
+        .panel-footer style='text-align:justify;'
           = site.posts_tag_cloud
-          
+
     aside.visible-xs
       .panel.panel-default
         .panel-heading
           h3.panel-title
             | Tag Cloud
-        .panel-footer style='text-align:justify;' 
+        .panel-footer style='text-align:justify;'
           = site.posts_tag_cloud
