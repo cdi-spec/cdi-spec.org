@@ -1,0 +1,289 @@
+---
+title: "Build Compatible Extensions Proposal"
+summary: Description of an extension SPI for CDI lite
+layout: post
+authors: [ladt]
+tags: [Proposal]
+desc: Build Compatible Extensions Proposal
+priority: 1
+change_frequency: daily
+---
+
+
+A few months back we shared our vision for CDI lite.
+In short, the goal with CDI lite is to make the spec lighter, cloud-friendlier and allow for build-time implementations which are now on the rise.
+
+When we started thinking about a “lite” variant of CDI, amenable to build-time processing, we understood that an alternative to Portable Extensions is necessary. Subsequent discussion on the MicroProfile mailing list confirmed that.
+
+We explored several variants of how the API might look like. This blog post shows one that, we believe, has the most potential. We call it _Build Compatible Extensions_, but the name, as everything else described here, is up for debate.
+
+For our explorations of the API design space, we mostly constrained ourselves to one particularly common use case: annotation transformations. Many things that Portable Extensions allow can be achieved simply by adding an annotation here or removing an annotation there. We know that other transformations are necessary, but the API for annotation transformation is the most developed proposal we have. The other ones are significantly more rough, so bear with us please and submit feedback!
+You can do that in form of a GitHub issue against the https://github.com/eclipse-ee4j/cdi/issues[CDI repository] and add the `lite-extension-api` label to your issue.
+
+Before we start, we’d also like to note that in this text, we assume the reader (that is, you!) is familiar with CDI and preferably also Portable Extensions, as we expect some knowledge and don’t explain everything. We also make references to Portable Extensions on several occasions.
+
+== Extensions
+
+In our proposal, Build Compatible Extensions are simply methods annotated with an _extension annotation_. Extension annotations correspond to phases in which extensions are processed. There are 4 phases:
+
+. *@Discovery*: adding classes to application, registering custom contexts
+. *@Enhancement*: transforming annotations
+. *@Synthesis*: registering synthetic beans and observers
+. *@Validation*: performing custom validation
+
+There are some constraints we put on these methods (such as: they must be `public`), but they should be pretty obvious and shouldn’t be limiting anyone. The container automatically finds extensions and invokes them when time is right.
+When exactly are the extensions invoked can’t be defined in too much detail, because we want implementations to be able to invoke them at build time (e.g. during application compilation) or runtime (e.g. during application deployment). It certainly happens before the application starts. Extensions in earlier phases are guaranteed to run before extensions in later phases.
+
+
+Extensions can declare an arbitrary number of parameters, all of which are supplied by the container. There’s a set of predefined types of parameters for each phase, and all implementations would have to support that. We’re also thinking of designing an SPI that would allow anyone to contribute support for other types of parameters.
+A class can declare multiple extension methods, in which case they are all invoked on a single instance of the class. If you need to control order of extension invocations, there’s an annotation *`@ExtensionPriority`* just for that.
+This is a lot of text already, so let’s take a look at an example:
+
+[source,java]
+----
+public class MyExtension {
+    @Enhancement
+    public void doSomething() {
+        System.out.println("This is an extension, yay!");
+    }
+}
+----
+
+This doesn’t really do anything, just prints a message whenever the extension is executed. Let’s create something more interesting. Say, moving a qualifier annotation from one class to another. Let’s assume that we have these classes in our application.
+
+=== A qualifier annotation:
+
+[source,java]
+----
+@Qualifier
+@Retention(RUNTIME)
+@interface MyQualifier {
+}
+----
+
+=== A service interface:
+
+[source,java]
+----
+interface MyService {
+    String hello();
+}
+----
+
+=== Two implementations, one with qualifier and the other unqualified:
+
+[source,java]
+----
+@Singleton
+@MyQualifier
+class MyFooService implements MyService {
+	    @Override
+	    public String hello() {
+	    	    return "foo";
+	    }
+}
+
+@Singleton
+class MyBarService implements MyService {
+    @Override
+	    public String hello() {
+	    	    return "bar";
+	    }
+}
+----
+
+=== A class that uses the service
+
+[source,java]
+----
+@Singleton
+class MyServiceUser {
+	    @Inject
+	    @MyQualifier
+	    MyService myService;
+}
+----
+
+Here, it’s pretty clear that when the CDI container instantiates the `MyServiceUser` class, it will inject a `MyFooService` into the `myService` field.
+With a simple Build Compatible Extension, we can “transfer” the qualifier annotation from `MyFooService` to `MyBarService`:
+
+[source,java]
+----
+class MyExtension {
+    @Enhancement
+    public void configure(ClassConfig<MyFooService> foo,
+                          ClassConfig<MyBarService> bar) {
+        foo.removeAnnotation(it -> it.name()
+            .equals(MyQualifier.class.getName()));
+        bar.addAnnotation(MyQualifier.class);
+  }
+}
+----
+
+I’m sure you understand the extension pretty well already: with this extension present in the application, the CDI container will consider the `MyFooService` _not_ annotated `@MyQualifier`, and at the same time, it will consider the `MyBarService` annotated `@MyQualifier`. In the end, `MyServiceUser.myService` will no longer hold a `MyFooService`; it will hold a `MyBarService` instead.  We have successfully “moved” an annotation from one class to another, thereby altering how the CDI container behaves.
+
+This is a very simple example, but using the exact same API, one can achieve many things. For example, if the CDI container doesn't treat all classes as beans (in CDI Lite, this isn’t required), all it takes to create a bean out of a class is just adding a bean defining annotation:
+`myClass.addAnnotation(Singleton.class);`
+To “veto” a class, again, just add an annotation:
+`myClass.addAnnotation(Vetoed.class);`
+Etc. etc. etc.
+
+== Extension parameters
+
+By now, you should have a general idea of how extensions look like. If you want to know the gory details, read on – but be warned, this is going to be long. You might want to skip directly to the conclusion at the end.
+Still here? Good! As we said above, an extension can declare an arbitrary number of parameters. The parameters are where extensions become interesting, so let’s describe in detail which parameters can extensions declare.
+
+=== `@Discovery`
+
+Just two parameters are possible: `AppArchiveBuilder` to register custom classes so that the CDI container treats them as part of the application, and `Contexts` to register custom contexts.
+
+=== `@Enhancement`
+
+As mentioned above, we have focused mostly on this phase. Therefore, we have a pretty elaborate API which allows inspecting and modifying the application’s annotations.
+
+==== Inspecting code
+
+You can look at all the classes, methods and fields in an application, and make decisions based on your findings. For that, an extension can declare parameters of these types:
+
+* `ClassInfo<MyService>`: to look at one particular class
+* `Collection<ClassInfo<? extends MyService>>`: to look at all subclasses
+* `Collection<ClassInfo<? super MyService>>`: to look at all superclasses
+* `Collection<ClassInfo<?>>`: to look at all classes
+* `Collection<MethodInfo<MyService>>`: to look at all methods declared on one class
+* `Collection<MethodInfo<? extends MyService>>`: to look at all methods declared on all subclasses
+* `Collection<MethodInfo<? super MyService>>`: to look at all methods declared on all superclasses
+* `Collection<MethodInfo<?>>`: to look at all methods declared on all classes
+* `Collection<FieldInfo<MyService>>`: to look at all fields declared on one class
+* `Collection<FieldInfo<? extends MyService>>`: to look at all fields declared on all subclasses
+* `Collection<FieldInfo<? super MyService>>`: to look at all fields declared on all superclasses
+* `Collection<FieldInfo<?>>`: to look at all fields declared on all classes
+
+Such parameters can also be annotated `@WithAnnotations`, in which case, only those classes/methods/fields annotated with given annotations will be provided.
+The `ClassInfo`, `MethodInfo` and `FieldInfo` types give you visibility into all interesting details about given declarations. You can drill down to method parameters, their types, annotations, and so on.
+
+==== The new metamodel
+
+Actually, let’s take a small detour to explain these `ClassInfo`, `MethodInfo` and `FieldInfo` types, because they totally deserve it.
+You will note that they are actually very similar to the Java Reflection API. However, they do not rely on the Reflection API in any way, unlike the types in Portable Extensions. This is an important goal of the entire CDI Lite effort: make it possible to implement CDI completely at build time. To that end, we designed a completely new metamodel for Java classes, which can be implemented solely on top of Java bytecode.
+The type hierarchy looks like this: at the top, there’s an `AnnotationTarget`. That’s basically anything that can be annotated. In Java, this means _declarations_, such as classes or methods, and _types_, such as a type of a method parameter. The `AnnotationTarget` lets you look at its annotations using these 4 methods:
+
+[source,java]
+----
+boolean hasAnnotation(Class<? extends Annotation> annotationType);
+AnnotationInfo annotation(Class<? extends Annotation> annotationType);
+Collection<AnnotationInfo> repeatableAnnotation(
+        Class<? extends Annotation> annotationType);
+Collection<AnnotationInfo> annotations();
+----
+
+The method `hasAnnotation(...)` returns whether a given annotation target (such as a class) has an annotation of given type. The `annotation(...)` method returns information about an annotation of a given type present on a given target (we’ll see more about `AnnotationInfo` soon). The `repeatableAnnotation(...)` method returns all annotations of a given repeatable annotation type, and finally the `annotations()` method returns all annotations present on a given target.
+Let’s stop for a short example. Let’s say we have a `ClassInfo` for the `MyServiceUser` class, which we’ve seen in the previous example. We can do all kinds of interesting things with it, but here, let’s just check if the class has a `@Singleton` annotation, and if so, print all annotations on all fields annotated `@Inject`:
+
+[source,java]
+----
+ClassInfo<MyServiceUser> clazz = ...;
+if (clazz.hasAnnotation(Singleton.class)) { // we know this is true
+    for (FieldInfo<MyServiceUser> field : clazz.fields()) {
+        if (field.hasAnnotation(Inject.class)) {
+            field.annotations().forEach(System.out::println);
+        }
+    }
+}
+----
+
+You might have noticed that the `ClassInfo`, `MethodInfo` and `FieldInfo` types have a type parameter. This is only useful when declaring an extension parameter – there, it expresses a query (such as: give me all fields declared on all subclasses of `MyService`). In all other cases, it can be pretty much ignored.
+Short tour through the `AnnotationInfo` type: you can access the `target()` of the annotation, as well as the annotation `declaration()`, and you can see the annotation attributes using the `hasAttribute(String)` and `attribute(String)` methods. Given that an attribute named `value` is particularly common, there’s also `hasValue()` and `value()`. And finally, there’s `attributes()` to access all annotation attributes at once. Annotation attributes are represented by the `AnnotationAttribute` interface, which has a `name()` and a `value()`. The attribute value is represented by `AnnotationAttributeValue`, which allows figuring out the actual type of the value, as well as obtaining its representation as an ordinary Java type.
+As mentioned above, there are two kinds of `AnnotationTarget`s: declarations and types. Therefore, we have `DeclarationInfo` as the top-level type for representing Java declarations, and `Type` as the top-level type for representing Java types. To distinguish between them, the `AnnotationTarget` interface has 4 methods:
+
+[source,java]
+----
+boolean isDeclaration();
+boolean isType();
+DeclarationInfo asDeclaration();
+Type asType();
+----
+
+The `boolean`-returning methods return whether a given annotation target is a declaration or a type, and the remaining two methods cast to the corresponding type (or throw an exception). You can find similar methods on `DeclarationInfo` and `Type`, for various kinds of declarations and types (for example, `DeclarationInfo` has `isClass()`, `asClass()` and others).
+We represent 4 kinds of Java declarations in the new metamodel: classes, methods (including constructors), method parameters, and fields. We’re thinking about if it’s worth adding a representation for packages, given that they can also be annotated (using `package-info.java`). Any opinion here is welcome!
+Classes are represented by `ClassInfo`, which gives access to the `name()`, `superClass()`, all implemented `superInterfaces()`, all `typeParameters()`, and most importantly, all `constructors()`, `methods()` and `fields()`.
+Constructors and methods are represented by `MethodInfo`, which gives access to the `name()`, `parameters()`, `returnType()` and also `typeParameters()`.
+Method parameters are represented by `ParameterInfo`, which gives access to the `name()`, if it’s present (remember that parameter names don’t have to be present in bytecode!), and the `type()`.
+Finally, fields are represented by `FieldInfo`, which gives access to `name()` and `type()`.
+As you’ve surely noticed, we can often get hold of a type of something (method return type, field type, etc.). That’s a second kind of `AnnotationTarget`. As we’ve mentioned, the top-level representation of types is the `Type` interface, and there are 7 kinds of types: `VoidType`, `PrimitiveType`, `ClassType`, `ArrayType`, `ParameterizedType`, `TypeVariable` and `WildcardType`. We won’t go into details about these, as the text is already getting rather long.
+Instead, let’s get back to extension parameters!
+
+==== Modifying code
+
+Not only can you look at classes, methods and fields in your extension, you can also modify them. These modifications include adding and removing annotations, and are only considered by the CDI container. That is, the rest of the application will _not_ see these modifications!
+For each parameter type mentioned above, such as `ClassInfo<MyService>` or `Collection<MethodInfo<? extends MyService>>`, you can also declare a parameter of the corresponding `*Config` type: `ClassConfig<MyService>`, `Collection<MethodConfig<? extends MyService>>` etc.
+Again you can use `@WithAnnotations` to narrow down the set of provided objects. Also, `ClassConfig` is actually a subtype of `ClassInfo`, so if you need to check a class before you configure it, having a `ClassConfig` is enough. `MethodConfig` and `FieldConfig` are similar.
+The annotation configuration methods provided by these types are:
+
+[source,java]
+----
+void addAnnotation(Class<? extends Annotation> clazz,
+                   AnnotationAttribute... attributes);
+void addAnnotation(ClassInfo<?> clazz,
+                   AnnotationAttribute... attributes);
+void addAnnotation(AnnotationInfo annotation);
+void addAnnotation(Annotation annotation);
+void removeAnnotation(Predicate<AnnotationInfo> predicate);
+void removeAllAnnotations();
+----
+While technically, we could do with just 2 methods, one for adding and one for removing annotations, we decided to have 6 of them to give extension implementations more flexibility. For example, you can use `AnnotationLiteral`s when adding an annotation, similarly to Portable Extensions, but you don’t have to.
+
+==== Other types
+
+While it’s possible to declare a parameter of type `Collection<ClassInfo<?>>`, it’s very likely that you don’t want to do this. It’s a sign that you need to do a more elaborate processing, for which the simple declarative API is not powerful enough. Luckily, we have an imperative entrypoint as well: `AppArchive`. With this, you can programmatically construct queries to find classes, methods and fields. If you also want to configure the classes, methods or fields, you can use `AppArchiveConfig`, which extends `AppArchive`. For example:
+
+[source,java]
+----
+public class MyExtension {
+    @Enhancement
+    public void configure(AppArchiveConfig app) {
+        app.classes()
+            .subtypeOf(MyService.class)
+            .configure()
+            .stream()
+            .filter(it -> !it.hasAnnotation(MyAnnotation.class))
+            .forEach(it -> it.addAnnotation(MyAnnotation.class));
+    }
+}
+----
+
+Again, you can search for classes, methods and fields, based on where they are declared or what annotations they have. For classes, `AppArchive` gives you access to a collection of `ClassInfo` and `AppArchiveConfig` gives you access to a collection of `ClassConfig`. Similarly for methods and fields.
+Above, we have seen a simple way of adding annotations. There are more elaborate ways for advanced use cases, for which you need to create instances of `AnnotationAttribute` or `AnnotationAttributeValue`. In such a case, an extension can declare a parameter of type `Annotations`, which is essentially a factory for these types.
+Similarly, you can declare a parameter of type `Types`, which serves as a factory for instances of `Type`.
+
+=== @Synthesis
+
+The most important parameter type you can declare for extensions in this phase is `SyntheticComponents`. It allows you to register synthetic beans and observers. Note that this API has one significant unsolved problem: how to define the construction and destruction function for synthetic beans, or the observer function for synthetic observers. This needs to work at build time, so we’re entering the realm of bytecode generation and similar fun topics. We have some ideas here, and we’ll work on adding them to the API proposal.
+You can also declare all the parameters that give you access to `ClassInfo`, `MethodInfo` and `FieldInfo`, as described above, including `AppArchive`. What’s more interesting, you can also inspect existing beans and observers in the application. This is very similar to inspecting classes, methods and fields, so let’s take it quickly.
+You can declare a parameter of type `Collection<BeanInfo<? super MyService>>` to obtain information about all beans in the application that have `MyService` or any of its supertypes as one of the bean types. (Note that this example is not very useful, as `Object` is one of the supertypes of `MyService`, and all beans typically have `Object` as one of their types.) Similarly, you can declare a parameter of type `Collection<ObserverInfo<? extends MyEvent>>` to obtain information about all observers in the application that observe `MyEvent` or any of its subtypes. All the other combinations are of course also possible, and if that is not enough, there’s `AppDeployment`, which gives you more powerful querying features, similarly to `AppArchive`. You can find beans based on their scope, types, qualifiers, or the declaring class. Similarly with observers, you can filter on the observed type, qualifiers, or the declaring class.
+
+=== @Validation
+
+The most important parameter type you can declare for extensions in this phase is `Errors`. It allows you to add custom validation errors.
+What can you validate? Pretty much anything. You can get access to classes, methods and fields, just like in the `@Enhancement` phase, and you can also get access to beans and observers, just like in the `@Synthesis` phase. This includes both the `Collection<SomethingInfo<...>>` approach, and `AppArchive` / `AppDeployment` way.
+Error messages can be simple `String`s, optionally accompanied by a `DeclarationInfo`, `BeanInfo` or `ObserverInfo`, or arbitrary `Exception`s.
+In case a validation error is added, the container will prevent the application from successfully deploying (or even building, in case of build time implementations).
+
+== Conclusion
+
+You have just finished a deep dive into our current Build Compatible Extensions API proposal.
+
+Together with the API proposal, we also developed a proof-of-concept implementation in Quarkus, so that we know this API can be implemented, and that it is indeed build-time compatible. This proof of concept focuses solely on the `@Enhancement` phase, but that should be enough for now.  It's also worth noting that there is nothing Quarkus specific about the API. We believe (and our goal) is that any CDI-Lite implementation could adopt it using a variety of implementation strategies.
+
+We’re publishing the Quarkus fork in the form of a GitHub repository so that you can also experiment with it. Please bear in mind that the POC implementation is very rough and definitely is not production ready. It should be enough to evaluate the API proposal, though. Here’s how you can get your hands on it:
+
+[source,console]
+----
+git clone https://github.com/Ladicek/quarkus-fork.git
+cd quarkus-fork
+git checkout experiment-cdi-lite-ext
+./mvnw -Dquickly
+----
+
+Wait a few minutes or more, depending on how many Quarkus dependencies you already have in your local Maven repository. When the build finishes, you can add a dependency on `io.quarkus.arc:cdi-lite-ext-api:999-SNAPSHOT` to your project and play. Don’t forget to also bump other Quarkus dependencies, as well as the Quarkus Maven plugin, to `999-SNAPSHOT`!
+As mentioned before, we are very keen on hearing your feedback. Please file issues in the https://github.com/eclipse-ee4j/cdi/issues[CDI GitHub repository] with label `lite-extension-api`. Let’s work together on making these new Build Compatible Extensions a reality!
+
