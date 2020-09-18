@@ -16,6 +16,7 @@
 p {
   font-size: 1.15em;
   line-height: 1.6;
+  margin: 0.8em 0 0.5em;
 }
 
 .centered {
@@ -258,6 +259,10 @@ ul.twitter-list li.nav-header {
   border-bottom: 0px;
 }
 
+.panel-body {
+  padding: 2em 10em 2em 10em;
+}
+
 .posts .post {
   margin-bottom: 40px;
 }
@@ -281,7 +286,7 @@ ul.twitter-list li.nav-header {
   }
 
   .meta {
-    margin-bottom: 10px;
+    margin-bottom: 2em;
   }
 
   a.tag {
@@ -315,4 +320,8 @@ ul.twitter-list li.nav-header {
   float: left;
   margin-right: 5px;
   height: 32px;
+}
+
+h4, .h4 {
+  font-weight:bold;
 }
