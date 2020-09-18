@@ -21,6 +21,39 @@ table.table.table-bordered
     th
       ' License
   tr
+      td
+        ' CDI 3.0
+      td
+        a href='https://jakarta.ee/specifications/cdi/3.0/jakarta-cdi-spec-3.0.pdf'
+          ' PDF
+          i.fa.fa-file
+        ' |
+        a href='https://jakarta.ee/specifications/cdi/3.0/jakarta-cdi-spec-3.0.html'
+          ' HTML
+          i.fa.fa-link
+      td
+        a href='https://repo1.maven.org/maven2/jakarta/enterprise/jakarta.enterprise.cdi-api/3.0.0/jakarta.enterprise.cdi-api-3.0.0.jar'
+          ' API
+          i.fa.fa-download
+        ' |
+        a href='https://jakarta.ee/specifications/cdi/3.0/apidocs/'
+          ' JavaDoc
+          i.fa.fa-link
+        ' |
+        a.modal-link data-toggle="modal" href="#maven-cdi_3_0"
+          ' Maven
+          i.fa.fa-download-alt
+        td
+          a href='http://download.jboss.org/weld/4.0.0.Alpha3'
+            ' Weld 4.0.0.Alpha3
+            i.fa.fa-download
+        td
+          a href='http://download.eclipse.org/jakartaee/cdi/3.0/cdi-tck-3.0.1-dist.zip'
+            ' TCK 3.0.1
+            i.fa.fa-download
+        td
+          a href="http://www.apache.org/licenses/LICENSE-2.0.html"  ASL 2.0
+  tr
     td
       ' CDI 2.0
     td
@@ -200,6 +233,26 @@ p
 
 
 - #Create Maven Modals
+div.modal.fade id="maven-cdi_3_0" role="dialog" tabindex="-1"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        a.close data-dismiss='modal'
+          i.fa.fa-remove
+        h3 Using CDI 3.0 from Maven
+      .modal-body.clearfix
+        p To use CDI 3.0, add this dependency:
+        pre
+          code#example
+            '
+              &lt;dependencies&gt;
+                &lt;dependency&gt;
+                  &lt;groupId&gt;jakarta.enterprise&lt;/groupId&gt;
+                  &lt;artifactId&gt;jakarta.enterprise.cdi-apii&lt;/artifactId&gt;
+                  &lt;version&gt;3.0.0&lt;/version&gt;
+                  &lt;scope&gt;provided&lt;/scope&gt;
+                &lt;/dependency&gt;
+              &lt;/dependencies&gt;
 div.modal.fade id="maven-cdi_2_0" role="dialog" tabindex="-1"
   .modal-dialog
     .modal-content
