@@ -7,9 +7,9 @@ change_frequency: weekly
 
 = Guidelines for contributing to CDI via the Jakarta Specification Project
 
-== EG Membership
+== Specification Project Membership
 
-We develop CDI using an open mailing list. You don’t have to be an official member of the expert group to be part of the CDI community. We take into account all input from any member of the list
+We develop CDI using an open mailing list. You don’t have to be an official member of the specification project to be part of the CDI community. We take into account all input from any member of the list
 
 * Primary mailing list: https://www.eclipse.org/mailman/listinfo/cdi-dev[https://www.eclipse.org/mailman/listinfo/cdi-dev]
 * CDI 3.0 Jakarta page: https://jakarta.ee/specifications/cdi/3.0/[https://jakarta.ee/specifications/cdi/3.0/]

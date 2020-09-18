@@ -13,6 +13,10 @@ change_frequency: weekly
         b.caret
       ul.dropdown-menu
         li
+          a href='#cdi3_0' data-toggle='tab' CDI 3.0
+        li
+          a href='#cdi_jakarta_2_0' data-toggle='tab' CDI 2.0(Jakarta)
+        li
           a href='#cdi2_0' data-toggle='tab' CDI 2.0
         li
           a href='#cdi1_1' data-toggle='tab' CDI 1.1 & 1.2
@@ -20,9 +24,17 @@ change_frequency: weekly
           a href='#cdi1_0' data-toggle='tab' CDI 1.0
     li.dropdown
       a.dropdown-toggle href='#' data-toggle='dropdown'
-        'JCP pages
+        'Spec pages
         b.caret
       ul.dropdown-menu
+        li
+          a href='https://jakarta.ee/specifications/cdi/3.0/' target='_blank'
+            'CDI 3.0 - Jakarta EE 9
+            i.fa.fa-external-link.fa-w
+        li
+          a href='https://jakarta.ee/specifications/cdi/2.0/' target='_blank'
+            'CDI 2.0 - Jakarta EE 8
+            i.fa.fa-external-link.fa-w
         li
           a href='http://jcp.org/en/jsr/detail?id=365' target='_blank'
             'CDI 2.0 - JSR 365
@@ -67,6 +79,10 @@ change_frequency: weekly
         * Add `@WithAnnotations` as a way of improving extension loading performance ([read more](http://docs.jboss.org/cdi/spec/1.2/cdi-spec.html#process_annotated_type))
         * Many minor improvements to portable extensions ([read more](http://docs.jboss.org/cdi/spec/1.2/cdi-spec.html#spi))
 
+    .tab-pane.fade#cdi3_0
+      = partial('cdi3.adoc')
+    .tab-pane.fade#cdi_jakarta_2_0
+      = partial('cdi2-jakarta.adoc')
     .tab-pane.fade#cdi2_0
       = partial('cdi2.adoc')
     .tab-pane.fade.in.active#overview

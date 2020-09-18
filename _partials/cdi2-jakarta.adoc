@@ -1,0 +1,20 @@
+---
+priority: 1
+change_frequency: weekly
+---
+
+== CDI 2.0 (Jakarta)
+
+CDI 2.0 is part of move of Java EE 8 to Jakarta EE 8. The API and specification remain semantically the same,
+but references to Java EE and associated technologies have been updated
+to use Jakarta EE and the related updated names.
+
+The source repositories have moved under the Eclipse EE4J organization
+to the following repositories:
+
+* https://github.com/eclipse-ee4j/cdi[CDI Api and Spec]
+* https://github.com/eclipse-ee4j/cdi-tck[CDI TCK]
+
+== Jakarta CDI 2.0 Page
+See the https://jakarta.ee/specifications/cdi/2.0/[Jakarta Context Dependency Injection 2.0]
+for more information on the Jakarta release.
