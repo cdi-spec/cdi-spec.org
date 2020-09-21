@@ -54,7 +54,42 @@ table.table.table-bordered
             ' TCK 3.0.1
             i.fa.fa-download
         td
-          a href="http://www.apache.org/licenses/LICENSE-2.0.html"  ASL 2.0
+          a href="https://www.eclipse.org/legal/efsl.php"  EFSL 1.0
+  tr
+      td
+        ' CDI 2.0 (Jakarta)
+      td
+        a href='https://jakarta.ee/specifications/cdi/2.0/cdi-spec-2.0.pdf'
+          ' PDF
+          i.fa.fa-file
+        ' |
+        a href='https://jakarta.ee/specifications/cdi/2.0/cdi-spec-2.0.html'
+          ' HTML
+          i.fa.fa-link
+      td
+        a href='https://repo1.maven.org/maven2/jakarta/enterprise/jakarta.enterprise.cdi-api/2.0.2/jakarta.enterprise.cdi-api-2.0.2.jar'
+          ' API
+          i.fa.fa-download
+        ' |
+        a href='https://jakarta.ee/specifications/cdi/2.0/apidocs'
+          ' JavaDoc
+          i.fa.fa-link
+        ' |
+        a.modal-link data-toggle="modal" href="#maven-jakarta-cdi_2_0"
+          ' Maven
+          i.fa.fa-download-alt
+        td
+          a href='http://download.jboss.org/weld/3.1.1.Final'
+            ' Weld 3.1.1.Final
+            i.fa.fa-download
+        td
+
+        td
+          a href='https://download.eclipse.org/jakartaee/cdi/2.0/cdi-tck-2.0.7.SP1-dist.zip'
+            ' TCK 2.0.7SP1
+            i.fa.fa-download
+        td
+          a href="https://www.eclipse.org/legal/efsl.php"  EFSL 1.0
   tr
     td
       ' CDI 2.0
@@ -222,7 +257,9 @@ p
 .alert.alert-danger
   ' Note that older copies of the CDI specification (before 1.2) contain an out-of-date license. This has been resolved in 1.2 Maintenance Release.
 p
-  ' The specification and JavaDoc are additionally available under the JCP click through license. To obtain artifacts under this license visit the JCP page for
+  ' Current Jakarta specifications for 3.0 and 2.0 are available under the
+  a href="https://www.eclipse.org/legal/efsl.php" Eclipse Foundation Specification License.
+  ' Prior versions of the specification and JavaDoc are additionally available under the JCP click through license. To obtain artifacts under this license visit the JCP page for
   a href="http://jcp.org/en/jsr/detail?id=346"  JSR-346 (CDI 1.1)
   '  or
   a href="http://jcp.org/en/jsr/detail?id=299"  JSR-299 (CDI 1.0)
@@ -231,7 +268,7 @@ p
 .alert.alert-success
   ' This process is commonly known as
   a href="http://en.wikipedia.org/wiki/Multi-licensing"  dual-licensing
-  ' . The CDI specification is dual-licensed as it allows Red Hat to follow JCP rules and provide a liberally licensed version of the specification.
+  ' . The CDI specification is dual-licensed as it allows Red Hat to follow Jakarta rules and provide a liberally licensed version of the specification.
 
 
 - #Create Maven Modals
@@ -252,6 +289,26 @@ div.modal.fade id="maven-cdi_3_0" role="dialog" tabindex="-1"
                   &lt;groupId&gt;jakarta.enterprise&lt;/groupId&gt;
                   &lt;artifactId&gt;jakarta.enterprise.cdi-apii&lt;/artifactId&gt;
                   &lt;version&gt;3.0.0&lt;/version&gt;
+                  &lt;scope&gt;provided&lt;/scope&gt;
+                &lt;/dependency&gt;
+              &lt;/dependencies&gt;
+div.modal.fade id="maven-jakarta-cdi_2_0" role="dialog" tabindex="-1"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        a.close data-dismiss='modal'
+          i.fa.fa-remove
+        h3 Using CDI 2.0 from Maven
+      .modal-body.clearfix
+        p To use CDI 2.0, add this dependency:
+        pre
+          code#example
+            '
+              &lt;dependencies&gt;
+                &lt;dependency&gt;
+                  &lt;groupId&gt;jakarta.enterprise&lt;/groupId&gt;
+                  &lt;artifactId&gt;jakarta.enterprise.cdi-api&lt;/artifactId&gt;
+                  &lt;version&gt;2.0.2&lt;/version&gt;
                   &lt;scope&gt;provided&lt;/scope&gt;
                 &lt;/dependency&gt;
               &lt;/dependencies&gt;

@@ -1,0 +1,16 @@
+---
+priority: 1
+change_frequency: weekly
+---
+
+== CDI 3.0
+
+CDI 3.0 is part of Jakarta EE 9. The Jakarta EE 9 release is source
+code incompatible with previous releases as the package name has
+changed from javax.enterprise.* to jakarta.enterprise.*
+
+There were no functional or semantic changes in the specification or APIs.
+
+== Jakarta CDI 3.0 Page
+See the https://jakarta.ee/specifications/cdi/3.0/[Jakarta Context Dependency Injection 3.0]
+for more information on the Jakarta release.
