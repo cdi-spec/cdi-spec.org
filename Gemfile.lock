@@ -1,6 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    addressable (2.8.1)
+      public_suffix (>= 2.0.2, < 6.0)
     ansi (1.5.0)
     asciidoctor (1.5.5)
     asciidoctor-diagram (1.5.4)
@@ -48,7 +50,8 @@ GEM
     execjs (2.7.0)
     ffi (1.9.17)
     formatador (0.2.5)
-    git (1.6.0)
+    git (1.13.0)
+      addressable (~> 2.8)
       rchardet (~> 1.8)
     guard (2.16.1)
       formatador (>= 0.2.4)
@@ -98,6 +101,7 @@ GEM
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
+    public_suffix (5.0.1)
     rack (2.2.2)
     rake (12.0.0)
     rb-fsevent (0.9.8)
